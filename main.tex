@@ -1624,6 +1624,154 @@ Let $M$ be a smooth manifold. Show that the exterior derivative in \Cref{def:ext
 \subsection{The Poincar\'e lemma}
 
 
+\begin{lemma} [Poincar\'e Lemma]
+\label{lem:Poincare-lemma}
+On a manifold $M$, the sequence
+\begin{equation}\label{eqn:de-Rham-sequence}
+\begin{aligned}
+    \underline{\R} \xto{d} \Omega^0_\dR \xto{d} \Omega^1_\dR \xto{d} \cdots
+\end{aligned}
+\end{equation}
+is a long exact sequence of sheaves in $\Ab(M)$.
+\end{lemma}
+\begin{proof} Exactness in $\Ab(M)$ is detected on stalks. This is not the same as being exact on each open set (we might call the latter \emph{sectionwise exactness}), however sectionwise exactness does imply exactness on stalks by \Cref{cor:filtered-colimits-preserve-exactness}. For a given stalk over a point $x$, to argue exactness we take a colimit over the opposite category of the poset of open sets of $M$ which contain $x$. This admits a cofinal system given by those open sets $U\ni x$ for which $U$ is homeomorphic to (an open ball in) $\R^n$ (\Cref{prop:manifold-stalk-cofinal-system}). So we can reduce to proving the Poincar\'e lemma in the case where $M$ is an open ball in Euclidean space. To that end let's fix an $n$ and let $B$ denote the open ball of radius $1$ around the origin in $\R^n$.
+
+% We first show that \Cref{eqn:de-Rham-sequence} is a chain complex, verifying that $d^2 = 0$ (i.e. that exact forms are closed). As the differentials are abelian group homomorphisms, it suffices to check it on some $\omega = f(x_1, \ldots, x_n) dx_I$ where $f$ is a differentiable function on $B$ and $I$ is some multiindex $I = \{i_1 < i_2 < \cdots < i_k\} \subseteq \{1, \ldots, n\}$.
+
+We leave it as an exercise to show that $d^2 = 0$ (i.e. that exact forms are closed), and we will prove the hard part, namely that closed forms are exact. Let $\omega \in \Omega^k(B)$ and suppose that $d\omega = 0$. We will show that $\omega$ is exact by explicitly constructing a primitive. Since the exterior derivatives are sectionwise abelian group homomorphisms, we may reduce to the case where $\omega$ is of the form
+\begin{align*}
+    \omega = f(x_1, \ldots, x_n) dx_I
+\end{align*}
+for some differentiable function $f$ and some multiindex $I = \{i_1 < i_2 < \cdots < i_k\} \subseteq \{1, \ldots, n\}$. What does $d\omega = 0$ mean here? It means precisely that $\frac{\partial f}{\partial x_j} = 0$ for every $j\notin I$.
+
+Let's now consider the scaling map
+\begin{align*}
+    h \colon B \times [0,1] &\to B \\
+    (x,t) &\mapsto tx.
+\end{align*}
+We can compute the pullback of $\omega$ along $h$ as
+\begin{align*}
+    h^\ast(\omega) &= f(tx_1, \ldots, tx_n) d(tx_{i_1})\wedge \cdots \wedge d(tx_{i_k}) \\
+    % &= f(tx_1, \ldots, tx_n) \left( dx_I  + \sum_{j=1}^n dx_{i_1} \wedge \cdots \wedge dx_{i_{j-1}} \wedge dt \wedge dx_{i_{j+1}}\wedge \cdots \wedge dx_{i_k}\right) \\
+    &= f(tx_1, \ldots, tx_n) \left( dx_I + \sum_{j=1}^n (-1)^j dx_{I\minus\{j\}} \right).
+\end{align*}
+We're going to leverage this to construct a primitive for $\omega$, namely we will define $\alpha$ by ``integrating out'' $t$ from $h^\ast \omega$. Explicitly:
+\begin{align*}
+    \alpha &= \left(\int_{0}^1 f(tx_1, \ldots, tx_n)dt\right) \sum_{j=1}^n (-1)^j dx_{I\minus\{j\}}.
+\end{align*}
+We claim that $d\alpha = \omega$. Note that when we differentiate, it is with respect to the $x_i$'s so we can pull it inside the integral. We get:
+\begin{align*}
+    d\alpha &= d \left(  \left(\int_{0}^1 f(tx_1, \ldots, tx_n)dt\right) \sum_{j=1}^n (-1)^j dx_{I\minus\{j\}}. \right) \\
+    &=  \sum_{s=1}^n\left( \int_0^1 \frac{\partial f}{\partial dx_{s}}(tx_1, \ldots, tx_n) dt \right) dx_s \wedge \left( \sum_{j=1}^n (-1)^j dx_{I\minus\{j\}} \right)
+\end{align*}
+As all the differentials vanish unless $s\in I$, we get the above is equal to
+\begin{align*}
+    \sum_{j=1}^k \left(\int_0^1 \frac{\partial f}{\partial x_{i_j}}dt\right) dx_I.
+\end{align*}
+To verify this equals $\omega$, it suffices to check that
+\begin{align*}
+    f(x_1, \ldots, x_n) = \sum_{i=1}^n \int_0^1 \frac{\partial f}{\partial x_i}(tx_1, \ldots, tx_n)dt
+\end{align*}
+This is a standard version of the fundamental theorem of calculus that holds in star-shaped domains; see for instance \cite[I.1.4]{tuIntroductionManifolds2011}).
+\end{proof}
+
+In general, as we know, applying $\Gamma(M,-)$ to the above sequence will turn it into a chain complex, but will fail to preserve exactness. Here's an easy case where it does preserve exactness: I claim we know this exactness from multivariable calculus!
+
+\begin{proposition} On $\R^3$, taking global sections of the resolution from the Poincar\'e lemma gives an \emph{exact sequence}
+\begin{equation}\label{eqn:exact-seq-dR-on-R3}
+\begin{aligned}
+    0 \to C^0(\R^3,\R) \xto{d} \Omega^1_\dR(\R^3)\xto{d} \Omega^2_\dR(\R^3) \xto{d} \Omega^3_\dR(\R^3) \to 0.
+\end{aligned}
+\end{equation}
+\end{proposition}
+\begin{proof} Identifying $\Omega^1$ and $\Omega^2$ with vector fields as above, these differentials take a more familiar shape:
+\begin{align*}
+    0 \to C^0(\R^3,\R) \xto{\text{grad}} \Omega^1_\dR(\R^3)\xto{\text{curl}} \Omega^2_\dR(\R^3) \xto{\text{div}} \Omega^3_\dR(\R^3) \to 0.
+\end{align*}
+In this case exactness at each stage has a nice interpretation:
+\begin{center}
+    \begin{tabular}{| l | p{10cm} |}
+    \hline
+    exactness at $\Omega^1_\dR(\R^3)$ & the curl of a vector field is zero if and only if the vector field is a gradient \\
+    exactness at $\Omega^2_\dR(\R^3)$ & the divergence of a vector field is zero if and only if the vector field is a curl \\
+    exactness at $\Omega^3_\dR(\R^3)$ & every differentiable function on $\R^3$ is the divergence of some vector field \\
+    \hline
+\end{tabular}
+\end{center}
+\end{proof}
+In particular let's compute the cohomology of the sequence \Cref{eqn:exact-seq-dR-on-R3}. It's exact everywhere except at $C^0(\R^3,\R)$. The homology at this point is the kernel of the gradient, and we see that this is isomorphic to $\R$, since any two functions with the same gradient differ by a scalar. In particular the cohomology of the cochain complex above is
+\begin{align*}
+    H^\ast = \begin{cases} \R & \ast=0 \\ 0 & \ast>0 \end{cases}
+\end{align*}
+This looks an awful lot like the singular cohomology of $\R^3$. We know that sheaf cohomology with constant coefficients computes singular cohomology, so we'd love to say that what we just did is compute the sheaf cohomology of $\R^3$ with constant coefficients $\underline{\R}$, and the only thing preventing us from saying that is just verifying that the de Rham sheaves are acyclic. We actually know one of these already --- we've shown that the sheaf of differentiable real-valued functions is fine (and therefore acyclic) on a differentiable manifold, since we have access to differentiable partitions of unity, so this is the case $\Omega^0_\dR$. We show this works for the higher sheaves as well:
+
+\begin{proposition}\label{prop:Omega-sheaves-are-fine} 
+If $M$ is a differentiable manifold, then $\Omega^k_\dR$ is fine.
+\end{proposition}
+\begin{proof} Pick any \emph{differentiable} partition of unity $\phi_i$ subordinate to an open cover, and define homeomorphisms by multiplication by $h_i$ on each open cover. This is fine by a similar proof to \Cref{exa:cx-valued-cts-funcs-is-fine}. More generally, a sheaf of modules over a fine sheaf of commutative rings is fine.
+\end{proof}
+
+\begin{definition} We define \emph{de Rham} cohomology as the cohomology of the \emph{de Rham complex}:
+\begin{align*}
+    \Omega^0_\dR(M) \xto{d} \Omega^1_{\dR}(M) \xto{d} \Omega^2_\dR(M) \xto{d} \cdots
+\end{align*}
+\end{definition}
+
+\begin{theorem}[Sheafy de Rham theorem]
+\label{thm:sheafy-de-rham}
+ Let $M$ be a smooth manifold. Then there is an isomorphism
+\begin{align*}
+    H^p_\dR(M) \cong H^p(M,\underline{\R}).
+\end{align*}
+\end{theorem}
+\begin{proof}
+We have shown that the sheaves of differential forms are fine \Cref{prop:Omega-sheaves-are-fine}, and therefore acyclic by \Cref{thm:fine-sheaf-on-paracompact-is-acyclic}.
+\end{proof}
+
+We now have some equalities of cohomology theories along a manifold $M$:
+\begin{align*}
+    \underbrace{H^\ast_\dR(M)}_{\text{de Rham}} \overset{\ref{thm:sheafy-de-rham}}{\cong} \underbrace{H^\ast(M,\underline{\R})}_{\text{sheaf}} \overset{\ref{thm:cech-equals-sheaf}}{\cong} \underbrace{\check{H}^\ast(M,\underline{\R})}_{\text{\v{C}ech}} \overset{\ref{thm:Cech-cohomology-and-singular-cohomology}}{=} \underbrace{H^\ast_\sing(X,\R)}_{\text{singular}}
+\end{align*}
+%
+The comparison between \v{C}ech and singular cohomology was very precise, that is, we cooked up an explicit map sending singular cochains to \v{C}ech cochains and showed it is an isomorphism on cohomology. The other isomorphisms are more abstract -- \v{C}ech and de Rham cohomology agree with sheaf cohomology in this context because they arise as the cohomology of a resolution of a constant sheaf $\underline{\R}$ by an acyclic resolution of sheaves (being the \v{C}ech cochains sheaves and the de Rham sheaves, respectively).
+
+So our takeaway from all of this is that de Rham and singular cohomology agree along a manifold, but right now we only really know they agree abstractly. It would be nice to find an explicit map exhibiting this isomorphism --- this is the content of the \emph{de Rham theorem}.
+
+Our isomorphism in question is exhibited by integration. At the level of presheaves, given an open neighborhood $U \subseteq M$ and an element $\omega \in \Omega^k_\dR(U)$, we obtain a \v{C}ech cochain by integration along simplices in $U$:
+\begin{align*}
+    \Omega_{\dR}^k(U) &\to C^k_{\text{sing}}(U;\R) \\
+    \omega &\mapsto \left[ Z \mapsto \int_Z \omega \right].
+\end{align*}
+\begin{exercise}\label{exer:integration-is-map-of-complexes} 
+Show that this induces a map of chain complexes between the de Rham complex and the (smooth) singular chains complex (hint: Stokes' theorem!)
+\end{exercise}
+
+The de Rham theorem states that integration exhibits our desired isomorphism between de Rham and singular cohomology:
+
+\begin{theorem}[de Rham theorem] 
+\label{thm:de-Rham}
+If $M$ is a smooth manifold, then the map given by integration of differential forms induces an isomorphism
+\begin{align*}
+    H^\ast_\dR(M) \xto{\sim} H^\ast_\text{sing}(M,\R).
+\end{align*}
+\end{theorem}
+We don't prove this - to see it spelled out, we refer to \cite[Chapter~16]{leeIntroductionSmoothManifolds2012}. Specifically \cite[16.12]{leeIntroductionSmoothManifolds2012} is the result, while naturality is in \cite[16.11]{leeIntroductionSmoothManifolds2012} and the comparison between smooth and singular chains is \cite[16.6]{leeIntroductionSmoothManifolds2012}.
+
+\begin{remark} If we delete a point from $\R^2$, we know that this introduces non-trivial cohomology, since $\R^2\minus\{0\}$ deformation retracts onto the unit vectors, which form the sphere $S^1$. Following the de Rham theorem, this tells us we should expect the existence of a global $1$-form on $\R^2\minus\{0\}$ which has zero derivative but is \emph{not} the gradient of a smooth function on $\R^2\minus\{0\}$. Such a thing exists precisely because we have deleted the origin, meaning we should be allowed to find something new which was \emph{not allowed} when the origin was present. An example is, for instance:
+\begin{equation}\label{eqn:1-form-on-R2-minus-origin}
+\begin{aligned}
+    \omega = \frac{x\ dx - y\ dx}{x^2 + y^2}.
+\end{aligned}
+\end{equation}
+Such a form doesn't exist on $\R^2$, but \emph{does} on $\R^2\minus\{0\}$. This is the way in which differential forms see the creation of cohomology classes by deleting regions from a contractible Euclidean space.
+\end{remark}
+
+\begin{exercise} Prove that $H^1_{dR}(\R^2\minus \{0\})$ is a 1-dimensional real vector space spanned by the form $\omega$ from \Cref{eqn:1-form-on-R2-minus-origin}.
+\end{exercise}
+% see https://math.stackexchange.com/a/613088 for a worked answer
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newpage
