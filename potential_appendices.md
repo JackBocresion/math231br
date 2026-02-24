@@ -27,7 +27,7 @@ Explain the spectral sequence $H^p(X,\Omega^q) \Rightarrow H^{p+q}(X,\mathbb{C})
 ## Calabi-Eckmann manifolds
 Give an intro to Calabi-Eckmann manifolds, following their original paper. Prove that Calabi-Eckmann manifolds do not admit a Kähler metric and therefore are not algebraic, and explain why this is so cool! Time/interest pending, investigate their $\overline{\partial}$ cohomology, following Kodaira-Spencer and Ise, discussed in Appendix II.9 in Hirzebruch.
 
-## The Lefschetz hyperplane theorem via Morse theory
+## The Lefschetz hyperplane theorem via Morse theory (dibs: Sophie Zhu)
 Give an overview of Andreotti and Frankel proof of the Lefschetz hyperplane theorem via Morse theory. Use it to compute the (co)homology of various complex algebraic varieties.
 
 ## Thom's computation of $\pi_\ast \text{MSO}$
