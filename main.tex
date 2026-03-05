@@ -2130,12 +2130,279 @@ Fix a topological group $G$ and a faithful action on some space $F$. Then for an
 \begin{proof} Take colimits over $\mathcal{U}\in \Cov(X)^\op$ in \Cref{thm:nonabelian-h1-cech-cover} and exploit that we have locally finite refinements.
 \end{proof}
 
-
 \begin{example}
 In the theorem above, the trivial fiber bundle corresponds to the identity element of the group $H^1(X,G_c)$.
 \end{example}
 
+\section{Principal $G$-bundles}
 
+Any faithful $G$-action on a fiber $F$ yields a study of fiber bundles with structure group $G$ and fiber $F$. There is a distinguished example of such an $F$, namely $G$ itself, where the action is via left translation. These are called \emph{principal fiber bundles}. Here's a precise definition.
+
+\begin{definition} A fiber bundle $\pi \colon Y \to X$ with structure group $G$ and fiber $F$ is said to be \emph{principal} if $G$ acts simply transitively on $Y$, if $G$ is homeomorphic to $F$ along the action by left translation.
+\end{definition}
+
+\begin{example} The trivial bundle $G \times X \to X$ is a principal $G$-bundle, corresponding to the identity element in $\check{H}^1(X,G)$ by \Cref{exa:identity-cocycle-trivial-fiber-bundle}.
+\end{example}
+
+\begin{remark} There's a pretty horrible conflation between ``a trivial principal bundle'' and ``the trivial principal bundle'' in the literature. Writing a trivial principal $G$-bundle as $G \times X \to X$ is a very bad practice, since it assumes we know where the identity is in each fiber. A priori we don't know this, that's why Steenrod warned us to be careful about this \cite[pp.37-38]{Steenrod-fibre-bundles}. To illustrate by example, consider the fold map
+\begin{align*}
+    S^1 \amalg S^1 \to S^1.
+\end{align*}
+Let the nonidentity element of $C_2$ swap the two copies of $S^1$ upstairs, and let the identity element fix them. Then we'd be correct to say the projection above is a trivial principal $C_2$-bundle. But it is \emph{not} the same data as $S^1 \times C_2 \to S^1$, since we don't have a preferred copy of $S^1$ in the fiber corresponding to the identity element. We can \emph{pick} one, and define a fiberwise homeomorphism $S^1 \amalg S^1 \cong S^1 \times C_2$, but there are two ways to do this. This is a shade of a more common general conflation between a group $G$ and a \emph{torsor} for it, which is by definition any $G$-set with faithful transitive $G$-action.
+\end{remark}
+
+We can always \emph{pick} an identity continuously in each fiber. That is, if $Y \to X$ is a trivial $G$-bundle, we can take a section $\sigma \colon X \to Y$ and define a trivialization of the fiber by allowing $\sigma(x)$ to be the identity in $Y_x$. We claim this defines an isomorphism of fiber bundles between $Y$ and $G \times X$. Steenrod calls this the \emph{cross-section theorem} \cite[I.8.3]{Steenrod-fibre-bundles}.
+
+\begin{theorem}[Cross-section theorem]
+\label{thm:cross-section}
+Let $\pi \colon Y \to X$ be a principal $G$-bundle. Then it is trivial if and only if it admits a global section.
+\end{theorem}
+\begin{proof}[Sketch] Verify the data of a global section $\sigma \colon X \to Y$ is the same data as a homeomorphism between $\pi$ and the product bundle $G \times X \to X$.
+\end{proof}
+
+So we see something interesting, namely that a principal $G$-bundle defines a class in $H^1(X,G)$, and that the failure of this class to be the identity element is measuring the failure of the existence of a global section. Phrased differently, the cohomology class in $H^1(X,G)$ is \emph{obstructing} the existence of a global section. We'll see this theme again in the theory of vector bundles.
+
+\subsection{Factor spaces}
+
+A crucial example of principal bundles comes from factor groups.
+
+\begin{definition} If $G$ is a topological group and $H \le G$ is a closed subgroup, we define the \emph{factor space} to be the set of left cosets $G/H$, equipped with a topology defined by $U \subseteq G/H$ being open if and only if $\pi^{-1}(U) \subseteq G$ is open, where $\pi$ is the projection map
+\begin{align*}
+    \pi \colon G \to G/H.
+\end{align*}
+\end{definition}
+
+\begin{exercise}\label{exer:top-grp-mod-subgp-is-Hausdorff} 
+If $G$ is a topological group and $H\le G$ is a closed subgroup then $G/H$ is Hausdorff.
+We have that $G/H$ is Hausdorff. %(Steenrod p29)
+\end{exercise}
+
+Here is an important theorem, which can be found in \cite[p.~30]{Steenrod-fibre-bundles} in slightly different language.
+
+\begin{theorem} Let $G$ be any topological group and $H \le G$ a closed subgroup. Let $\pi \colon G\to G/H$ be the surjective open map corresponding to projection onto cosets. Let $\Sec(-,\pi)$ be the sheaf of sets on $G/H$ given by local continuous sections of $\pi$. Then the following are equivalent:
+\begin{enumerate}
+    \item $\pi \colon G \to G/H$ is a fiber bundle with fiber $H$ and structure group $H$ acting on itself via left translation
+    \item the stalk $\Sec(-,\pi)_{eH}$ at the identity coset is nonempty.
+\end{enumerate}
+In the classical literature, an element of this stalk is called a \emph{local cross-section}, and demonstrating existence of local cross-sections was the general strategy for proving various projections were fiber bundles.
+\end{theorem}
+
+
+\begin{proof} The forwards direction is immediate, since fiber bundles always admit locally defined sections, so we need to argue the backwards direction. Suppose the stalk is nonempty, then by definition there is some open neighborhood $U \ni eH$ and a continuous section $s \colon U \to \pi^{-1}(U)$. We see that $s(U) \subseteq G$ is just some subspace, and we can use the $H$-action to permute it around in $G$. We claim this doesn't create any overlaps, that is, $s(U) \cap h\cdot s(U) = \emptyset$ for all $h\ne e$. Indeed if it did, we would have some $u_1,u_2\in U$ and $h\in H$ for which
+\begin{align*}
+    s(u_1) = h\cdot s(u_2).
+\end{align*}
+Applying $\pi$ and leveraging that $\pi$ is $H$-equivariant, we get that $u_1 = u_2$, hence $s(u_1) = s(u_2)$ in $G$, and $h= e$.
+
+We therefore have an injective continuous map
+\begin{equation}\label{eqn:UxH-to-piinvs-U}
+\begin{aligned}
+    U \times H &\xto{\sim} \pi^{-1}(U) \\
+    (u,h) &\mapsto h\cdot s(u).
+\end{aligned}
+\end{equation}
+We claim this is a homeomorphism. We see that for any $y\in \pi^{-1}(U)$, there is a unique $h\in H$ for which $hs(U) \ni y$, which defines for us an $H$-equivariant function
+\begin{align*}
+    \pi^{-1}(U) &\to H.
+\end{align*}
+We want to argue that this is continuous. By $H$-equivariance, it suffices to check continuity by looking at a neighborhood basis of the origin in $H$. Let $K \subseteq H$ be any such basis, then the preimage of $K$ under the map above is the elements $y\in \pi^{-1}(U)$ so that $ks(U) \ni y$ for some $k \in K$. That is, it is exactly $K\cdot s(U)$. Since $s(U)$ is open \emph{in $\pi^{-1}(U)$} so is $K\cdot s(U)= \cup_{k\in K}s(U)$, since each $k$ acts via a homeomorphism, and we just get a union of opens.
+
+Hence we get an continuous map
+\begin{align*}
+    \phi \colon \pi^{-1}(U) \to U \times H
+\end{align*}
+which is the product of $\pi$ and the continuous map $\pi^{-1}(U) \to H$ defined above, and it is easy to check it is inverse to \Cref{eqn:UxH-to-piinvs-U}, hence a homeomorphism.
+
+We can now prove that $\pi \colon G \to G/H$ is a fiber bundle. Consider the open cover $\mathcal{U} = \left\{ g\cdot U \right\}_{g\in G}$ of $G/H$, where $U$ is as above. By $H$-equivariance of all the constructions above, we have homeomorphisms
+\begin{align*}
+    g\phi \colon \pi^{-1}(gU) \xto{\sim} gU \times H
+\end{align*}
+for every homeomorphism in the open cover. Given an overlap $g_1U \cap g_2U \ne \emptyset$, we have that $g_2^{-1}g_1U = U$, hence $g_2 g^{-1} \in H$. Therefore the composite
+\begin{align*}
+    (g_1 U \cap g_2 U) \times H \xto{(g_2 \phi)^{-1}} \pi^{-1}(g_1 U \cap g_2 U) \xto{g_1 \phi} (g_1 U \cap g_2 U) \times H
+\end{align*}
+is constant on that second factor $H$, and is just multiplication by $g_2 g^{-1}$ on the first factor. This is clearly a section of the structure group for our bundle, which is $H$, therefore we are done.
+\end{proof}
+
+\begin{theorem}[{\cite[4.1]{gleasonSpacesCompactLie1950}}] If $G$ is an arbitrary topological group, and $H \le G$ is a closed subgroup which is a compact Lie group, then $G \to G/H$ is a fiber bundle with fiber $H$ and structure group $H$ and action given by left translation.
+\end{theorem}
+
+\begin{remark} It's entirely possible to not admit a local cross-section. Steenrod refers to an unpublished result of Hanner for an example \cite[p.~33]{Steenrod-fibre-bundles}. Karube gives us another example -- let $G = \prod_{i=1}^\infty S^1$, let $\pi_n \colon G \to S^1$ be the projection onto the $n$th circle. Take $H \le G$ to be any closed subgroup for which $\pi_n(H) \le S^1$ is finite and nonzero. Then $G\to G/H$ admits no cross-section, hence is not a fiber bundle \cite{karubeLocalCrosssectionsLocally1958}.
+\end{remark}
+
+
+
+\subsection{Identifying factor spaces} We now know that we can build a principal $H$-bundle $G \to G/H$ for any $G,H$ as before. This doesn't necessarily help us understand $G/H$ as a topological space though. A nice strategy to assemble explicit fiber bundles is to start with a transitive $G$-action on a space, and let $H$ be the stabilizer of any point of that space.
+
+\begin{proposition}\label{prop:factor-space-via-group-action} 
+Suppose $G$ acts transitively on a Hausdorff space $Y$, let $y\in Y$ be any arbitrary basepoint, and let $p \colon G \to Y$ be the continuous map sending $g$ to $gy$. Define the \emph{stabilizer subgroup}
+\begin{align*}
+    G_y := \left\{ g\in G \mid gy=y \right\}.
+\end{align*}
+Then we have that
+\begin{enumerate}
+    \item $G_y \le G$ is closed,
+    \item $p$ factors through the quotient by $G_y$, inducing a map
+    \begin{equation}\label{eqn:action-mod-isotropy-bijection}
+    \begin{aligned}
+        G/G_y &\to Y \\
+        g &\mapsto g\cdot y
+    \end{aligned}
+    \end{equation}
+    which is continuous and bijective
+    \item if furthermore $G$ is compact, then \Cref{eqn:action-mod-isotropy-bijection} is a homeomorphism.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+The closed condition is immediate (exercise!). We define a map
+\begin{align*}
+    G/G_y &\to Y \\
+    g &\mapsto g\cdot y.
+\end{align*}
+This is continuous since the action of $G$ on $Y$ is continuous, it is injective by definition of the isotropy subgroup, and surjective by transitivity. If $G$ is compact, then so is $G/G_y$ (image of compact is compact). Therefore \Cref{eqn:action-mod-isotropy-bijection} is a homeomorphism since every bijective continuous maps from a compact space to a Hausdorff space is automatically a homeomorphism.
+\end{proof}
+
+
+\begin{notation} Given a fiber bundle $f \colon Y\to X$ with fiber $F$, we often write it as what's called a \emph{fiber sequence}
+\begin{align*}
+    F \hookto Y \to X.
+\end{align*}
+This should in some sense remind us of a short exact sequence.
+\end{notation}
+
+
+
+\begin{example}[Orthogonal group fiber sequence]
+Recall a real matrix is \emph{orthogonal} of its transpose and inverse coincide. Define the \emph{orthogonal group} $O(n)$ as
+\begin{align*}
+    O(n) := \left\{ M \in \GL_n(\R) \colon M^t = M^{-1} \right\}.
+\end{align*}
+We claim $O(n)$ is compact (exercise). There is a natural inclusion of $O(n)$ into $O(n+1)$ by sticking a 1 in the bottom right corner and a 0 elsewhere:
+\begin{align*}
+    O(n) &\to O(n+1) \\
+    M &\mapsto \begin{pmatrix} M & 0 \\ 0 & 1 \end{pmatrix}.
+\end{align*}
+Note that $O(n)$ acts transitively on the (Hausdorff) unit sphere $S^{n-1} \subseteq \R^n$. Fixing any unit vector $v\in S^{n-1}$, we can verify that its isotropy group is isomorphic to $O(n-1)$. Hence by \Cref{prop:factor-space-via-group-action} we get a homeomorphism
+\begin{align*}
+    O(n)/O(n-1) \cong S^{n-1}.
+\end{align*}
+Hence we have a fiber sequence
+\begin{align*}
+    O(n-1) \hookto O(n) \to S^{n-1}.
+\end{align*}
+\end{example}
+
+\begin{example} Completely analogously, the \emph{unitary group} $U(n)$ is defined to be those complex matrices whose conjugate transpose are equal to their inverse:
+\begin{align*}
+    U(n) := \left\{ M\in \GL_n(\C) : M^\ast M = I \right\}.
+\end{align*}
+This group is also compact, acting on $\C^n$ and also on the unit sphere $S^{2n-1} \subseteq \C^n$. By a similar argument to above, we have a homeomorphism $U(n)/U(n-1) \cong S^{2n-1}$, and a fiber sequence
+\begin{align*}
+    U(n-1) \hookto U(n) \to S^{2n-1}.
+\end{align*}
+\end{example}
+
+\begin{example} The \emph{compact symplectic group} $\Sp(n)$ is the subgroup of $\GL_n(\mathbb{H})$ preserving the standard Hermitian inner product on $\mathbb{H}^n$. We claim that $\Sp(n)$ acts transitively on the unit sphere $S^{4n-1}$ with stabilizer $\Sp(n-1)$, giving a fiber sequence
+\begin{align*}
+    \Sp(n-1) \hookto \Sp(n) \to S^{4n-1}.
+\end{align*}
+\end{example}
+
+\begin{example}[Stiefel manifolds] Let
+\begin{align*}
+    V_k(\R^n) & := \left\{ M \in M_{n \times k}(\R) : M^t M = I \right\} \\
+    V_k(\C^n) & := \left\{ M \in M_{n \times k}(\C) : M^\ast M = I \right\} \\
+    V_k(\mathbb{H}^n) & := \left\{ M \in M_{n \times k}(\C) : M^\ast M = I \right\}
+\end{align*}
+denote the \emph{Stiefel manifolds} of $k$-frames in $\R^n$,  $\C^n$, and $\mathbb{H}^n$, respectively. With the subspace topology from the Euclidean space of matrices, these are manifolds. Since orthogonal matrices preserve frames, we have that $O(n)$ acts transitively on $V_k(\R^n)$. The isotropy subgroup of a given frame is $O(n-k)$. Hence we have
+\begin{align*}
+    O(n)/O(n-k) &\cong V_k(\R^n) \\
+    U(n)/U(n-k) &\cong V_k(\C^n) \\
+    \Sp(n)/\Sp(n-k) &\cong V_k(\mathbb{H}^n).
+\end{align*}
+\end{example}
+
+An important space to define is the \emph{Grassmannian} $\Gr(k,n)$, which is the moduli space of $k$-dimensional subspaces of an $n$-dimensional vector space. Even before defining it, we note that it should receive a map from the Stiefel manifold, given by taking the \emph{span} of a given $k$-frame. Since the $O(k)$-action on a given frame doesn't affect its span, it makes sense we should mod out by this.
+
+\begin{definition}\label{def:Grassmannian}
+We define the \emph{Grassmannian} to be
+\begin{align*}
+    \Gr_\R(k,n) & := O(k)\backslash V_k(\R^n) \cong O(k)\backslash O(n)/O(n-k) \\
+    \Gr_\C(k,n) & := U(k) \backslash V_k(\C^n) \cong U(k) \backslash U(n)/U(n-k) \\
+    \Gr_{\mathbb{H}}(k,n) & := \Sp(k) \backslash V_k(\mathbb{H}^n) \cong \Sp(k)\backslash \Sp(n)/\Sp(n-k).
+\end{align*}
+Then, by definition, we have principal fiber bundles
+\begin{align*}
+    O(k) \hookto & V_k(\R^n) \to \Gr_\R(k,n) \\
+    U(k) \hookto & V_k(\C^n) \to \Gr_\C(k,n) \\
+    \Sp(k) \hookto & V_k(\mathbb{H}^n) \to \Gr_{\mathbb{H}}(k,n).
+\end{align*}
+\end{definition}
+
+\subsection{Dold's classification theorem}
+
+Recall by \Cref{thm:H1-bijection-with-fiber-bundles}, given a topological group $G$ and a space $X$, then isomorphism classes of principal $G$-bundles over $X$ are classified by the set $H^1(X,G_c)$.
+
+\begin{notation} Recall, given two spaces $X,Y$, that $[X,Y]$ denotes the set of homotopy classes of maps between them.
+\end{notation}
+
+\begin{definition}[{\cite[7.2]{doldPartitionsUnityTheory1963}}]
+\label{def:classifying-space}
+Let $G$ be a topological group. We say a space $B$ is \emph{classifying} for $G$ if there exists a natural isomorphism
+\begin{align*}
+    T \colon [-,B] \Rightarrow \check{H}^1(-,G_c)
+\end{align*}
+of functors $\Top^\op \to \Set$.
+\end{definition}
+
+Note that baked into the definition is the existence of a universal bundle. By the Yoneda lemma, the homotopy class of the identity map on $B$ is mapped to some bundle $\eta \colon E \to B$ in $\check{H}^1(B,G_c)$, and every element in $[X,B]$ is the pullback of $\eta$ for every $X$. So to study and classify principal $G$-bundles, we should start by classifying a universal one. The \emph{classification theorem} of Dold gives us a lovely way to do this:
+
+\begin{definition}\label{def:contractible} We say that a space is \emph{contractible} if it has the homotopy type of a point. If the space is a CW complex, then this is equivalent to the statement that all its homotopy groups vanish.
+\end{definition}
+
+\begin{theorem}[{Classification theorem, \cite[7.5]{doldPartitionsUnityTheory1963}}]
+\label{thm:classification-thm-principal-G-bundles}
+Let $\eta \colon E \to B$ be a numerable (\Cref{def:numerable-open-cover}) principal $G$-bundle. Then it is classifying if and only if $E$ is contractible.
+\end{theorem}
+
+\begin{proof}[Sketch]
+First suppose $\eta \colon E \to B$ is contractible, and take some other principal $G$-bundle $\eta \colon V \to X$. We want to find a map $f \colon X \to B$ for which $V\cong f^\ast E$.
+
+We define a new bundle
+\begin{align*}
+    ( \zeta,\eta ) \to X,
+\end{align*}
+where the fiber over $x$ is the set of all possible bundle maps
+\[ \begin{tikzcd}
+    V_x\rar\dar & E\dar\\
+    x\rar & B.
+\end{tikzcd} \]
+It is clear to see this bundle has fibers $(\zeta,\eta)_x \cong E$, since the $G$-action on the fibers implies that the bundle map is determined by the image of one point. Moreover, numerability of $\zeta$ implies numerability of $(\zeta,\eta)$.
+
+A section of this bundle would be the data we're looking for --- it would be a bundle map
+\[ \begin{tikzcd}
+    V\rar\dar & E\dar\\
+    X\rar & B,
+\end{tikzcd} \]
+and this will necessarily be a pullback, since every principal $G$-bundle map is an isomorphism. So it suffices to argue that $(\zeta,\eta)$ admits a global section. We can define a section locally on one of our covers over which $E$ is trivialize, then use contractability of $E$ to extend it to a global section (see \cite[2.6,2.7,2.8]{doldPartitionsUnityTheory1963}).
+
+For the other direction, suppose $\eta$ is universal. If we can prove the existence of a contractible numerable principal bundle (\cite[\S8]{doldPartitionsUnityTheory1963}), call it $C \to X$, then it is also universal by the previous direction, so we have a composite
+\[ \begin{tikzcd}
+    E\rar\dar & C\rar\dar & E\dar \\
+    B\rar & X\rar & B.
+\end{tikzcd} \]
+The map on bottom is homotopic to the identity, so the composite map on top is a homeomorphism $E \to E$. However this factors through a contractible space, hence $E$ must be contractible as well.
+\end{proof}
+
+\begin{remark} A mild modification of the argument in the proof of \Cref{thm:classification-thm-principal-G-bundles} shows that universal classifying spaces of principal $G$-bundles are unique up to homotopy equivalence.
+\end{remark}
+
+\begin{theorem}[Existence of universal bundles]
+\label{thm:existence-universal-G-bundles}
+Let $G$ be a topological group. Then a universal $G$-bundle exists.
+\end{theorem}
+\begin{proof} Omitted, see \cite[\S12.2]{AGP} or \cite[\S16.5]{maybook}.
+\end{proof}
 
 
 
