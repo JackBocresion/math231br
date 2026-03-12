@@ -2496,6 +2496,282 @@ is a universal principal $O(k)$-bundle. Similar statements for $U(k)$ and $\Sp(k
 \end{proof}
 
 
+\section{Vector bundles revisited}
+
+\begin{exercise} There is a natural inclusion $O(k) \subseteq \GL_k(\R)$. Show that, if $X$ is paracompact, then the map
+\begin{align*}
+    \check{H}^1(X, O(k)) \to \check{H}^1(X,\GL_k(\R))
+\end{align*}
+is a bijection. That is, we can always reduce the structure group to the orthogonal group $O(k)$ if we like.
+\end{exercise}
+
+A similar thing is true for $U(k) \subseteq \GL_k(\C)$ and complex vector bundles. So we can redefine a vector bundle in the language of fiber bundles.
+
+\begin{definition}\label{def:vector-bundle}
+A \emph{real/complex/symplectic} vector bundle of rank $k$ is a fiber bundle with structure group $O(k)$/$U(k)$/$\Sp(k)$ and fiber $\R^k$/$\C^k$/$\mathbb{H}^k$.
+\end{definition}
+
+\begin{definition}\label{def:flag-bundle} If $E \to X$ is a real vector bundle, we denote by $\Fl(E)$ the \emph{flag bundle}, whose fibers $\Fl(E)_x$ consist of all the orthonormal flags in $E_x$. We claim that $\Fl(E)$ is a principal $O(k)$-bundle over $X$.
+\end{definition}
+
+\begin{exercise}\label{exer:flag-bundle-is-associated} 
+For a paracompact space $X$, under the sequence of natural bijections
+\begin{align*}
+    \Prin_{O(k)}(X) \leftrightarrow \check{H}^1(X,O(k)) \leftrightarrow \Vect_\R^k(X),
+\end{align*}
+we have that $\Fl(E)$ corresponds to the vector bundle $E \to X$.
+\end{exercise}
+This tells us that:
+\begin{itemize}
+    \item a vector bundle can be recovered by its flag bundle
+    \item every principal $O(k)$-bundle is the flag bundle of some vector space, uniquely determined up to isomorphism
+    \item if a space $B$ is classifying for $O(k)$-bundles then it is classifying for vector bundles!
+\end{itemize}
+
+We know which space is classifying for $O(k)$ -- it is the infinite Stiefel manifold $V_k(\R^\infty)$. So we just want to understand, under the bijection between principal $O(k)$-bundles and real rank $k$ vector bundles, what does $V_k(\R^\infty)$ correspond to?
+
+The answer is the so-called \emph{tautological bundle}. Let's see a small-dimensional example:
+
+\begin{notation} We denote by
+\begin{align*}
+    E_k(\R^n) := \left\{ (v,P) \in \R^n \times \Gr_\R(k,n) \mid v\in P \right\}.
+\end{align*}
+This is, by construction, a vector bundle over $\Gr_\R(k,n)$. We call this the \emph{tautological vector bundle}.
+\end{notation}
+
+\begin{proposition}
+The tautological bundle $E_k(\R^n)$ is pulled back from $E_{k}(\R^{n+1})$ along the inclusion
+\begin{align*}
+    \Gr_\R(k,n) \subseteq \Gr_\R(k,n+1),
+\end{align*}
+\end{proposition}
+
+\begin{proposition} There is a tautological bundle
+\begin{align*}
+    E_k(\R^\infty) \to \Gr_\R(k,\infty)
+\end{align*}
+which pulls back to the tautological bundle on $\Gr_\R(k,n)$ for any $n$.
+\end{proposition}
+
+
+\begin{remark} Similar statements are true for $\Gr_\C(k,n)$ and $\Gr_\C(k,\infty)$, except the tautological bundle is now a complex (in fact \emph{holomorphic}) vector bundle.
+\end{remark}
+
+\begin{example} Over $\CP^n = \Gr_\C(1,n+1)$, the tautological line bundle has transition functions
+\begin{align*}
+    g_{ij} = z_j/z_i
+\end{align*}
+over the standard open cover $U_i = \left\{ [z_0: \ldots : z_n] \mid z_i\ne 0 \right\}$.
+\end{example}
+
+\begin{remark} Along the isomorphism $\Gr_\C(1,n) \cong \mathbb{CP}^{n-1}$, we have that $E_1(\C^n)$ is $\mathcal{O}_{\mathbb{P}^{n-1}}(-1)$.
+\end{remark}
+
+\begin{theorem} If $X$ is paracompact, the maps
+\begin{align*}
+    \left[ X,\Gr_\R(k,\infty) \right] &\to \Vect_\R^k(X) \\
+    \left[ X, \Gr_\C(k,\infty) \right] &\to \Vect_\C^k(X).
+\end{align*}
+is a bijection, natural in $X$, defined by pulling back the tautological vector bundle.
+\end{theorem}
+\begin{proof}[Proof sketch] Combining Dold's classification theorem \Cref{thm:classification-thm-principal-G-bundles}, and universality of the Stiefel manifolds \Cref{thm:stiefel-manifold-universal}, the only thing remaining to check is that the tautological vector bundle is an associated bundle to the Stiefel manifolds, which is an immediate application of \Cref{exer:flag-bundle-is-associated}. A self-contained proof can alternatively be found in \cite[1.16]{hatcherVectorBundlesKtheory}.
+\end{proof}
+
+\begin{remark} If $X$ is compact (say, a finite-dimensional CW complex), then any map $X \to \Gr(k,\infty)$ lands in some $\Gr(k,N)$ for a finite $N$. In particular there is a more refined version of the classification theorem above for such spaces -- see for instance \cite[19.4]{Steenrod-fibre-bundles}. 
+\end{remark}
+
+\begin{remark} If $X$ is not paracompact, we still get a well-defined map
+\begin{align*}
+    \left[ X,\Gr_\R(k,\infty) \right] \to \Vect_\R^k(X),
+\end{align*}
+whose image consists of all the numerable vector bundles on $X$.
+\end{remark}
+
+
+\begin{definition}\label{def:flag-bundle}
+Let $\pi \colon V \to X$ be a rank $r$ complex vector bundle, defined by the data of a cover $\left\{ U_i \right\}$ and trivializations $\phi_i \colon U_i \times \C^r \xto{\sim} \pi^{-1}(U_i)$. For a fiber $V_x$ over a point $x\in X$, denote by $F(V_x)$ the set of flags of the vector space $V_x$. This receives a free transitive $\GL_r(\C)$-action, but has no topology a priori. Denote by $F(V) = \amalg_{x\in X}F(V_x)$, and endow it with the final topology coming from the inclusions $\phi_i$.
+\end{definition}
+
+\begin{exercise} Verify that $F(V)$ is indeed a principal $\GL_r(\C)$-bundle, and prove it is \emph{associated} to $V$.
+\end{exercise}
+
+
+\subsection{Vector bundles with more structure}
+
+A real vector bundle over a paracompact space $X$ is equivalent to an element in $\check{H}^1(X,\GL_r(\R))$, hence it is defined by some $1$-cocycle $(g_{ij})$ of continuous maps
+\begin{align*}
+    g_{ij} \colon U_i \cap U_j \to \GL_r(\R).
+\end{align*}
+Note that each of the coordinates of the matrices $g_{ij}$ outputs are continuous in the input, so we can think about each of the coordinates as a continuous map $U_i \cap U_j \to \R$, that is, a section in $C^0(U_i\cap U_j, \R)$. We could therefore define a sheaf $\GL_r(C^0(-,\R))$ of $r \times r$ matrices of continuous sections which have determinant nonzero everywhere, and it is clear to see that this sheaf of groups is isomorphic to the one above.
+
+From this perspective, it becomes clear how to ask for our cocycles to have more structure. We can take $\GL_r$ of the sheaf of differentiable, smooth, holomorphic, etc. maps, and we get the following definition.
+
+\begin{definition}\label{def:differentiable-vector-bundle} 
+Let $X$ be a manifold which is smooth or differentiable, and let $\tau$ be some differentiability property of continuous real-valued functions of $X$ (i.e. differentiable functions, $C^p$-functions, smooth functions). Then we define a \emph{$\tau$-vector bundle} on $X$ is a vector bundle assembled from a 1-cocycle in $\check{H}^1(X, \GL_r(C^0_\tau(-,\R)))$. Equivalently, a $\tau$-vector bundle is a $1$-cocycle
+\begin{align*}
+    g_{ij} \colon U_i \cap U_j \to \GL_r(\R)
+\end{align*}
+so that each of the $g_{ij}$'s has property $\tau$.\footnote{Note: there is some math here, namely that a map to $\GL_r(\R)$ has a differentiability property if and only if all the coordinate projections to the individual entries of the matrix have that property.}
+\end{definition}
+
+
+\begin{example} If $M$ is a differentiable (resp. smooth) manifold, then the tangent bundle $TM$ is differentiable (resp. smooth).
+\end{example}
+
+In general there is no obstruction to giving a topological vector bundle a smooth structure.
+
+\begin{proposition} If $X$ is a smooth manifold, then every real (or complex) topological vector bundle on $X$ is isomorphic to a smooth vector bundle.
+\end{proposition}
+\begin{proof}[Proof sketch] An elegant resolution to this problem is to endow $\Gr_\R(r,\infty)$ with a smooth structure, and then argue that a vector bundle classified by a map $X \to \Gr_\R(r,\infty)$ is smooth if and only if the map is smooth. It then suffices to show that any continuous map can be homotoped into a smooth one, which is Whitney's approximation theorem (see for instance \cite[10.16]{leeIntroductionSmoothManifolds2012}).
+\end{proof}
+
+A similar definition makes sense over complex manifolds:
+
+\begin{definition}\label{def:holomorphic-vector-bundle} Let $X$ be a complex manifold, and $\xi \colon E \to X$ a complex topological vector bundle defined by transition maps $g_{ij}$ valued in $\GL_r(\C)$. We say $\xi$ is \emph{holomorphic} if the transition maps are holomorphic.
+\end{definition}
+
+It is \emph{not} true that every complex topological bundle on a complex manifold admits a holomorphic structure. We'll see some explicit examples later, but first let's see a sheafy perspective on where the obstruction arises.
+
+The sheaf on $X$ given by $\GL_r(\C)$ can be thought of $\GL_r$ of the sheaf $C^0(-,\C)$, that is, invertible $r \times r$ matrices of locally-defined continuous $\C$-valued functions. Inside of $C^0(U,\C)$ is the subsheaf $\mathcal{O}_X(U)$ of \emph{holomorphic} $\C$-valued functions. Hence there is a natural subsheaf inclusion
+\begin{align*}
+    \GL_r(\mathcal{O}_X) \to \GL_r(\C).
+\end{align*}
+This map, coming from ``forgetting the holomorphic structure'' induces a map
+\begin{align*}
+    H^1(X, \GL_r(\mathcal{O}_X)) \to H^1(X,\GL_r(\C)).
+\end{align*}
+The former object is holomorphic bundles on $X$, and the latter is topological bundles.
+
+\textbf{Idea}: Can we detect the failure of a complex topological bundle to admit a holomorphic structure by taking the cokernel of the inclusion $\GL_r(\mathcal{O}_X) \to \GL_r(\C)$ and looking at the long exact sequence on $H^1$?
+
+\textbf{Why this won't work}: Unfortunately, the inclusion $\GL_r(\mathcal{O}_X) \subseteq \GL_r(\C)$ is not a normal subgroup (conjugating holomorphic things by continuous things breaks holomorphic-ness), so there's no reason the quotient will be a sheaf of groups. Even if it was a sheaf of groups, we want to say something about $H^2$ so we'd need it to be a sheaf of \emph{abelian} groups.
+
+However if both $\GL_r(\mathcal{O}_X)$ and $\GL_r(\C)$ happened to be abelian, this wouldn't be a problem. And indeed there is a nice case where this works, i.e. when $r=1$. In this case, we get a natural map of sheaves $\mathcal{O}_X^\ast \to C^0(-,\C^\ast)$, taking a holomorphic nowhere zero section and forgetting that it was holomorphic. We can take its cokernel, and conclude confidently that the failure of a complex line bundle to admit a holomorphic structure is measured by this cokernel. A clever way to describe this failure is to compare the exponential sequences for holomorphic and continuous maps. We get a commutative diagram:
+\[ \begin{tikzcd}
+    0\rar & \underline{\Z}\rar\dar[equal] & \mathcal{O}_X\rar["\exp"]\dar & \mathcal{O}_X^\ast\dar\rar & 0\\
+    0\rar & \underline{\Z}\rar & {C^0(-,\C)}\rar["\exp"] & {C^0(-,\C^\ast)}\rar & 0\\
+\end{tikzcd} \]
+Looking at the long exact sequence on cohomology, we get
+\[ \begin{tikzcd}
+    {H^1(X,\Z)}\rar\dar[equal] & {H^1(X,\mathcal{O}_X)}\rar\dar & {H^1(X,\mathcal{O}_X^\ast)}\rar\dar & {H^2(X,\underline{\Z})}\rar\dar[equal] & {H^2(X,\mathcal{O})}\rar\dar & \cdots\\
+    {H^1(X,\Z)}\rar & 0\rar & {H^1(X,\C^\ast)}\rar["\sim" below] & {H^2(X,\Z)}\rar & 0\rar["\sim" below] & \cdots\\
+\end{tikzcd} \]
+Here the vanishing on bottom comes from $C^0(-,\C)$ being fine, as we've seen (\Cref{exa:cx-valued-cts-funcs-is-fine}). So what is the obstruction to lifting? We've just shown the following by a nice diagram chase:
+
+\begin{proposition} On a complex manifold $X$, a complex line bundle admits a holomorphic structure if and only if the image of its class in $H^2(X,\mathcal{O}_X)$ vanishes.
+\end{proposition}
+
+If $X$ is compact and K\"{a}hler we will see this is equivalent to being a Hodge class of type $(1,1)$, but this sheafy obstruction argument works for any complex manifold.
+
+\subsection{Operations with vector bundles}
+
+Various operations we can do with vector bundles are reflected by operations on Grassmannians that satisfy associativity up to homotopy (up to what's called \emph{higher coherence}). We can define operations on vector bundles either directly or by universal property combined with Yoneda. One advantage of the Yoneda perspective is we immediately obtain naturality of all the following constructions:
+
+\begin{proposition}[Operations with vector bundles] Given vector bundles $V_i \to X$, we can construct new vector bundles via:
+\begin{enumerate}
+    \item direct sum (called \emph{Whitney sum} in the older literature)
+    \item tensor product
+    \item hom bundles
+    \item duals
+    \item exterior powers
+    \item symmetric powers.
+\end{enumerate}
+Moreover if the $V_i$'s are differentiable or complex analytic so are the resulting bundles
+\end{proposition}
+\begin{proof} See \cite[3.6.1]{Hirzebruch} and the following pages for how these operations work in terms of cocycle data. Hirzebruch refers us to Bourbaki for a proof.
+\end{proof}
+
+As a special case of obtaining sheaves from sections of fiber bundles, we obtain sheaves from sections of vector bundles. These have some special notations:
+
+\begin{proposition}[{\cite[p.~46]{Hirzebruch}}]
+Let $V \to X$ be a vector bundle. We can define sheaves in the presence of more or less structure as follows:
+\begin{itemize}
+    \item $\mathfrak{C}(V)$, the sheaf of germs of local continuous sections of a vector bundle over a space $X$
+    \item $\mathfrak{A}(V)$, the sheaf of germs of local \emph{differentiable} sections of a differentiable vector bundle over a differentiable manifold.
+    \item $\Omega(V)$ the sheaf of germs of local \emph{holomorphic} sections of a complex analytic vector bundle over a complex manifold $X$.
+\end{itemize}
+If $X$ is paracompact, then $\mathfrak{C}(V)$ and $\mathfrak{A}(V)$ are fine. This follows by the existence of continuous (resp. differentiable) partitions of unity.
+\end{proposition}
+
+
+
+\section{Chern classes}
+
+\subsection{An axiomatic description}
+
+The general way to discuss Chern classes is to (a) lay out their axioms, (b) show the axioms uniquely describe them, and (c) construct them.
+
+\begin{definition}\label{def:chern-classes} Given a complex vector bundle $E \to X$, we define the Chern classes $c_k(E) \in H^{2k}(X,\Z)$ and the total Chern class $c(E) = \sum_{k\ge0} c_k(E) \in H^\ast(X,\Z)$ by the following axioms:
+\begin{enumerate}
+    \item $c_0(E) = 1$ for all vector bundles
+    \item if $f \colon Y \to X$ is any map, then $f^\ast c(E) = c(f^\ast E)$ in $H^\ast(Y,\Z)$
+    \item for any short exact sequence of vector bundles
+    \begin{align*}
+        E_1 \to E_2\to E_3
+    \end{align*}
+    on $X$, we have that $c(E_2) = c(E_1)c(E_3)$ in $H^\ast(X,\Z)$.
+    \item the tautological line bundle $E_1(\C^n)$ on $\CP^n$ has total Chern class
+    \begin{align*}
+        c(E_1(\C^n)) = 1 -h \in H^\ast(\CP^n;\Z)
+    \end{align*}
+    where $h \in H^2(\CP^n;\Z)$ is the hyperplane class.
+\end{enumerate}
+\end{definition}
+
+\begin{proposition}
+The Chern classes are uniquely determined by their axioms (that is, if we have elements $d_k(E) \in H^{2k}(X,\Z)$ for any bundle $E$ satisfying the axioms above, then $c_k(E) = d_k(E)$).
+\end{proposition}
+
+
+\subsection{Constructing characteristic classes}
+
+A \emph{characteristic class} is a way to assign, to every vector bundle over $X$ a cohomology class over $X$.\footnote{More generally, to every principal $G$-bundle a cohomology class.} We want this assignment to be natural in $X$, that is, natural under pullbacks. We have an elegant way to talk about these following the Pontryagin--Steenrod theorem, combined with the Yoneda embedding. 
+
+\begin{definition}\label{def:complex-characteristic-class} A \emph{complex characteristic class} is a natural transformation
+\begin{align*}
+    \Vect_\C^k(-) \Rightarrow H^r(-,\Z)
+\end{align*}
+of functors $\Top^\op \to \Set$ (or perhaps from $\Ho(\Top)^\op \to \Set$).
+\end{definition}
+
+When we restrict our attention to paracompact spaces, we have that $\Vect_\C^k(-)$ is \emph{representable}, when viewed as a functor out of $\Ho(\Top)$. So a characteristic class is a natural transformation of the form
+\begin{align*}
+    \left[ -,\Gr_\C(k,\infty) \right] \Rightarrow H^r(-,\Z).
+\end{align*}
+%
+But by the Yoneda lemma, the set of natural transformations of the above is in bijection with the cohomology class $H^r(\Gr_\C(k,\infty))$. So we get the following:
+
+\begin{slogan} A complex characteristic class for rank $k$ vector bundles is an integral cohomology class of the complex Grassmannian $\Gr_\C(k,\infty)$.
+\end{slogan}
+
+\begin{theorem}[Borel]
+We have an isomorphism
+\begin{align*}
+    H^\ast(\Gr_\C(r,\infty);\Z) \cong \Z[c_1, \ldots, c_n],
+\end{align*}
+where $c_i$ lives in degree $i$.
+\end{theorem}
+
+\textbf{Constructing Chern classes}: Given any complex vector bundle $E\to X$ of rank $r$ over a paracompact space $X$, it is pulled back from the tautological bundle via some map
+\begin{align*}
+    f \colon X \to \Gr_\C(r,\infty).
+\end{align*}
+We construct $c_k(E)$ to be the pullback of $c_k \in H^{2k}(\Gr_\C(r,\infty),\Z)$ under the map $f$.
+
+\textbf{Constructing the first Chern class via cocycles on a complex manifold}: If $X$ is paracompact, then by the exponential sequence, we can define $c_1$ to be the composite bijection
+\begin{align*}
+    c_1 \colon \Vect_\C^1(X) \xto{\sim} H^1(X,\C^\times) \xto{\sim} H^2(X,\Z).
+\end{align*}
+Suppose $X$ is a complex manifold, then there is a very nice explicit construction of $c_1$. Given a complex line bundle on $X$, we pick an open cover $\{U_i\}$ of $X$ trivializing the line bundle. After potentially shrinking the $U_i$'s if needed, we may assume they are simply connected and therefore admit well-defined logarithms. Given a cohomology class in $H^1(X,\C^\times)$, we can express it in terms of the transition functions $g_{ij}$. Pick a logarithm $e^{2\pi i f_{ij}} = g_{ij}$ for each. Then the triple overlap condition says that
+\begin{align*}
+    g_{ij} g_{jk} g_{ki} = 1,
+\end{align*}
+and we define $c_1$ to be
+\begin{align*}
+    c_1 := f_{ij} + f_{jk} + f_{ki} \in \Z.
+\end{align*}
+We claim this integer doesn't depend on the choice of triple overlap $i,j,k$, and that this integer is in fact the first Chern class of the bundle.
+
 
 
 
