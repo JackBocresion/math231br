@@ -2511,20 +2511,20 @@ A similar thing is true for $U(k) \subseteq \GL_k(\C)$ and complex vector bundle
 A \emph{real/complex/symplectic} vector bundle of rank $k$ is a fiber bundle with structure group $O(k)$/$U(k)$/$\Sp(k)$ and fiber $\R^k$/$\C^k$/$\mathbb{H}^k$.
 \end{definition}
 
-\begin{definition}\label{def:flag-bundle} If $E \to X$ is a real vector bundle, we denote by $\Fl(E)$ the \emph{flag bundle}, whose fibers $\Fl(E)_x$ consist of all the orthonormal flags in $E_x$. We claim that $\Fl(E)$ is a principal $O(k)$-bundle over $X$.
+\begin{definition}\label{def:frame-bundle} If $E \to X$ is a real vector bundle, we denote by $\Fr(E)$ the \emph{frame bundle}, whose fibers $\Fr(E)_x$ consist of all the orthonormal frames in $E_x$. We claim that $\Fr(E)$ is a principal $O(k)$-bundle over $X$.
 \end{definition}
 
-\begin{exercise}\label{exer:flag-bundle-is-associated} 
+\begin{exercise}\label{exer:frame-bundle-is-associated} 
 For a paracompact space $X$, under the sequence of natural bijections
 \begin{align*}
     \Prin_{O(k)}(X) \leftrightarrow \check{H}^1(X,O(k)) \leftrightarrow \Vect_\R^k(X),
 \end{align*}
-we have that $\Fl(E)$ corresponds to the vector bundle $E \to X$.
+we have that $\Fr(E)$ corresponds to the vector bundle $E \to X$.
 \end{exercise}
 This tells us that:
 \begin{itemize}
-    \item a vector bundle can be recovered by its flag bundle
-    \item every principal $O(k)$-bundle is the flag bundle of some vector space, uniquely determined up to isomorphism
+    \item a vector bundle can be recovered by its frame bundle
+    \item every principal $O(k)$-bundle is the frame bundle of some vector space, uniquely determined up to isomorphism
     \item if a space $B$ is classifying for $O(k)$-bundles then it is classifying for vector bundles!
 \end{itemize}
 
@@ -2574,7 +2574,7 @@ over the standard open cover $U_i = \left\{ [z_0: \ldots : z_n] \mid z_i\ne 0 \r
 \end{align*}
 is a bijection, natural in $X$, defined by pulling back the tautological vector bundle.
 \end{theorem}
-\begin{proof}[Proof sketch] Combining Dold's classification theorem \Cref{thm:classification-thm-principal-G-bundles}, and universality of the Stiefel manifolds \Cref{thm:stiefel-manifold-universal}, the only thing remaining to check is that the tautological vector bundle is an associated bundle to the Stiefel manifolds, which is an immediate application of \Cref{exer:flag-bundle-is-associated}. A self-contained proof can alternatively be found in \cite[1.16]{hatcherVectorBundlesKtheory}.
+\begin{proof}[Proof sketch] Combining Dold's classification theorem \Cref{thm:classification-thm-principal-G-bundles}, and universality of the Stiefel manifolds \Cref{thm:stiefel-manifold-universal}, the only thing remaining to check is that the tautological vector bundle is an associated bundle to the Stiefel manifolds, which is an immediate application of \Cref{exer:frame-bundle-is-associated}. A self-contained proof can alternatively be found in \cite[1.16]{hatcherVectorBundlesKtheory}.
 \end{proof}
 
 \begin{remark} If $X$ is compact (say, a finite-dimensional CW complex), then any map $X \to \Gr(k,\infty)$ lands in some $\Gr(k,N)$ for a finite $N$. In particular there is a more refined version of the classification theorem above for such spaces -- see for instance \cite[19.4]{Steenrod-fibre-bundles}. 
@@ -2588,8 +2588,8 @@ whose image consists of all the numerable vector bundles on $X$.
 \end{remark}
 
 
-\begin{definition}\label{def:flag-bundle}
-Let $\pi \colon V \to X$ be a rank $r$ complex vector bundle, defined by the data of a cover $\left\{ U_i \right\}$ and trivializations $\phi_i \colon U_i \times \C^r \xto{\sim} \pi^{-1}(U_i)$. For a fiber $V_x$ over a point $x\in X$, denote by $F(V_x)$ the set of flags of the vector space $V_x$. This receives a free transitive $\GL_r(\C)$-action, but has no topology a priori. Denote by $F(V) = \amalg_{x\in X}F(V_x)$, and endow it with the final topology coming from the inclusions $\phi_i$.
+\begin{definition}\label{def:frame-bundle}
+Let $\pi \colon V \to X$ be a rank $r$ complex vector bundle, defined by the data of a cover $\left\{ U_i \right\}$ and trivializations $\phi_i \colon U_i \times \C^r \xto{\sim} \pi^{-1}(U_i)$. For a fiber $V_x$ over a point $x\in X$, denote by $F(V_x)$ the set of frames of the vector space $V_x$. This receives a free transitive $\GL_r(\C)$-action, but has no topology a priori. Denote by $F(V) = \amalg_{x\in X}F(V_x)$, and endow it with the final topology coming from the inclusions $\phi_i$.
 \end{definition}
 
 \begin{exercise} Verify that $F(V)$ is indeed a principal $\GL_r(\C)$-bundle, and prove it is \emph{associated} to $V$.
