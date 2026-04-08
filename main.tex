@@ -2082,38 +2082,114 @@ The identity cocycle corresponds to the trivial fiber bundle along the bijection
 \begin{question} If we mod out by coboundaries on the right hand side of the bijection of \Cref{eqn:cocycle-fiber-bundle-bijection}, what does this correspond to as an equivalence class on fiber bundles?
 \end{question}
 
+This leads us to the idea of (iso)morphisms of fiber bundles.
+
+\subsection{Morphisms of fiber bundles}
+
+Given two fiber bundles with the same fiber and structure group over a base space $B$, we want to come up with a notion of a \emph{morphism} between fiber bundles. Here is a very reasonable definition that we might expect:
+
+\begin{definition}\label{def:fiber-bundle-morphism} Fix a topological group $G$ acting faithfully on a space $F$, and let $\pi_1 \colon E_1 \to B$ and $\pi_2 \colon E_2 \to B$ be two fiber bundles with fiber $F$ and structure group $G$. We define a \emph{morphism of fiber bundles} between them to be any continuous map $h \colon E_1 \to E_2$ making the diagram commute:
+\[ \begin{tikzcd}
+    E_1\ar[rr,"h" above]\ar[dr,"\pi_1" below left]&  & E_2\ar[dl,"\pi_2" below right]\\
+     & B & 
+\end{tikzcd} \]
+\end{definition}
+It is clear that the identity map on $E_1$ gives a fiber bundle isomorphism from $E_1$ to itself, and it is moreover clear how to compose fiber bundle isomorphisms.
+
+From this it seems obvious what we should call an \emph{isomorphism} of fiber bundles: it should be any morphism $h$ as in \Cref{def:fiber-bundle-morphism} that has a two-sided inverse, which is equivalent to $h$ being a homeomorphism. Surely this is the definition right?
+
+Wrong. Kinda.
+
+We can certainly find places in the literature where isomorphisms of fiber bundles are described in this way, but to my knowledge this is ahistorical. Originally, in order to say that two fiber bundles are \emph{equivalent} or \emph{isomorphic}, we insist that in each fiber the homeomorphism $F \xto{\sim} F$ induced by $h$ is not just any homeomorphism of spaces, it is in fact induced by an element of the structure group. If we wanted to be pedantic we might call this latter notion \emph{isomorphism in the strict sense}, following \cite[\S2.4]{Steenrod-fibre-bundles}. 
+
+What do we mean by ``induced by the structure group''? If $b\in B$, we could look at the induced map $h_b \colon \pi_1^{-1}(b) \to \pi_2^{-1}(b)$, and we want to say that this arises via the action of some element $g\in G$. In order to do this, we have to identify these fibers with $F$, and there is a canonical way to do this, coming from the trivializations of each fiber bundle. To that end, we make the following definition:
 
 \begin{definition}\label{def:isomorphism-of-fiber-bundles} 
-Fix a topological group $G$, and the data of a faithful continuous action of $G$ on a space $F$. Given two fiber bundles $\pi \colon W \to X$ and $\pi' \colon W' \to X$ with this data, we define an \emph{isomorphism} between them to be a \emph{homeomorphism} $k \colon W\xto{\sim} W'$, making the diagram commute:
+Fix a topological group $G$ acting faithfully on a space $F$, and let $\pi_1 \colon E_1 \to B$ and $\pi_2 \colon E_2 \to B$ be two fiber bundles with fiber $F$ and structure group $G$. Let $\phi$ denote the trivializations for $E_1$ and $\psi$ the trivializations for $E_2$.
+
+Let $h \colon E_1 \to E_2$ be a continuous map. We say it is an \emph{isomorphism of fiber bundles} if:
+\begin{enumerate}
+    \item the diagram commutes (i.e. $h$ is a morphism of fiber bundles):
 \[ \begin{tikzcd}
-    W\ar[dr,"\pi" below left]\ar[rr,"h" above] &  & W'\ar[dl,"\pi'" below right]\\
-     & X, & 
+    E_1\ar[rr,"h" above]\ar[dr,"\pi_1" below left]&  & E_2\ar[dl,"\pi_2" below right]\\
+     & B & 
 \end{tikzcd} \]
-so that for every point $x\in X$ there exists an open neighborhood $U \ni x$, admissible charts $h_U \colon \pi^{-1}(U) \xto{\sim} U \times F$ for $W$ and $h'_U \colon \pi^{\prime-1}(U) \xto{\sim} U \times F$ for $W'$, and an element $g_U \in G(U)$ so that 
-\begin{equation}\label{eqn:cohomology-condition-in-iso-of-fiber-bundles}
-\begin{aligned}
-     h_U' \circ k \circ h_U^{-1}(u,f) = (u,g_U(u)f)
-\end{aligned}
-\end{equation}
-for all $(u,f) \in U \times F$.
+    \item for every $b\in B$ there exists some open neighborhood $U \ni b$ trivializing both bundles, so that if we consider the composite of morphisms over $U$:
+    \begin{equation}\label{eqn:hU-fiber-bundle-morphism}
+    \begin{aligned}
+        U \times F \xto{\phi^{-1}} \pi_1^{-1}(U) \xto{h} \pi_2^{-1}(U) \xto{\psi} U \times F,
+    \end{aligned}
+    \end{equation}
+    there exists a continuous assignment we call $h_U \colon U \to G$ for which the map above sends $(u,f) \mapsto (u, h_U(u)\cdot f)$.
+\end{enumerate}
 \end{definition}
 
-It will help us to have the following sub-definition, this isn't in Hirzebruch though, we're just inventing it for narrative purposes:
-
-\begin{definition} In the setting of \Cref{def:isomorphism-of-fiber-bundles}, if we have an open cover $\mathcal{U} = \left\{ U_i \right\}$ of $X$ in mind, we will say that $k$ is an isomorphism \emph{witnessed along the cover} if both the bundles $\pi$ and $\pi'$ are trivialized along $\mathcal{U}$, and for any $x\in X$ the open set $U$ in the above definition can always be chosen to be one of the $U_i\in \mathcal{U}$.
+That is, the action on the fiber over $u$ occurs via some element in $G$, but that element can change continuously in $U$. In nice cases, we can pick the $U$'s to come from an open cover --- let's make this a precise definition:
+\begin{definition}\label{def:iso-fiber-bundle-witnessed-along-cover} Continuing the notation of \Cref{def:isomorphism-of-fiber-bundles}, let $\mathcal{U} = \left\{ U_i \right\}_{i\in I}$ be an open cover of $B$. We say that $h$ is a \emph{fiber bundle isomorphism witnessed along} $\mathcal{U}$ if, in \Cref{eqn:hU-fiber-bundle-morphism}, the open neighborhood $U\ni b$ can always be chosen to be an element in $\mathcal{U}$.
 \end{definition}
 
-It's immediate that we have the following:
 
-\begin{theorem}\label{thm:nonabelian-h1-cech-cover} 
-With the data of a topological group $G$ and a fixed faithful action of $G$ on a space $F$, as well as a space $X$ equipped with an open cover $\mathcal{U}$, the bijection in \Cref{eqn:cocycle-fiber-bundle-bijection} descends to a bijection:
+
+
+The following proposition is straightforward:
+
+\begin{proposition} If $h$ is a vector bundle isomorphism as in \Cref{def:isomorphism-of-fiber-bundles}, then $h$ is a homeomorphism.
+\end{proposition}
+\begin{proof} Since $G$ acts by automorphisms of the fiber, the entire composite in \Cref{eqn:hU-fiber-bundle-morphism} has a continuous inverse, hence it is a homeomorphism. Since $\phi$ and $\psi$ are homeomorphisms by definition, we see that $h$ is a homeomorphism when restricted to $\pi_1^{-1}(U) \to \pi_2^{-1}(U)$. As this is true for any $U$, it is clear that the total map $h$ is a homeomorphism.
+\end{proof}
+
+We see that $h$ determines these maps $h_U \colon U \to G$, but could we have gone the other way and assembled $h$ out of the $h_U$'s? The following theorem tells us when this is possible:
+
+\begin{theorem}\label{thm:fiber-bundle-iso} Let $\pi_i \colon E_i \to B$ be two fiber bundles with the same structure group $G$ and fiber $F$. Let $\mathcal{U} = \left\{ U_i \right\}_{i \in I}$ be an open cover of $B$ which trivializes both bundles, and for any $i \in I$ let $\phi_i \colon \pi_1^{-1}(U_i) \xto{\sim} U_i \times F$ and $\psi_i \colon \pi_2^{-1}(U_i) \xto{\sim} U_i \times F$ denote these trivializations. Let $g_{ij}, \gamma_{ij} \colon U_i\cap U_j \to G$ be the cocycles attached to $E_1$ and $E_2$, respectively. Then the following sets are in canonical bijection:
+\begin{enumerate}
+    \item the set of vector bundle isomorphisms $h \colon E_1 \xto{\sim} E_2$ witnessed along $\mathcal{U}$
+    \item the set whose elements are tuples of continuous maps $\left\{ U_i \xto{h_i} G \right\}_{i\in I}$ so that, for all $i,j \in I$, we have that $\gamma_{ij}\cdot h_i = h_j \cdot g_{ij}$ are equal as maps $U_i \cap U_j \to G$, where the multiplication is occurring pointwise in $G$.
+\end{enumerate}
+\end{theorem}
+\begin{proof} Given a vector bundle isomorphism $h$, by definition, the $h_U$'s are determined by the definition of vector bundle isomorphism. We argue that they satisfy the desired property. For any $i,j$, consider the commutative diagram of maps over $U_i \cap U_j$
+\[\begin{tikzcd}
+    U_i \cap U_j \times F\ar[rrr,"{(u,f) \mapsto (u,h_i(u)f)}" above]\ar[dd,"{(u,f)\mapsto (u,g_{ij}(u)f)}" left] &  &  & U_i \cap U_j \times F\ar[dd,"{(u,f)\mapsto (u,\gamma_{ij}(u)f)}" right]\\
+     & \pi_1^{-1}(U_i \cap U_j)\rar["h"]\ar[ul,"\phi_i"]\ar[dl,"\phi_j"] & \pi_2^{-1}(U_i \cap U_j)\ar[ur,"\psi_i" above left]\ar[dr,"\psi_j"] & \\
+    U_i \cap U_j \times F\ar[rrr,"{(u,f) \mapsto (u,h_j(u)f)}" below] &  &  & U_i \cap U_j \times F
+\end{tikzcd} \]
+The outer triangles commute by definition of the cocycles, and the upper and lower trapezoids commute by definition of the $h_i$'s. Tracing an element along the outermost rectangle, we see that we must have $\gamma_{ij}(u)\cdot h_i(u) \cdot f = h_j(u) \cdot g_{ij}(u)\cdot f$ for all $u\in U_1 \cap U_2$ and all $f\in F$. Since $G$ acts faithfully, this is the same as saying that $\gamma_{ij}\cdot h_i = h_j \cdot g_{ij}$ are equal as maps $U_i \cap U_j \to G$.
+
+Conversely, suppose we are given some elements $\{U_i \xto{h_i} G\}$ satisfying this condition. For any $i\in I$, we can define a map $h_{U_i} \colon \pi_1^{-1}(U_i) \to \pi_2^{-1}(U_i)$ as the unique homeomorphism filling in the dashed arrow in the diagram
+\[ \begin{tikzcd}[column sep=huge]
+    \pi_1^{-1}(U_i)\dar["\phi_i" left, "\cong" right]\rar[dashed,"h_{U_i}"] &  \pi_2^{-1}(U_i)\dar["\psi_i" right, "\cong" left] \\
+    U_i \times F \rar["{(u,f) \mapsto (u, h_i(u)f)}" below, "\cong" above] & U_i \times F.
+\end{tikzcd} \]
+We want to check that the $h_{U_i}$'s glue together to give a well-defined map $E_1 \to E_2$, that is, we must check they agree on the overlaps. Restricting the square above to $U_i\cap U_j$, and flipping it over and turning it into a trapezoid suggestively, we get a commutative diagram
+\[ \begin{tikzcd}
+    U_i \cap U_j \times F\ar[rrr,"{(u,f) \mapsto (u,h_i(u)f)}" above] &  &  & U_i \cap U_j \times F\\
+     & \pi_1^{-1}(U_i \cap U_j)\rar["h_{U_i | U_i \cap U_j}"]\ar[ul,"\phi_i"] & \pi_2^{-1}(U_i \cap U_j)\ar[ur,"\psi_i"] & \\
+\end{tikzcd} \]
+On the analogous diagram for $h_{U_j}$, we similarly get a commutative diagram:
+\[ \begin{tikzcd}
+    & \pi_1^{-1}(U_i \cap U_j)\rar["h_{U_j | U_i \cap U_j}"]\ar[dl,"\phi_j"] & \pi_2^{-1}(U_i \cap U_j)\ar[dr,"\psi_j"] & \\
+     U_i \cap U_j \times F\ar[rrr,"{(u,f) \mapsto (u,h_j(u)f)}" below] &  &  & U_i \cap U_j \times F\\
+\end{tikzcd} \]
+Patching these diagrams together with the one defining the 1-cocycles for each bundle, we get a big diagram (we don't know it all commutes yet):
+\[ \begin{tikzcd}
+    U_i \cap U_j \times F\ar[rrr,"{(u,f) \mapsto (u,h_i(u)f)}" above]\ar[ddd,"{(u,f)\mapsto (u,g_{ij}(u)f)}" left] &  &  & U_i \cap U_j \times F\ar[ddd,"{(u,f)\mapsto (u,\gamma_{ij}(u)f)}" right]\\
+     & \pi_1^{-1}(U_i \cap U_j)\rar["h_{U_i | U_i \cap U_j}"]\ar[ul,"\phi_i"]\dar[equal] & \pi_2^{-1}(U_i \cap U_j)\ar[ur,"\psi_i"]\dar[equal] & \\
+     & \pi_1^{-1}(U_i \cap U_j)\rar["h_{U_j | U_i \cap U_j}"]\ar[dl,"\phi_j"] & \pi_2^{-1}(U_i \cap U_j)\ar[dr,"\psi_j"] & \\
+     U_i \cap U_j \times F\ar[rrr,"{(u,f) \mapsto (u,h_j(u)f)}" below] &  &  & U_i \cap U_j \times F.
+\end{tikzcd} \]
+All the outer trapezoids commute by construction, but we don't know the inner square commutes a priori. If we had chosen the $h_i$'s at random, there is absolutely no reason to expect it to commute. However, since $\gamma_{ij}\cdot h_i = h_j \cdot g_{ij}$, the outermost square commutes, and therefore the innermost square most commute as well. But commutativity of this inner square (where the vertical arrows are equalities) is exactly saying that $h_{U_i | U_i \cap U_j} = h_{U_j | U_i \cap U_j}$. Therefore all the $h_{U_i}$'s glue together to give a fiber bundle isomorphism $h \colon E_1 \to E_2$.
+\end{proof}
+
+The elegance of this theorem is it allows us to reframe fiber bundle isomorphisms in the language of non-abelian \v{C}ech cohomology:
+
+\begin{theorem}\label{thm:nonabelian-h1-cech-cover}
+Fix a topological group $G$ acting faithfully on a space $F$. Let $B$ be any space and $\mathcal{U}$ any open cover of $B$. Then there is a natural bijection:
 \begin{equation}\label{eqn:cech-cohomology-fiber-bundles-along-cover}
 \begin{aligned}
     \frac{\left\{ G\text{-fiber bundles with fiber }F\text{ trivialized over }\mathcal{U} \right\}}{\text{isomorphism witnessed along }\mathcal{U}} \leftrightarrow \check{H}^1(\mathcal{U},G).
 \end{aligned}
 \end{equation}
 \end{theorem}
-\begin{proof} We just want to show that, along the bijection in \Cref{thm:Z1-bij-to-fiber-bundles}, admitting an isomorphism witnessed along $\mathcal{U}$ is the same as the associated \v{C}ech 1-cocycles differing by a coboundary. This comes from squinting at \Cref{eqn:cohomology-condition-in-iso-of-fiber-bundles} when $U = U_i$.
+\begin{proof} The bijection between fiber bundles and 1-cocycles is in \Cref{thm:Z1-bij-to-fiber-bundles}, and it is clear by \Cref{thm:fiber-bundle-iso} that fiber bundles being isomorphic is \emph{exactly the same} as the associated 1-cocycles being equivalent, in the sense of \Cref{def:non-abelian-cech-h1}.\footnote{In fact more is true: not only are the equivalence relations the same, the \emph{data} which exhibits the equivalence is that same. That is, the elements $h_i \colon U_i \to G$ we use to exhibit an isomorphism between two bundles are the same data as the 0-cocycles we use to exhibit cohomology of the 1-cocycles.}
 \end{proof}
 
 
@@ -2125,7 +2201,7 @@ As every isomorphism of fiber bundles is necessarily witnessed along some cover,
 Over paracompact spaces, we can always take locally finite refinements, so we don't have to worry about this. We therefore get the following:
 
 \begin{theorem}\label{thm:H1-bijection-with-fiber-bundles} 
-Fix a topological group $G$ and a faithful action on some space $F$. Then for any \emph{paracompact} space $X$, we have that $H^1(X,G_c)$ is in bijection with the set of isomorphism classes of fiber bundles over $X$ with structure group $G$ and fiber $F$.
+Fix a topological group $G$ and a faithful action on some space $F$. Then for any \emph{paracompact} space $X$, we have that $\check{H}^1(X,G_c)$ is in bijection with the set of isomorphism classes of fiber bundles over $X$ with structure group $G$ and fiber $F$.
 \end{theorem}
 \begin{proof} Take colimits over $\mathcal{U}\in \Cov(X)^\op$ in \Cref{thm:nonabelian-h1-cech-cover} and exploit that we have locally finite refinements.
 \end{proof}
@@ -2133,6 +2209,7 @@ Fix a topological group $G$ and a faithful action on some space $F$. Then for an
 \begin{example}
 In the theorem above, the trivial fiber bundle corresponds to the identity element of the group $H^1(X,G_c)$.
 \end{example}
+
 
 \section{Principal $G$-bundles}
 
