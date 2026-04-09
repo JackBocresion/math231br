@@ -26,7 +26,7 @@ These notes are from a MATH213BR, a second-semester graduate algebraic topology 
 
 \textbf{Part 1}: We begin with the theory of sheaves of sets and discrete groups on topological spaces, developing their cohomology and comparing it with singular and de Rham cohomology. We continue with fiber bundles and develop their basic theory. We then discuss vector bundle theory and Chern and Pontryagin classes. 
 
-\textbf{Part 2}: We discuss oriented and complex cobordism, genera, the $L$-genus and Todd genus, and the index of a $4n$-manifold. We prove Hirzebruch's signature theorem as well as Riemann-Roch for algebraic manifolds.
+\textbf{Part 2}: We discuss oriented and complex cobordism, genera, the $L$-genus and Todd genus, and the index of a $4n$-manifold. We prove Hirzebruch's signature theorem and sketch the proof of Riemann-Roch for algebraic manifolds.
 
 \setcounter{tocdepth}{1}
 \tableofcontents{}
@@ -44,11 +44,11 @@ Aside from the main text, which we deviate from at various points, some other re
 
 \subsection{Acknowledgements}
 
-Thank you to Zo\"{e} Batterman, Vincent Costa, Frank Gubars, Grayson Kemplin, Gabe Ong, and Greg Wong for offering suggestions and changes to the notes. Thanks to Gage Martin and Sidhanth Raman for helpful conversations in preparing this class.
+Thank you to Zo\"{e} Batterman, Vincent Costa, Frank Gubars, Grayson Kemplin, Luke Lelli, Gabe Ong, Brian Siew, and Greg Wong for offering suggestions and changes to the notes. Thanks to Gage Martin and Sidhanth Raman for helpful conversations in preparing this class.
 
 \section{Sheaves}
 
-The definition of a \emph{sheaf} in Hirzebruch is perhaps a bit different from what we're used to. He wants to think of sheaves as \emph{living over} a space $X$, whereas we might be comfortable thinking about sheaves as local data across a space. We'll see how these perspectives are equivalent.
+The definition of a \emph{sheaf} in Hirzebruch is perhaps a bit different from what we're used to. He wants to think of sheaves as \emph{living over} a space $X$, whereas we might be comfortable thinking about sheaves as local data across a space. We'll see that these perspectives are equivalent.
 
 \begin{definition}\label{def:sheaf} 
 A \emph{sheaf of abelian groups} over a topological space $X$ is a topological space $S$ with the data of a surjective continuous map $\pi \colon S \to X$, for which
@@ -78,7 +78,7 @@ and if we denote by $S \times_X S$ the subspace
 
 We should think about a sheaf of abelian groups as being a space where we can do abelian group operations (addition, subtraction), but where the abelian group in which we're working is \emph{changing} according to the topology of $X$.
 
-\begin{example}[Zero sheaf] The identity map $X \to X$ can be considered a sheaf, where the abelian group structure on each stalk is just the trivial group with one element.
+\begin{example}[Zero sheaf] The identity map $X \to X$ is a sheaf where the abelian group structure on each stalk is just the trivial group with one element.
 \end{example}
 
 
@@ -516,7 +516,7 @@ so it suffices to check that $G\to G^\sharp$ is an equivalence of sheaves, but t
 \label{exer:constant-sheaf}
 Let $A\in \Ab$. Then there is a silly presheaf on $X$ which sends every open subset $U\subseteq X$ to $A$, and every restriction map to the identity on $A$. We call this the \emph{constant presheaf} valued at $A$. We will denote by $\underline{A}$ the sheafification of this presheaf, and call this the \emph{constant sheaf} valued at $A$. By construction.
 \begin{enumerate}
-    \item Verify that, under the isomorphism of categories \Cref{cor:espace-etale-isomorphism-of-cats}, the constant sheaf $\underline{A}$ corresponds to the sheaf \label{exa:constant-sheaf-espace-etale} defined as $X \times A \to X$, where $A$ has the discrete topology.
+    \item Verify that, under the isomorphism of categories \Cref{cor:espace-etale-isomorphism-of-cats}, the constant sheaf $\underline{A}$ corresponds to the sheaf \Cref{exa:constant-sheaf-espace-etale} defined as $X \times A \to X$, where $A$ has the discrete topology.
     \item Show that $\Gamma(U,\underline{A})$ can be described as locally constant functions valued in $A$.
 \end{enumerate}
 \end{exercise}
@@ -629,8 +629,8 @@ A big result here that we won't prove is the following:
 
 An abelian category is a setting in which we can do \emph{homological algebra}. In particular, we will be allowed to resolve sheaves by nicer sheaves, or ones which are easier to deal with in some respect.
 
-\begin{remark} For technical reasons, we're going to restrict our attention to sheaf cohomology over paracompact spaces. This is due to the presence of partitions of unity subordinate to open covers (\Cref{thm:paracompact-partition-unity}).
-\end{remark}
+% \begin{remark} For technical reasons, we're going to restrict our attention to sheaf cohomology over paracompact spaces. This is due to the presence of partitions of unity subordinate to open covers (\Cref{thm:paracompact-partition-unity}).
+% \end{remark}
 
 \begin{example}[Representability of sections]
 \label{exa:ZU-sheaf}
@@ -664,19 +664,19 @@ for any presheaf of abelian groups $F$. Finally if $F$ was a sheaf, then any mor
 \begin{align*}
     \Z_U := (\Z[h_U])^\sharp.
 \end{align*}
-It is clear now that we have a natural isomorphism $\Z_U\cong\Gamma(U,-)$ (c.f.~\cite[03CP,03CQ]{Stacks}.
+It is clear now that we have a natural isomorphism $\Z_U\cong\Gamma(U,-)$ (c.f.~\cite[03CP,03CQ]{Stacks}).
 \end{proof}
 
-\begin{remark} We can describe $\Z_U(V)$ explicitly via our understanding of sheafification in \Cref{rmk:interpretation-of-sheafification} --- it is exactly given as the abelian group of locally constant functions $f \colon U \cap V \to \Z$ which extend to a locally constant function on all of $V$, but where the function satisfies $f(v) = 0$ if $v\in V \minus (U\cap V)$. This latter condition is equivalent to the statement that the support of $f$ is closed in $V$, which is often how you'll see $\Z_U(V)$ described:
+\begin{remark} We can describe $\Z_U(V)$ explicitly via our understanding of sheafification in \Cref{rmk:interpretation-of-sheafification} --- it is the abelian group of locally constant functions $f \colon U \cap V \to \Z$ which extend to a locally constant function on all of $V$, but where the function satisfies $f(v) = 0$ if $v\in V \minus (U\cap V)$. This latter condition is equivalent to the statement that the support of $f$ is closed in $V$, which is often how you'll see $\Z_U(V)$ described:
 \begin{align*}
     \Z_U(V) = \left\{ \substack{\text{locally constant functions } U\cap V \to \Z\\ \text{with support closed in }V} \right\}
 \end{align*}
 \end{remark}
 
-Observe that if $U_1 \subseteq U_2$ then there is a natural morphism of sheaves $\Z_{U_2}\to \Z_{U_1}$. This extends to a functor
+Observe that if $U_1 \subseteq U_2$ then for any sheaf $F$ we have a restriction map $F(U_2) \to F(U_1)$, which is of the form $\Hom_{\Ab(X)}(\Z_{U_2},F) \to \Hom_{\Ab(X)}(\Z_{U_1},F)$ --- by Yoneda this is precomposition with a morphism of sheaves $\Z_{U_1}\to \Z_{U_2}$. Therefore the assignment $U\mapsto \Z_U$ extends to a functor
 \begin{equation}\label{eqn:U-to-ZU-functor}
 \begin{aligned}
-    \Open(X)^\op &\to \Ab(X) \\
+    \Open(X) &\to \Ab(X) \\
     U &\mapsto \Z_U
 \end{aligned}
 \end{equation}
@@ -688,29 +688,29 @@ We'll use this later on.
 
 \subsection{\v{C}ech cohomology of a presheaf}
 
-Let $\mathcal{U} = \left\{ U_i \right\}_{i\in I}$ be a cover of $X$, let $F$ be a presheaf, and define
+
+\begin{definition}\label{def:cech-cochains-differential} Let $\mathcal{U} = \left\{ U_i \right\}_{i\in I}$ be a cover of $X$, and let $F$ be a presheaf of abelian groups.
+\begin{enumerate}
+    \item For every $q\ge0$ we define the \emph{group of $q$-cochains} to be the abelian group:
 \begin{equation}\label{eqn:group-of-Cech-cochains}
 \begin{aligned}
     C^q(\mathcal{U},F) = \prod_{i_0, \ldots, i_q \in I} F(U_{i_0} \cap \cdots \cap U_{i_q}).
 \end{aligned}
 \end{equation}
-We call this the \emph{group of cochains}. We can define a \emph{coboundary map}
+    \item For each $q\ge 0$ we define the \emph{coboundary map} to be the group homomorphism
 \begin{equation}\label{eqn:cech-coboundary-formula}
 \begin{aligned}
     \delta^q \colon C^q(\mathcal{U},F) &\to C^{q+1}(\mathcal{U},F),
 \end{aligned}
 \end{equation}
-defined as
+defined by the formula
 \begin{align*}
     (\delta^q f)(i_0, \ldots, i_{q+1}) = \sum_{k=0}^{q+1} (-1)^k f(i_0, \ldots, \widehat{i_k}, \ldots, i_{q+1}).
 \end{align*}
-\begin{remark}\label{rmk:cech-cohomology-definition-notes} \, 
-\begin{enumerate}
-    \item As a remark, $f(i_0, \ldots, \widehat{i_k}, \ldots, i_{q+1})$ is naturally valued in $U_{i_0}\cap \cdots \cap U_{i_{k-1}} \cap U_{i_{k+1}}\cap \cdots \cap U_{i_{q+1}}$, but we want to think about it as being valued in $\bigcap_{j=0}^{q+1} U_{i_j}$ under the restriction map in order to form the sum above. We've chosen to suppress this restriction from the notation, but Hirzebruch includes it (c.f. \cite[p.~26]{Hirzebruch}.
-    \item\label{abelian-coboundary-condition} The coboundary condition in \Cref{eqn:cech-coboundary-formula} is written additively, since we are assuming $F$ is a sheaf of abelian groups. In later contexts we might write it multiplicatively (if $F$ isn't assumed to be abelian),
 \end{enumerate}
-\end{remark}
+\end{definition}
 
+The element $f(i_0, \ldots, \widehat{i_k}, \ldots, i_{q+1})$ is naturally valued in $F(U_{i_0}\cap \cdots \cap U_{i_{k-1}} \cap U_{i_{k+1}}\cap \cdots \cap U_{i_{q+1}})$, but we want to think about it as being valued in $F(\bigcap_{j=0}^{q+1} U_{i_j})$ under the restriction map in order to form the sum above. We've chosen to suppress this restriction from the notation, but Hirzebruch includes it (c.f. \cite[p.~26]{Hirzebruch}).
 %
 \begin{exercise} Show that $\delta^{q+1}\circ \delta^q = 0$, so that we get a cochain complex
 \begin{equation}\label{eqn:Cech-cochain-complex}
@@ -790,7 +790,7 @@ We have very little control over these refinement maps, as the following result 
 
 \begin{proposition}\label{prop:injectivity-of-refinement-of-Cech-cohomology} Let $\mathcal{V}$ be a refinement of the cover $\mathcal{U}$ on a space $X$. Then:
 \begin{itemize}
-    \item the refinement map $\check{H}^0(\mathcal{U},F) \to \check{H}^1(\mathcal{V},F)$ is an isomorphism
+    \item the refinement map $\check{H}^0(\mathcal{U},F) \to \check{H}^0(\mathcal{V},F)$ is an isomorphism
     \item the refinement map $\check{H}^1(\mathcal{U},F) \to \check{H}^1(\mathcal{V},F)$ is injective
     \item higher refinement maps $\check{H}^q(\mathcal{U},F) \to \check{H}^q(\mathcal{V},F)$ need not be injective for $q\ge 2$. An explicit example is on Math Overflow here: \href{https://mathoverflow.net/a/462472}{MO462472}.
 \end{itemize}
@@ -837,7 +837,7 @@ so we get cohomology in degrees $0$ and $1$, as expected. This is an example of 
 \end{example}
 
 \begin{proposition}\label{prop:Cech-0-is-global-sections} 
-For any space $X$ and any \emph{sheaf} $F\in\Ab(X)$, we have a canonical isomorphism
+For any space $X$ and any sheaf $F\in\Ab(X)$, we have a canonical isomorphism of abelian groups
 \begin{align*}
     \check{H}^0(X,F) \cong \Gamma(X,F).
 \end{align*}
@@ -888,7 +888,7 @@ is a short exact sequence \emph{of presheaves}, it induces a long exact sequence
 \begin{align*}
     \check{C}^q(\mathcal{U},-) \colon \Fun(\Open(X)^\op,\Ab) \to \Ab
 \end{align*}
-is exact (subtlety: its restriction to $\Ab(X)$ is not necessarily exact, because $\Ab(X)$ has a different notion of exactness than the presheaf category!). A diagram chase then implies we get a long exact sequence on $\check{H}^\ast(\mathcal{U},-)$. Then we take a colimit over all $\mathcal{U}$ in the filtered category of covers $\Cov(X)$, and use that filtered colimits preserve exactness to conclude (\Cref{exa:CovX-filtered} and \Cref{cor:filtered-colimits-preserve-exactness}). The details are spelled out in \cite[pp.~28--29]{Hirzebruch}.
+is exact. A diagram chase then implies we get a long exact sequence on $\check{H}^\ast(\mathcal{U},-)$. Then we take a colimit over all $\mathcal{U}$ in the filtered category of covers $\Cov(X)$, and use that filtered colimits preserve exactness to conclude (\Cref{exa:CovX-filtered} and \Cref{cor:filtered-colimits-preserve-exactness}). The details are spelled out in \cite[pp.~28--29]{Hirzebruch}.
 \end{proof}
 
 This begs a very interesting question --- when do the \v{C}ech cohomology of a presheaf $F$ and of its sheafification $F^\sharp$ agree? We need two preliminary results to lead up to a partial answer to this question.
@@ -954,7 +954,7 @@ In classical topology, spaces were called \emph{acyclic} if every cycle on the s
 \begin{definition}\label{def:acyclic-sheaf} A sheaf $F\in \Ab(X)$ is \emph{acyclic} if $\check{H}^p(X,F) = 0$ for $p>0$.
 \end{definition}
 
-\begin{definition} Take $F\in \Ab(X)$. An \emph{acyclic resolution} of $F$ is a (possibly infinite) exact sequence
+\begin{definition} Take $F\in \Ab(X)$. An \emph{acyclic resolution} of $F$ is a (possibly infinite) exact sequence of sheaves
 \begin{align*}
     0 \to F \to A^0 \to A^1 \to \cdots
 \end{align*}
@@ -1138,7 +1138,7 @@ We can expand the results of the previous section by establishing the so-called 
     \item Given a sheaf $G\in \Ab(Y)$, we define a presheaf on $X$ by
     \begin{align*}
         f^{-1}_\text{pre}G \colon \Open(X) &\to \Ab \\
-        U &\mapsto \colim_{\substack{V\in \Open(Y) \\ V \supseteq f(U)}} G(U).
+        U &\mapsto \colim_{\substack{V\in \Open(Y) \\ V \supseteq f(U)}} G(V).
     \end{align*}
     We define the \emph{inverse image sheaf} to be the sheafification of this, that is $f^{-1}G := (f^{-1}_\text{pre}G)^\sharp$. Again we claim this is functorial:
     \begin{align*}
@@ -1638,7 +1638,7 @@ the sheaf of smooth sections of the $k$th exterior power of the cotangent bundle
     \end{align*}
     \item we have
     \begin{align*}
-        \alpha \wedge \beta = - \beta \wedge \gamma
+        \alpha \wedge \beta = - \beta \wedge \alpha
     \end{align*}
     \item and
     \begin{align*}
@@ -1653,7 +1653,8 @@ Formally, the exterior algebra of a vector space is the tensor algebra $V^{\otim
 
 Differential forms are expressible in local coordinates, where they admit a nicer shape. Let's see some examples:
 
-\begin{example} On $M = \R^3$, an element of $\Gamma(\R^3,\Omega^1_\dR)$ is expressible as
+\begin{example}\label{exa:1-form-R3-vector-field} 
+On $M = \R^3$, an element of $\Gamma(\R^3,\Omega^1_\dR)$ is expressible as
 \begin{align*}
     f_1(x,y,z) dx + f_2(x,y,z) dy + f_3(x,y,z) dz,
 \end{align*}
@@ -1663,7 +1664,8 @@ where the $f_i$'s are differentiable real-valued functions, $dx$ is the section 
 \end{align*}
 \end{example}
 
-\begin{example} Again on $M = \R^3$, an element of $\Gamma(\R^3,\Omega^2_\dR)$ is something of the form
+\begin{example}\label{exa:2-form-R3-vector-field} 
+Again on $M = \R^3$, an element of $\Gamma(\R^3,\Omega^2_\dR)$ is something of the form
 \begin{align*}
     f_1(x,y,z) dx \wedge dy + f_2(x,y,z) dz\wedge dx + f_3(x,y,z) dy\wedge dx,
 \end{align*}
@@ -1703,6 +1705,10 @@ This is just the product rule for derivatives.
 \begin{exercise}
 Let $M$ be a smooth manifold. Show that the exterior derivative in \Cref{def:exterior-derivative} defines a morphism of abelian sheaves.
 \end{exercise}
+% \begin{itemize}
+%     \item show it first on charts
+%     \item argue \emph{independence} of charts. that is, $f^\ast (d\alpha) = d (f^\ast \alpha)$ if $f \colon \R^n \to \R^n$ is smooth
+% \end{itemize}
 
 
 \begin{terminology} \,
@@ -1714,12 +1720,12 @@ Let $M$ be a smooth manifold. Show that the exterior derivative in \Cref{def:ext
 
 \subsection{The Poincar\'e lemma}
 
-\begin{exercise}\label{exer:fund-thm-calc} Let $f(x_1, \ldots, x_n)$ be a differentiable real-valued function defined on the unit ball $B \subseteq \R^n$. Show that
-\begin{align*}
-    f(x_1, \ldots, x_n) = \sum_{i=1}^n \int_0^1 \frac{df}{dx_i}(tx_1, \ldots, tx_n)dt.
-\end{align*}
+% \begin{exercise}\label{exer:fund-thm-calc} Let $f(x_1, \ldots, x_n)$ be a differentiable real-valued function defined on the unit ball $B \subseteq \R^n$. Show that
+% \begin{align*}
+%     f(x_1, \ldots, x_n) = \sum_{i=1}^n \int_0^1 \frac{df}{dx_i}(tx_1, \ldots, tx_n)dt.
+% \end{align*}
 
-\end{exercise}
+% \end{exercise}
 
 
 \begin{lemma} [Poincar\'e Lemma]
@@ -1742,34 +1748,52 @@ We leave it as an exercise to show that $d^2 = 0$ (i.e. that exact forms are clo
 \end{align*}
 for some differentiable function $f$ and some multiindex $I = \{i_1 < i_2 < \cdots < i_k\} \subseteq \{1, \ldots, n\}$. What does $d\omega = 0$ mean here? It means precisely that $\frac{\partial f}{\partial x_j} = 0$ for every $j\notin I$.
 
-Let's now consider the scaling map
+We claim that the following $(k-1)$-form $\alpha$ is a primitive for $\omega$:
 \begin{align*}
-    h \colon B \times [0,1] &\to B \\
-    (x,t) &\mapsto tx.
+    \alpha := \sum_{j=1}^k (-1)^{j-1} x_{i_j} \left( \int_0^1 t^{k-1} f(tx_1, \ldots, tx_n) dt \right) dx_{I\minus\{i_j\}}.
 \end{align*}
-We can compute the pullback of $\omega$ along $h$ as
+This form doesn't come out of thin air -- it is obtained explicitly by pulling back along the scaling map $h(x,t) = tx$ for $t\in [0,1]$ and then applying a homotopy operator which ``integrates out'' the $t$. For more details about how you could have come up with this primitive, see for instance \cite[I\S4]{BottTu}.
+
+We check that $d\alpha = \omega$. To simplify notation, let's let
 \begin{align*}
-    h^\ast(\omega) &= f(tx_1, \ldots, tx_n) d(tx_{i_1})\wedge \cdots \wedge d(tx_{i_k}) \\
-    % &= f(tx_1, \ldots, tx_n) \left( dx_I  + \sum_{j=1}^n dx_{i_1} \wedge \cdots \wedge dx_{i_{j-1}} \wedge dt \wedge dx_{i_{j+1}}\wedge \cdots \wedge dx_{i_k}\right) \\
-    &= f(tx_1, \ldots, tx_n) \left( dx_I + dt\wedge \sum_{j=1}^n (-1)^j dx_{I\minus\{j\}} \right).
+    P(x_1, \ldots, x_n) := \int_0^1 t^{k-1} f(tx_1, \ldots, tx_n) dt.
 \end{align*}
-We're going to leverage this to construct a primitive for $\omega$, namely we will define $\alpha$ by ``integrating out'' $t$ from $h^\ast \omega$. Explicitly:
+Then we have that
+\begin{equation}\label{eqn:dalpha-1}
+\begin{aligned}
+    d\alpha &= \sum_{j=1}^k (-1)^{j-1} (P dx_{i_j} + x_{i_j} dP) \wedge dx_{I\minus\{i_j\}} \\
+    &= kPd_I + \sum_{j=1}^k (-1)^{j-1}x_{i_j} dP\wedge dx_{I\minus\{i_j\}}.
+\end{aligned}
+\end{equation}
+We have a decent handle on that first term, so we want to better understand the second term. We compute $dP$, using that we can pass partial derivatives inside the integral, to get
 \begin{align*}
-    \alpha &= \left(\int_{0}^1 f(tx_1, \ldots, tx_n)dt\right) \sum_{j=1}^n (-1)^j dx_{I\minus\{j\}}.
+    dP &= \sum_{i=1}^n \left(\int_0^1 t^{k} \frac{df}{dx_i}(tx_1, \ldots, tx_n) dt\right)dx_i,
 \end{align*}
-We claim that $d\alpha = \omega$. Note that when we differentiate, it is with respect to the $x_i$'s so we can pull it inside the integral. We get:
+where we notice the power on $t$ increased because of the chain rule. Since $dP$ has a $dx_i$ in it for every $i$, when we wedge with $dx_{I\minus\{i_j\}}$ we will get zero if $i \in I\minus\{i_j\}$. Similarly we will get zero if $i\notin I$, because $\frac{df}{dx_i} = 0$ for any such $i$ by $\omega$ being closed. So the only nonvanishing term in the summand, after wedging with $dx_{I\minus\{i_j\}}$, is when $i = i_j$. That is,
 \begin{align*}
-    d\alpha &= d \left(  \left(\int_{0}^1 f(tx_1, \ldots, tx_n)dt\right) \sum_{j=1}^n (-1)^j dx_{I\minus\{j\}}. \right) \\
-    &=  \sum_{s=1}^n\left( \int_0^1 \frac{\partial f}{\partial dx_{s}}(tx_1, \ldots, tx_n) dt \right) dx_s \wedge \left( \sum_{j=1}^n (-1)^j dx_{I\minus\{j\}} \right)
+    dP \wedge dx_{I\minus\{i_j\}} &= \left(\int_0^1 t^k \frac{df}{dx_{i_j}}(tx_1, \ldots, tx_n) dt\right) dx_{i_j}\wedge dx_{I\minus\{i_j\}} \\
+    &= \left(\int_0^1 t^k\frac{df}{dx_{i_j}}(tx_1, \ldots, tx_n)dt\right) (-1)^{j-1} dx_I.
 \end{align*}
-As all the differentials vanish unless $s\in I$, we get the above is equal to
+Plugging this back in to the second term in the expression for $d\alpha$ in \Cref{eqn:dalpha-1}, we get
 \begin{align*}
-    \sum_{j=1}^k \left(\int_0^1 \frac{\partial f}{\partial x_{i_j}}dt\right) dx_I.
+    \sum_{j=1}^k (-1)^{j-1}x_{i_j} dP\wedge dx_{I\minus\{i_j\}} &= \sum_{j=1}^k x_{i_j} \left( \int_0^1 t^k\frac{df}{dx_{i_j}}(tx_1, \ldots, tx_n) dt \right) dx_I.
 \end{align*}
-Finally to verify this equals $\omega$ we use \Cref{exer:fund-thm-calc}. This is a standard version of the fundamental theorem of calculus that holds in star-shaped domains; see for instance \cite[I.1.4]{tuIntroductionManifolds2011}).
+Putting everything together we get that
+\begin{align*}
+    d\alpha = \left( k \left( \int_0^1 t^{k-1} f(tx_1, \ldots, tx_n) dt \right) + \sum_{j=1}^k \int_0^1 t^k x_{i_j}\frac{df}{dx_{i_j}}(tx_1, \ldots, tx_n) dt\right)dx_I
+\end{align*}
+So it suffices to check that the smooth function in front of $dx_I$ in the expression above is actually equal to $f(x_1, \ldots, x_n)$. This comes from recognizing that the product rule has been applied! First note that we can change our sum to be indexed over all $x_i$'s without a problem, since all the extra terms it adds are zero. Thus we can rewrite the above as
+\begin{align*}
+    &\int_0^1 \left( k t^{k-1} f(tx_1, \ldots, tx_n) + \sum_{i=1}^n t^k x_i \frac{df}{dx_i}(tx_1, \ldots, tx_n) \right)dt \\
+    &= \int_0^1 \left( f(tx_1, \ldots, tx_n)\cdot\frac{d}{dt}(t^k) + t^k\cdot \frac{d}{dt} f(tx_1, \ldots, tx_n)\right)dt \\
+    &= \int_0^1 \frac{d}{dt} \left( t^k f(tx_1, \ldots, tx_n) \right)dt \\
+    &= t^k f(tx_1, \ldots, tx_n) \mid_{t=0}^{t=1} \\
+    &= f(x_1, \ldots, x_n).
+\end{align*}
+This completes the proof.
 \end{proof}
 
-In general, as we know, applying $\Gamma(M,-)$ to the above sequence will turn it into a chain complex, but will fail to preserve exactness. Here's an easy case where it does preserve exactness: I claim we know this exactness from multivariable calculus!
+In general, as we know, applying $\Gamma(M,-)$ to the sequence in \Cref{eqn:de-Rham-sequence} will turn it into a chain complex, but will fail to preserve exactness. Here's an easy case where it does preserve exactness, which we know from multivariable calculus:
 
 \begin{proposition} On $\R^3$, taking global sections of the resolution from the Poincar\'e lemma gives an \emph{exact sequence}
 \begin{equation}\label{eqn:exact-seq-dR-on-R3}
@@ -1778,7 +1802,7 @@ In general, as we know, applying $\Gamma(M,-)$ to the above sequence will turn i
 \end{aligned}
 \end{equation}
 \end{proposition}
-\begin{proof} Identifying $\Omega^1$ and $\Omega^2$ with vector fields as above, these differentials take a more familiar shape:
+\begin{proof} Identifying $\Omega^1$ and $\Omega^2$ with vector fields as in \Cref{exa:1-form-R3-vector-field,exa:2-form-R3-vector-field}, these differentials take a more familiar shape:
 \begin{align*}
     0 \to C^0(\R^3,\R) \xto{\text{grad}} \Omega^1_\dR(\R^3)\xto{\text{curl}} \Omega^2_\dR(\R^3) \xto{\text{div}} \Omega^3_\dR(\R^3) \to 0.
 \end{align*}
@@ -1831,7 +1855,7 @@ The comparison between \v{C}ech and singular cohomology was very precise, that i
 
 So our takeaway from all of this is that de Rham and singular cohomology agree along a manifold, but right now we only really know they agree abstractly. It would be nice to find an explicit map exhibiting this isomorphism --- this is the content of the \emph{de Rham theorem}.
 
-Our isomorphism in question is exhibited by integration. At the level of presheaves, given an open neighborhood $U \subseteq M$ and an element $\omega \in \Omega^k_\dR(U)$, we obtain a \v{C}ech cochain by integration along simplices in $U$:
+Our isomorphism in question is exhibited by integration. At the level of presheaves, given an open neighborhood $U \subseteq M$ and an element $\omega \in \Omega^k_\dR(U)$, we obtain a singular cochain by integration along simplices in $U$:
 \begin{align*}
     \Omega_{\dR}^k(U) &\to C^k_{\text{sing}}(U;\R) \\
     \omega &\mapsto \left[ Z \mapsto \int_Z \omega \right].
@@ -1864,6 +1888,1776 @@ Such a form doesn't exist on $\R^2$, but \emph{does} on $\R^2\minus\{0\}$. This 
 \end{exercise}
 % see https://math.stackexchange.com/a/613088 for a worked answer
 
+\section{Fiber bundles}
+
+Previously we talked about sheaves of abelian groups. Much of what we talked about goes through if we have sheaves of groups, or just sheaves of sets. The important thing was that the sheaf was a \emph{local homeomorphism}, in other words the fibers of the projection came with a discrete topology.
+
+There are many interesting groups which come equipped with a natural topological structure, for instance $S^1$ or $\GL_n(\R)$. However our notion of sheaf above won't be able to accurately encompass the idea of having these sorts of groups as fibers unless we forget their topologies, which lands us back in the world of sheaves as above. To that end, we want to discuss a new family of objects in which stalks are allowed to have a non-discrete topology. These are \emph{fiber bundles}.
+
+\begin{definition}\label{def:topological-group} 
+A \emph{topological group} is a group object in the category of spaces. Explicitly, this means it is a \emph{space} $G$, equipped with an identity element $e\in G$ and continuous multiplication and inversion maps
+\begin{align*}
+    m \colon G \times G &\to G \\
+    i \colon G &\to G
+\end{align*}
+which satisfy the expected identities. 
+\end{definition}
+
+\begin{proposition} Let $G$ be a topological group. If the one-point subgroup $\left\{ e \right\} \le G$ is a closed subspace, then $G$ is Hausdorff (and clearly the backwards direction holds as well becauseHausdorff implies $T_1$).
+\end{proposition}
+\begin{proof} Being Hausdorff is equivalent to the image of the diagonal $\Delta \colon G \to G \times G$ being closed. Consider the map
+\begin{align*}
+    G \times G &\to G \\
+    (g_1,g_2) &\mapsto g_1 g_2^{-1}.
+\end{align*}
+By the axioms of topological groups, this is continuous. We have that $\im(\Delta)$ is the preimage of $\left\{ e \right\}$ under this map, hence closed if the identity subgroup is closed.
+\end{proof}
+
+\begin{remark} Some authors, e.g. \cite{Munkres}, assume that topological groups are $T_1$, which is the separation axiom guaranteeing one-point subspaces are automatically closed. Hence all topological groups are Hausdorff from this perspective.
+\end{remark}
+
+\begin{exercise}[{\cite[p.~146]{Munkres}}]
+If $G$ is a topological group and $H \le G$ is a subgroup, then the projection map $G \to G/H$ is open.
+\end{exercise}
+
+
+
+
+
+\begin{example} A \emph{Lie group} is a further strengthening of a topological group -- it is a group object in the subcategory of smooth manifolds.
+\end{example}
+
+
+
+\begin{notation} [{\cite[p.~39]{Hirzebruch}}]
+\label{nota:Gc}
+Let $G$ be a topological group, and $X$ a space. Let $G_c$ denote the presheaf defined by
+\begin{align*}
+    \Open(X)^\op &\to \Grp \\
+    U &\mapsto \Hom_{\Top}(U,G).
+\end{align*}
+Note that $G_c$ is a sheaf by \Cref{exa:representable-sheaves}.
+
+If $G$ has more structure (e.g. it is a \emph{Lie group}) and $X$ is a manifold, we could take a sheaf of differentiable functions valued in the group, for instance --- denote this by $G_\mathfrak{b}$. Or if $G$ is a complex Lie group and $X$ is a complex manifold, we could send $U$ to holomorphic functions $U \to G$--- we denote this by $G_\omega$.
+\end{notation}
+
+\begin{definition}\label{def:fiber-bundle} 
+Let $G$ be a topological group, fix a space $F$ equipped with a faithful\footnote{Hirzebruch uses the word \emph{effective} for the group action, meaning if $g\cdot f = f$ for all $f$ then $g=e$. We use the word \emph{faithful} for this same notion.} continuous action of $G$, and let $X$ be a space. Let  We define a \emph{fiber bundle over $X$ with fiber $F$ and structure group $G$} to be a continuous map $\pi \colon W \to X$ if there exists additional data:
+\begin{itemize}
+    \item an open cover $\left\{ U_i \right\}$ of $X$
+    \item homeomorphisms $h_i \colon \pi^{-1}(U_i) \to U_i \times F$ over $U_i$
+    \item elements $g_{ij} \in \Gamma(U_i\cap U_j, G_c)$
+\end{itemize}
+so that
+\begin{align*}
+    (h_i h_j^{-1})(u,f) = (u, g_{ij}(u)f) \in (U_i \cap U_j) \times F
+\end{align*}
+for all $u \in U_i \times U_j$ and $f\in F$.
+\end{definition}
+
+\begin{terminology} If we want to refer to the cover $\mathcal{U}$, we will say the fiber bundle is \emph{trivialized over $\mathcal{U}$}. The idea being that, via the homeomorphisms $\pi_i$, over each $U_i \in \mathcal{U}$ our fiber bundle does indeed look trivial.
+\end{terminology}
+
+
+\begin{example} For any $F$ and $G$, we have the \emph{trivial fiber bundle} defined by the projection $\pi \colon X \times F \to X$, whose structure group is the trivial group.
+\end{example}
+
+\begin{remark} In the previous example it's not really necessary that the structure group is the trivial group, all we want is that the transition functions $g_{ij}$ to be the identity in whatever the structure group $G$ is. This is part of a more general idea that the structure group is a choice, not necessarily an intrinsic part of the data of a bundle. The structure group could be enlarged by just sitting the $g_{ij}$'s inside a bigger group (provided the action on $F$ is still \emph{faithful}!), however it is not true that the structure group for a fiber bundle can always be reduced. The question of when we have ``reduction of structure group'' for a bundle is an interesting line of thought we won't get into here.
+\end{remark}
+
+\begin{exercise} Repackage the definition of a vector bundle into the definition of a certain type of fiber bundle. That is, if $E \to X$ is a vector bundle, how can we view it as a fiber bundle - what is the fiber and what is the structure group?
+\end{exercise}
+
+
+
+
+\begin{example} The M\"{o}bius strip
+\begin{align*}
+    M &= \frac{[0,2\pi] \times [0,1]}{(0,t)\sim (2\pi,1-t)}
+\end{align*}
+can be viewed as a fiber bundle over $S^1$ via the projection map
+\begin{align*}
+    \pi \colon M &\to S^1 \\
+    (\theta,t) &\mapsto e^{i \theta}.
+\end{align*}
+Here $F = [0,1]$ is the interval, and we can think of $G = \Z/2$ acting via $t \mapsto 1-t$ on $F$.
+\end{example}
+
+\begin{example} In the special case where $F = G$, and the action is $G$ acting on itself by left translation, we call our fiber bundle a \emph{principal fiber bundle}. More on this later.
+\end{example}
+
+
+\subsection{\v{C}ech 1-cocycles}
+
+Given a topological group $G$, we can define the sheaf of groups $G_c$ as in \Cref{nota:Gc}, 
+and therefore construct its \v{C}ech cohomology following \Cref{def:Cech-cohomology-on-cover}. Note that in the previous definition we had assumed our sheaf to be a sheaf of abelian groups, so we have to be a bit careful about products versus sums.
+
+\begin{exercise}[Suggested] Let $G$ be non-abelian, and define $\check{C}^i(\mathcal{U},G)$ as in \Cref{eqn:group-of-Cech-cochains}. Try to write down a formula for the differential $\delta^q$ (but remember you can't take \emph{sums} any more).
+\begin{enumerate}
+    \item If you wrote down a solid definition for $\delta^1$, great! Check if it is a group homomorphism.
+    \item Oops
+    \item Try to redefine it to make it a group homomorphism? Try to turn $\check{C}^\bullet(\mathcal{U},G)$ into a complex.
+    \item Get really frustrated and give up
+\end{enumerate}
+\end{exercise}
+
+The takeaway is that \emph{we can't define higher nonabelian \v{C}ech cohomology}. Nevertheless we can still actually make sense of $\check{H}^1(\mathcal{U},G)$ when $G$ is nonabelian, and it turns out to be a crucially important object in the theory of fiber bundles.
+
+\begin{definition}\label{def:equivalence-of-1-cocycles} 
+Given a topological group $G$ and a space $X$ with an open cover $\mathcal{U} = \left\{ U_i \right\}$, we define the set of \emph{\v{C}ech 1-cocycles} as the ``kernel'' of $\delta^1$. Even though $\delta^1$ isn't a group homomorphism, it is still a map of pointed sets
+\begin{align*}
+    \delta^1 \colon \check{C}^1(\mathcal{U},G) &\to \check{C}^2(\mathcal{U},G) \\
+    (g_{ij}) &\mapsto g_{ij}g_{ik}^{-1} g_{jk}.
+\end{align*}
+We can take the fiber over the identity element to be our ``kernel'' and we obtain
+\begin{align*}
+    \check{Z}^1(\mathcal{U},G) = \left\{ (g_{ij}) \in \prod G(U_i \cap U_j) \mid g_{ik} = g_{jk} g_{ij} \text{ on } G(U_i \cap U_j\cap U_k) \text{ for all }i,j,k \right\}.
+\end{align*}
+\end{definition}
+
+\begin{exercise} Verify, if $(g_{ij}) \in \check{Z}^1(\mathcal{U},G)$, that $g_{ii} = 1$ for every $i$ and that $g_{ij} = g_{ji}^{-1}$.
+\end{exercise}
+
+Two \v{C}ech cocycles define the same element of $\check{H}^1(\mathcal{U},G)$ if they differ by an element in 
+\[
+\im \left( \delta^0 \colon \check{C}^0(\mathcal{U},G) \to \check{C}^1(\mathcal{U},G) \right) \le \check{Z}^1(\mathcal{Y},G),\]
+where $\delta^0$ sends a $0$-cochain $\left\{ \phi_i \colon U_i \to G \right\}$ to $g_{ij} = \phi_i \phi_j^{-1}$.
+
+Unwinding this definition, we have:
+
+\begin{definition}\label{def:non-abelian-cech-h1} \,
+\begin{enumerate}
+    \item Two \v{C}ech cocycles $(g_{ij}), (\gamma_{ij}) \in \check{Z}^1(\mathcal{U},G_c)$ are \emph{equivalent} if there exist elements $f_i \in \Gamma(U_i,G_c)$ for which
+    \begin{align*}
+        \gamma_{ij} = f_i^{-1} g_{ij} f_j
+    \end{align*}
+    in $\Gamma(U_i\cap U_j,G)$ for all $i,j$.
+    \item We define the \emph{non-abelian \v{C}ech cohomology group} $\check{H}^1(\mathcal{U},G)$ to be the pointed set $\check{Z}^1(\mathcal{U},G)$ modulo the equivalence relation defined above.
+\end{enumerate}
+\end{definition}
+
+\begin{exercise} Check carefully that $\check{H}^1(\mathcal{U},G)$ defined above is indeed a group.
+\end{exercise}
+
+\subsection{Comparing cocycles to fiber bundles}
+
+The point of all this is we can construct a fiber bundle out of a cocycle and vice versa.
+
+\begin{construction}[Fiber bundle from cocycle]
+\label{constr:fiber-bundle-from-cocycle}
+Fix $G$ acting faithfully on $F$ as above, and an open cover $\mathcal{U}$ of $X$. Given a cocycle $(g_{ij})\in \check{Z}^1(\mathcal{U},G)$, we can assemble a fiber bundle by taking $U_i \times F$ for each $i$, and gluing them together along the overlaps using the $g_{ij}$'s:
+\begin{align*}
+    U_{i|U_i\cap U_j} \times F &\xto{\sim} U_{j|U_i\cap U_j} \times F \\
+    (u,f) &\mapsto (u, g_{ij}(u)\cdot f).
+\end{align*}
+%
+Since this data is a cocycle, all the gluings agree across triple overlaps (exercise: check this), so we obtain a space $W = \cup_i (U_i \times F) /\sim$ by modding out by this gluing. This can easily be seen to define a fiber bundle with fiber $F$.
+\end{construction}
+
+
+\begin{construction}[Cocycle from fiber bundle]
+\label{constr:cocycle-from-fiber-bundle}
+Given a fiber bundle $\pi \colon W \to F$ with fiber $F$ and structure group $G$, we claim that the elements $g_{ij}$ from \Cref{def:fiber-bundle} define a \v{C}ech 1-cocycle. (Exercise: check this is well-defined)
+\end{construction}
+
+\begin{theorem}\label{thm:Z1-bij-to-fiber-bundles} 
+The constructions in \Cref{constr:fiber-bundle-from-cocycle,constr:cocycle-from-fiber-bundle} are inverse, and define a bijection
+\begin{equation}\label{eqn:cocycle-fiber-bundle-bijection}
+\begin{aligned}
+    \left\{ G\text{-fiber bundles with fiber }F\text{ trivialized over }\mathcal{U} \right\} \leftrightarrow \check{Z}^1(\mathcal{U},G).
+\end{aligned}
+\end{equation}
+\end{theorem}
+
+\begin{remark}[Important] There is no $F$ on the right hand side of the bijection above, and nor should there be. This tells us that $\check{Z}^1(\mathcal{U},G)$ is allowed to classify $G$-fiber bundles with \emph{any} fiber $F$, so long as we fix the fiber and the action ahead of time. It doesn't classify bundles with different fibers simultaneously.
+\end{remark}
+
+
+\begin{example}[Identity to identity]
+\label{exa:identity-cocycle-trivial-fiber-bundle}
+The identity cocycle corresponds to the trivial fiber bundle along the bijection in \Cref{eqn:cocycle-fiber-bundle-bijection}.
+\end{example}
+
+
+\begin{question} If we mod out by coboundaries on the right hand side of the bijection of \Cref{eqn:cocycle-fiber-bundle-bijection}, what does this correspond to as an equivalence class on fiber bundles?
+\end{question}
+
+This leads us to the idea of (iso)morphisms of fiber bundles.
+
+\subsection{Morphisms of fiber bundles}
+
+Given two fiber bundles with the same fiber and structure group over a base space $B$, we want to come up with a notion of a \emph{morphism} between fiber bundles. Here is a very reasonable definition that we might expect:
+
+\begin{definition}\label{def:fiber-bundle-morphism} Fix a topological group $G$ acting faithfully on a space $F$, and let $\pi_1 \colon E_1 \to B$ and $\pi_2 \colon E_2 \to B$ be two fiber bundles with fiber $F$ and structure group $G$. We define a \emph{morphism of fiber bundles} between them to be any continuous map $h \colon E_1 \to E_2$ making the diagram commute:
+\[ \begin{tikzcd}
+    E_1\ar[rr,"h" above]\ar[dr,"\pi_1" below left]&  & E_2\ar[dl,"\pi_2" below right]\\
+     & B & 
+\end{tikzcd} \]
+\end{definition}
+It is clear that the identity map on $E_1$ gives a fiber bundle isomorphism from $E_1$ to itself, and it is moreover clear how to compose fiber bundle isomorphisms.
+
+From this it seems obvious what we should call an \emph{isomorphism} of fiber bundles: it should be any morphism $h$ as in \Cref{def:fiber-bundle-morphism} that has a two-sided inverse, which is equivalent to $h$ being a homeomorphism. Surely this is the definition right?
+
+Wrong. Kinda.
+
+We can certainly find places in the literature where isomorphisms of fiber bundles are described in this way, but to my knowledge this is ahistorical. Originally, in order to say that two fiber bundles are \emph{equivalent} or \emph{isomorphic}, we insist that in each fiber the homeomorphism $F \xto{\sim} F$ induced by $h$ is not just any homeomorphism of spaces, it is in fact induced by an element of the structure group. If we wanted to be pedantic we might call this latter notion \emph{isomorphism in the strict sense}, following \cite[\S2.4]{Steenrod-fibre-bundles}. 
+
+What do we mean by ``induced by the structure group''? If $b\in B$, we could look at the induced map $h_b \colon \pi_1^{-1}(b) \to \pi_2^{-1}(b)$, and we want to say that this arises via the action of some element $g\in G$. In order to do this, we have to identify these fibers with $F$, and there is a canonical way to do this, coming from the trivializations of each fiber bundle. To that end, we make the following definition:
+
+\begin{definition}\label{def:isomorphism-of-fiber-bundles} 
+Fix a topological group $G$ acting faithfully on a space $F$, and let $\pi_1 \colon E_1 \to B$ and $\pi_2 \colon E_2 \to B$ be two fiber bundles with fiber $F$ and structure group $G$. Let $\phi$ denote the trivializations for $E_1$ and $\psi$ the trivializations for $E_2$.
+
+Let $h \colon E_1 \to E_2$ be a continuous map. We say it is an \emph{isomorphism of fiber bundles} if:
+\begin{enumerate}
+    \item the diagram commutes (i.e. $h$ is a morphism of fiber bundles):
+\[ \begin{tikzcd}
+    E_1\ar[rr,"h" above]\ar[dr,"\pi_1" below left]&  & E_2\ar[dl,"\pi_2" below right]\\
+     & B & 
+\end{tikzcd} \]
+    \item for every $b\in B$ there exists some open neighborhood $U \ni b$ trivializing both bundles, so that if we consider the composite of morphisms over $U$:
+    \begin{equation}\label{eqn:hU-fiber-bundle-morphism}
+    \begin{aligned}
+        U \times F \xto{\phi^{-1}} \pi_1^{-1}(U) \xto{h} \pi_2^{-1}(U) \xto{\psi} U \times F,
+    \end{aligned}
+    \end{equation}
+    there exists a continuous assignment we call $h_U \colon U \to G$ for which the map above sends $(u,f) \mapsto (u, h_U(u)\cdot f)$.
+\end{enumerate}
+\end{definition}
+
+That is, the action on the fiber over $u$ occurs via some element in $G$, but that element can change continuously in $U$. In nice cases, we can pick the $U$'s to come from an open cover --- let's make this a precise definition:
+\begin{definition}\label{def:iso-fiber-bundle-witnessed-along-cover} Continuing the notation of \Cref{def:isomorphism-of-fiber-bundles}, let $\mathcal{U} = \left\{ U_i \right\}_{i\in I}$ be an open cover of $B$. We say that $h$ is a \emph{fiber bundle isomorphism witnessed along} $\mathcal{U}$ if, in \Cref{eqn:hU-fiber-bundle-morphism}, the open neighborhood $U\ni b$ can always be chosen to be an element in $\mathcal{U}$.
+\end{definition}
+
+
+
+
+The following proposition is straightforward:
+
+\begin{proposition} If $h$ is a vector bundle isomorphism as in \Cref{def:isomorphism-of-fiber-bundles}, then $h$ is a homeomorphism.
+\end{proposition}
+\begin{proof} Since $G$ acts by automorphisms of the fiber, the entire composite in \Cref{eqn:hU-fiber-bundle-morphism} has a continuous inverse, hence it is a homeomorphism. Since $\phi$ and $\psi$ are homeomorphisms by definition, we see that $h$ is a homeomorphism when restricted to $\pi_1^{-1}(U) \to \pi_2^{-1}(U)$. As this is true for any $U$, it is clear that the total map $h$ is a homeomorphism.
+\end{proof}
+
+We see that $h$ determines these maps $h_U \colon U \to G$, but could we have gone the other way and assembled $h$ out of the $h_U$'s? The following theorem tells us when this is possible:
+
+\begin{theorem}\label{thm:fiber-bundle-iso} Let $\pi_i \colon E_i \to B$ be two fiber bundles with the same structure group $G$ and fiber $F$. Let $\mathcal{U} = \left\{ U_i \right\}_{i \in I}$ be an open cover of $B$ which trivializes both bundles, and for any $i \in I$ let $\phi_i \colon \pi_1^{-1}(U_i) \xto{\sim} U_i \times F$ and $\psi_i \colon \pi_2^{-1}(U_i) \xto{\sim} U_i \times F$ denote these trivializations. Let $g_{ij}, \gamma_{ij} \colon U_i\cap U_j \to G$ be the cocycles attached to $E_1$ and $E_2$, respectively. Then the following sets are in canonical bijection:
+\begin{enumerate}
+    \item the set of vector bundle isomorphisms $h \colon E_1 \xto{\sim} E_2$ witnessed along $\mathcal{U}$
+    \item the set whose elements are tuples of continuous maps $\left\{ U_i \xto{h_i} G \right\}_{i\in I}$ so that, for all $i,j \in I$, we have that $\gamma_{ij}\cdot h_i = h_j \cdot g_{ij}$ are equal as maps $U_i \cap U_j \to G$, where the multiplication is occurring pointwise in $G$.
+\end{enumerate}
+\end{theorem}
+\begin{proof} Given a vector bundle isomorphism $h$, by definition, the $h_U$'s are determined by the definition of vector bundle isomorphism. We argue that they satisfy the desired property. For any $i,j$, consider the commutative diagram of maps over $U_i \cap U_j$
+\[\begin{tikzcd}
+    U_i \cap U_j \times F\ar[rrr,"{(u,f) \mapsto (u,h_i(u)f)}" above]\ar[dd,"{(u,f)\mapsto (u,g_{ij}(u)f)}" left] &  &  & U_i \cap U_j \times F\ar[dd,"{(u,f)\mapsto (u,\gamma_{ij}(u)f)}" right]\\
+     & \pi_1^{-1}(U_i \cap U_j)\rar["h"]\ar[ul,"\phi_i"]\ar[dl,"\phi_j"] & \pi_2^{-1}(U_i \cap U_j)\ar[ur,"\psi_i" above left]\ar[dr,"\psi_j"] & \\
+    U_i \cap U_j \times F\ar[rrr,"{(u,f) \mapsto (u,h_j(u)f)}" below] &  &  & U_i \cap U_j \times F
+\end{tikzcd} \]
+The outer triangles commute by definition of the cocycles, and the upper and lower trapezoids commute by definition of the $h_i$'s. Tracing an element along the outermost rectangle, we see that we must have $\gamma_{ij}(u)\cdot h_i(u) \cdot f = h_j(u) \cdot g_{ij}(u)\cdot f$ for all $u\in U_1 \cap U_2$ and all $f\in F$. Since $G$ acts faithfully, this is the same as saying that $\gamma_{ij}\cdot h_i = h_j \cdot g_{ij}$ are equal as maps $U_i \cap U_j \to G$.
+
+Conversely, suppose we are given some elements $\{U_i \xto{h_i} G\}$ satisfying this condition. For any $i\in I$, we can define a map $h_{U_i} \colon \pi_1^{-1}(U_i) \to \pi_2^{-1}(U_i)$ as the unique homeomorphism filling in the dashed arrow in the diagram
+\[ \begin{tikzcd}[column sep=huge]
+    \pi_1^{-1}(U_i)\dar["\phi_i" left, "\cong" right]\rar[dashed,"h_{U_i}"] &  \pi_2^{-1}(U_i)\dar["\psi_i" right, "\cong" left] \\
+    U_i \times F \rar["{(u,f) \mapsto (u, h_i(u)f)}" below, "\cong" above] & U_i \times F.
+\end{tikzcd} \]
+We want to check that the $h_{U_i}$'s glue together to give a well-defined map $E_1 \to E_2$, that is, we must check they agree on the overlaps. Restricting the square above to $U_i\cap U_j$, and flipping it over and turning it into a trapezoid suggestively, we get a commutative diagram
+\[ \begin{tikzcd}
+    U_i \cap U_j \times F\ar[rrr,"{(u,f) \mapsto (u,h_i(u)f)}" above] &  &  & U_i \cap U_j \times F\\
+     & \pi_1^{-1}(U_i \cap U_j)\rar["h_{U_i | U_i \cap U_j}"]\ar[ul,"\phi_i"] & \pi_2^{-1}(U_i \cap U_j)\ar[ur,"\psi_i"] & \\
+\end{tikzcd} \]
+On the analogous diagram for $h_{U_j}$, we similarly get a commutative diagram:
+\[ \begin{tikzcd}
+    & \pi_1^{-1}(U_i \cap U_j)\rar["h_{U_j | U_i \cap U_j}"]\ar[dl,"\phi_j"] & \pi_2^{-1}(U_i \cap U_j)\ar[dr,"\psi_j"] & \\
+     U_i \cap U_j \times F\ar[rrr,"{(u,f) \mapsto (u,h_j(u)f)}" below] &  &  & U_i \cap U_j \times F\\
+\end{tikzcd} \]
+Patching these diagrams together with the one defining the 1-cocycles for each bundle, we get a big diagram (we don't know it all commutes yet):
+\[ \begin{tikzcd}
+    U_i \cap U_j \times F\ar[rrr,"{(u,f) \mapsto (u,h_i(u)f)}" above]\ar[ddd,"{(u,f)\mapsto (u,g_{ij}(u)f)}" left] &  &  & U_i \cap U_j \times F\ar[ddd,"{(u,f)\mapsto (u,\gamma_{ij}(u)f)}" right]\\
+     & \pi_1^{-1}(U_i \cap U_j)\rar["h_{U_i | U_i \cap U_j}"]\ar[ul,"\phi_i"]\dar[equal] & \pi_2^{-1}(U_i \cap U_j)\ar[ur,"\psi_i"]\dar[equal] & \\
+     & \pi_1^{-1}(U_i \cap U_j)\rar["h_{U_j | U_i \cap U_j}"]\ar[dl,"\phi_j"] & \pi_2^{-1}(U_i \cap U_j)\ar[dr,"\psi_j"] & \\
+     U_i \cap U_j \times F\ar[rrr,"{(u,f) \mapsto (u,h_j(u)f)}" below] &  &  & U_i \cap U_j \times F.
+\end{tikzcd} \]
+All the outer trapezoids commute by construction, but we don't know the inner square commutes a priori. If we had chosen the $h_i$'s at random, there is absolutely no reason to expect it to commute. However, since $\gamma_{ij}\cdot h_i = h_j \cdot g_{ij}$, the outermost square commutes, and therefore the innermost square most commute as well. But commutativity of this inner square (where the vertical arrows are equalities) is exactly saying that $h_{U_i | U_i \cap U_j} = h_{U_j | U_i \cap U_j}$. Therefore all the $h_{U_i}$'s glue together to give a fiber bundle isomorphism $h \colon E_1 \to E_2$.
+\end{proof}
+
+The elegance of this theorem is it allows us to reframe fiber bundle isomorphisms in the language of non-abelian \v{C}ech cohomology:
+
+\begin{theorem}\label{thm:nonabelian-h1-cech-cover}
+Fix a topological group $G$ acting faithfully on a space $F$. Let $B$ be any space and $\mathcal{U}$ any open cover of $B$. Then there is a natural bijection:
+\begin{equation}\label{eqn:cech-cohomology-fiber-bundles-along-cover}
+\begin{aligned}
+    \frac{\left\{ G\text{-fiber bundles with fiber }F\text{ trivialized over }\mathcal{U} \right\}}{\text{isomorphism witnessed along }\mathcal{U}} \leftrightarrow \check{H}^1(\mathcal{U},G).
+\end{aligned}
+\end{equation}
+\end{theorem}
+\begin{proof} The bijection between fiber bundles and 1-cocycles is in \Cref{thm:Z1-bij-to-fiber-bundles}, and it is clear by \Cref{thm:fiber-bundle-iso} that fiber bundles being isomorphic is \emph{exactly the same} as the associated 1-cocycles being equivalent, in the sense of \Cref{def:non-abelian-cech-h1}.\footnote{In fact more is true: not only are the equivalence relations the same, the \emph{data} which exhibits the equivalence is that same. That is, the elements $h_i \colon U_i \to G$ we use to exhibit an isomorphism between two bundles are the same data as the 0-cocycles we use to exhibit cohomology of the 1-cocycles.}
+\end{proof}
+
+
+As every isomorphism of fiber bundles is necessarily witnessed along some cover, we're tempted to take colimits along all cover $\mathcal{U}$, and say that $\check{H}^1(X,G)$ is in bijection with \emph{all} principal $G$-bundles on $X$. However this is wrong! There's a subtlety in that we'll actually only be able to detect the \emph{numerable} bundles.
+
+\begin{remark} Suppose we have a principal $G$-bundle $P$ over $X$, and we've picked two covers $\mathcal{U}$ and $\mathcal{V}$ which trivialize the bundle, so we get classes $u\in \check{H}^1(\mathcal{U},G)$ and $v \in \check{H}^1(\mathcal{V},G)$ which each correspond to $P$. We want to be able to argue that $u$ and $v$ agree in the colimit. In order to do this, we need to take a common refinement of $\mathcal{U}$ and $\mathcal{V}$ and show they differ by a 0-cochain along this refined cover. Unless the cover is locally finite, there's no reason to expect this is possible -- we may need to make arguments about modifying infinitely many overlaps at once, and there's no reasonable way to do this continuously unless there is extra structure.
+\end{remark}
+
+Over paracompact spaces, we can always take locally finite refinements, so we don't have to worry about this. We therefore get the following:
+
+\begin{theorem}\label{thm:H1-bijection-with-fiber-bundles} 
+Fix a topological group $G$ and a faithful action on some space $F$. Then for any \emph{paracompact} space $X$, we have that $\check{H}^1(X,G_c)$ is in bijection with the set of isomorphism classes of fiber bundles over $X$ with structure group $G$ and fiber $F$.
+\end{theorem}
+\begin{proof} Take colimits over $\mathcal{U}\in \Cov(X)^\op$ in \Cref{thm:nonabelian-h1-cech-cover} and exploit that we have locally finite refinements.
+\end{proof}
+
+\begin{example}
+In the theorem above, the trivial fiber bundle corresponds to the identity element of the group $H^1(X,G_c)$.
+\end{example}
+
+
+\section{Principal $G$-bundles}
+
+Any faithful $G$-action on a fiber $F$ yields a study of fiber bundles with structure group $G$ and fiber $F$. There is a distinguished example of such an $F$, namely $G$ itself, where the action is via left translation. These are called \emph{principal fiber bundles}. Here's a precise definition.
+
+\begin{definition} A fiber bundle $\pi \colon Y \to X$ with structure group $G$ and fiber $F$ is said to be \emph{principal} if $G$ acts simply transitively on $Y$, if $G$ is homeomorphic to $F$ along the action by left translation.
+\end{definition}
+
+\begin{example} The trivial bundle $G \times X \to X$ is a principal $G$-bundle, corresponding to the identity element in $\check{H}^1(X,G)$ by \Cref{exa:identity-cocycle-trivial-fiber-bundle}.
+\end{example}
+
+\begin{remark} There's a pretty horrible conflation between ``a trivial principal bundle'' and ``the trivial principal bundle'' in the literature. Writing a trivial principal $G$-bundle as $G \times X \to X$ is a very bad practice, since it assumes we know where the identity is in each fiber. A priori we don't know this, that's why Steenrod warned us to be careful about this \cite[pp.37-38]{Steenrod-fibre-bundles}. To illustrate by example, consider the fold map
+\begin{align*}
+    S^1 \amalg S^1 \to S^1.
+\end{align*}
+Let the nonidentity element of $C_2$ swap the two copies of $S^1$ upstairs, and let the identity element fix them. Then we'd be correct to say the projection above is a trivial principal $C_2$-bundle. But it is \emph{not} the same data as $S^1 \times C_2 \to S^1$, since we don't have a preferred copy of $S^1$ in the fiber corresponding to the identity element. We can \emph{pick} one, and define a fiberwise homeomorphism $S^1 \amalg S^1 \cong S^1 \times C_2$, but there are two ways to do this. This is a shade of a more common general conflation between a group $G$ and a \emph{torsor} for it, which is by definition any $G$-set with faithful transitive $G$-action.
+\end{remark}
+
+We can always \emph{pick} an identity continuously in each fiber. That is, if $Y \to X$ is a trivial $G$-bundle, we can take a section $\sigma \colon X \to Y$ and define a trivialization of the fiber by allowing $\sigma(x)$ to be the identity in $Y_x$. We claim this defines an isomorphism of fiber bundles between $Y$ and $G \times X$. Steenrod calls this the \emph{cross-section theorem} \cite[I.8.3]{Steenrod-fibre-bundles}.
+
+\begin{theorem}[Cross-section theorem]
+\label{thm:cross-section}
+Let $\pi \colon Y \to X$ be a principal $G$-bundle. Then it is trivial if and only if it admits a global section.
+\end{theorem}
+\begin{proof}[Sketch] Verify the data of a global section $\sigma \colon X \to Y$ is the same data as a homeomorphism between $\pi$ and the product bundle $G \times X \to X$.
+\end{proof}
+
+So we see something interesting, namely that a principal $G$-bundle defines a class in $H^1(X,G)$, and that the failure of this class to be the identity element is measuring the failure of the existence of a global section. Phrased differently, the cohomology class in $H^1(X,G)$ is \emph{obstructing} the existence of a global section. We'll see this theme again in the theory of vector bundles.
+
+\subsection{Factor spaces}
+
+A crucial example of principal bundles comes from factor groups.
+
+\begin{definition} If $G$ is a topological group and $H \le G$ is a closed subgroup, we define the \emph{factor space} to be the set of left cosets $G/H$, equipped with a topology defined by $U \subseteq G/H$ being open if and only if $\pi^{-1}(U) \subseteq G$ is open, where $\pi$ is the projection map
+\begin{align*}
+    \pi \colon G \to G/H.
+\end{align*}
+\end{definition}
+
+\begin{exercise}\label{exer:top-grp-mod-subgp-is-Hausdorff} 
+If $G$ is a topological group and $H\le G$ is a closed subgroup then $G/H$ is Hausdorff.
+We have that $G/H$ is Hausdorff. %(Steenrod p29)
+\end{exercise}
+
+Here is an important theorem, which can be found in \cite[p.~30]{Steenrod-fibre-bundles} in slightly different language.
+
+\begin{theorem} Let $G$ be any topological group and $H \le G$ a closed subgroup. Let $\pi \colon G\to G/H$ be the surjective open map corresponding to projection onto cosets. Let $\Sec(-,\pi)$ be the sheaf of sets on $G/H$ given by local continuous sections of $\pi$. Then the following are equivalent:
+\begin{enumerate}
+    \item $\pi \colon G \to G/H$ is a fiber bundle with fiber $H$ and structure group $H$ acting on itself via left translation
+    \item the stalk $\Sec(-,\pi)_{eH}$ at the identity coset is nonempty.
+\end{enumerate}
+In the classical literature, an element of this stalk is called a \emph{local cross-section}, and demonstrating existence of local cross-sections was the general strategy for proving various projections were fiber bundles.
+\end{theorem}
+
+
+\begin{proof} The forwards direction is immediate, since fiber bundles always admit locally defined sections, so we need to argue the backwards direction. Suppose the stalk is nonempty, then by definition there is some open neighborhood $U \ni eH$ and a continuous section $s \colon U \to \pi^{-1}(U)$. We see that $s(U) \subseteq G$ is just some subspace, and we can use the $H$-action to permute it around in $G$. We claim this doesn't create any overlaps, that is, $s(U) \cap h\cdot s(U) = \emptyset$ for all $h\ne e$. Indeed if it did, we would have some $u_1,u_2\in U$ and $h\in H$ for which
+\begin{align*}
+    s(u_1) = h\cdot s(u_2).
+\end{align*}
+Applying $\pi$ and leveraging that $\pi$ is $H$-equivariant, we get that $u_1 = u_2$, hence $s(u_1) = s(u_2)$ in $G$, and $h= e$.
+
+We therefore have an injective continuous map
+\begin{equation}\label{eqn:UxH-to-piinvs-U}
+\begin{aligned}
+    U \times H &\xto{\sim} \pi^{-1}(U) \\
+    (u,h) &\mapsto h\cdot s(u).
+\end{aligned}
+\end{equation}
+We claim this is a homeomorphism. We see that for any $y\in \pi^{-1}(U)$, there is a unique $h\in H$ for which $hs(U) \ni y$, which defines for us an $H$-equivariant function
+\begin{align*}
+    \pi^{-1}(U) &\to H.
+\end{align*}
+We want to argue that this is continuous. By $H$-equivariance, it suffices to check continuity by looking at a neighborhood basis of the origin in $H$. Let $K \subseteq H$ be any such basis, then the preimage of $K$ under the map above is the elements $y\in \pi^{-1}(U)$ so that $ks(U) \ni y$ for some $k \in K$. That is, it is exactly $K\cdot s(U)$. Since $s(U)$ is open \emph{in $\pi^{-1}(U)$} so is $K\cdot s(U)= \cup_{k\in K}s(U)$, since each $k$ acts via a homeomorphism, and we just get a union of opens.
+
+Hence we get an continuous map
+\begin{align*}
+    \phi \colon \pi^{-1}(U) \to U \times H
+\end{align*}
+which is the product of $\pi$ and the continuous map $\pi^{-1}(U) \to H$ defined above, and it is easy to check it is inverse to \Cref{eqn:UxH-to-piinvs-U}, hence a homeomorphism.
+
+We can now prove that $\pi \colon G \to G/H$ is a fiber bundle. Consider the open cover $\mathcal{U} = \left\{ g\cdot U \right\}_{g\in G}$ of $G/H$, where $U$ is as above. By $H$-equivariance of all the constructions above, we have homeomorphisms
+\begin{align*}
+    g\phi \colon \pi^{-1}(gU) \xto{\sim} gU \times H
+\end{align*}
+for every homeomorphism in the open cover. Given an overlap $g_1U \cap g_2U \ne \emptyset$, we have that $g_2^{-1}g_1U = U$, hence $g_2 g^{-1} \in H$. Therefore the composite
+\begin{align*}
+    (g_1 U \cap g_2 U) \times H \xto{(g_2 \phi)^{-1}} \pi^{-1}(g_1 U \cap g_2 U) \xto{g_1 \phi} (g_1 U \cap g_2 U) \times H
+\end{align*}
+is constant on that second factor $H$, and is just multiplication by $g_2 g^{-1}$ on the first factor. This is clearly a section of the structure group for our bundle, which is $H$, therefore we are done.
+\end{proof}
+
+\begin{theorem}[{\cite[4.1]{gleasonSpacesCompactLie1950}}] If $G$ is an arbitrary topological group, and $H \le G$ is a closed subgroup which is a compact Lie group, then $G \to G/H$ is a fiber bundle with fiber $H$ and structure group $H$ and action given by left translation.
+\end{theorem}
+
+\begin{remark} It's entirely possible to not admit a local cross-section. Steenrod refers to an unpublished result of Hanner for an example \cite[p.~33]{Steenrod-fibre-bundles}. Karube gives us another example -- let $G = \prod_{i=1}^\infty S^1$, let $\pi_n \colon G \to S^1$ be the projection onto the $n$th circle. Take $H \le G$ to be any closed subgroup for which $\pi_n(H) \le S^1$ is finite and nonzero. Then $G\to G/H$ admits no cross-section, hence is not a fiber bundle \cite{karubeLocalCrosssectionsLocally1958}.
+\end{remark}
+
+
+
+\subsection{Identifying factor spaces} We now know that we can build a principal $H$-bundle $G \to G/H$ for any $G,H$ as before. This doesn't necessarily help us understand $G/H$ as a topological space though. A nice strategy to assemble explicit fiber bundles is to start with a transitive $G$-action on a space, and let $H$ be the stabilizer of any point of that space.
+
+\begin{proposition}\label{prop:factor-space-via-group-action} 
+Suppose $G$ acts transitively on a Hausdorff space $Y$, let $y\in Y$ be any arbitrary basepoint, and let $p \colon G \to Y$ be the continuous map sending $g$ to $gy$. Define the \emph{stabilizer subgroup}
+\begin{align*}
+    G_y := \left\{ g\in G \mid gy=y \right\}.
+\end{align*}
+Then we have that
+\begin{enumerate}
+    \item $G_y \le G$ is closed,
+    \item $p$ factors through the quotient by $G_y$, inducing a map
+    \begin{equation}\label{eqn:action-mod-isotropy-bijection}
+    \begin{aligned}
+        G/G_y &\to Y \\
+        g &\mapsto g\cdot y
+    \end{aligned}
+    \end{equation}
+    which is continuous and bijective
+    \item if furthermore $G$ is compact, then \Cref{eqn:action-mod-isotropy-bijection} is a homeomorphism.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+The closed condition is immediate (exercise!). We define a map
+\begin{align*}
+    G/G_y &\to Y \\
+    g &\mapsto g\cdot y.
+\end{align*}
+This is continuous since the action of $G$ on $Y$ is continuous, it is injective by definition of the isotropy subgroup, and surjective by transitivity. If $G$ is compact, then so is $G/G_y$ (image of compact is compact). Therefore \Cref{eqn:action-mod-isotropy-bijection} is a homeomorphism since every bijective continuous maps from a compact space to a Hausdorff space is automatically a homeomorphism.
+\end{proof}
+
+
+\begin{notation} Given a fiber bundle $f \colon Y\to X$ with fiber $F$, we often write it as what's called a \emph{fiber sequence}
+\begin{align*}
+    F \hookto Y \to X.
+\end{align*}
+This should in some sense remind us of a short exact sequence.
+\end{notation}
+
+
+
+\begin{example}[Orthogonal group fiber sequence]
+Recall a real matrix is \emph{orthogonal} of its transpose and inverse coincide. Define the \emph{orthogonal group} $O(n)$ as
+\begin{align*}
+    O(n) := \left\{ M \in \GL_n(\R) \colon M^t = M^{-1} \right\}.
+\end{align*}
+We claim $O(n)$ is compact (exercise). There is a natural inclusion of $O(n)$ into $O(n+1)$ by sticking a 1 in the bottom right corner and a 0 elsewhere:
+\begin{align*}
+    O(n) &\to O(n+1) \\
+    M &\mapsto \begin{pmatrix} M & 0 \\ 0 & 1 \end{pmatrix}.
+\end{align*}
+Note that $O(n)$ acts transitively on the (Hausdorff) unit sphere $S^{n-1} \subseteq \R^n$. Fixing any unit vector $v\in S^{n-1}$, we can verify that its isotropy group is isomorphic to $O(n-1)$. Hence by \Cref{prop:factor-space-via-group-action} we get a homeomorphism
+\begin{align*}
+    O(n)/O(n-1) \cong S^{n-1}.
+\end{align*}
+Hence we have a fiber sequence
+\begin{align*}
+    O(n-1) \hookto O(n) \to S^{n-1}.
+\end{align*}
+\end{example}
+
+\begin{example} Completely analogously, the \emph{unitary group} $U(n)$ is defined to be those complex matrices whose conjugate transpose are equal to their inverse:
+\begin{align*}
+    U(n) := \left\{ M\in \GL_n(\C) : M^\ast M = I \right\}.
+\end{align*}
+This group is also compact, acting on $\C^n$ and also on the unit sphere $S^{2n-1} \subseteq \C^n$. By a similar argument to above, we have a homeomorphism $U(n)/U(n-1) \cong S^{2n-1}$, and a fiber sequence
+\begin{align*}
+    U(n-1) \hookto U(n) \to S^{2n-1}.
+\end{align*}
+\end{example}
+
+\begin{example} The \emph{compact symplectic group} $\Sp(n)$ is the subgroup of $\GL_n(\mathbb{H})$ preserving the standard Hermitian inner product on $\mathbb{H}^n$. We claim that $\Sp(n)$ acts transitively on the unit sphere $S^{4n-1}$ with stabilizer $\Sp(n-1)$, giving a fiber sequence
+\begin{align*}
+    \Sp(n-1) \hookto \Sp(n) \to S^{4n-1}.
+\end{align*}
+\end{example}
+
+\begin{example}[Stiefel manifolds] Let
+\begin{align*}
+    V_k(\R^n) & := \left\{ M \in M_{n \times k}(\R) : M^t M = I \right\} \\
+    V_k(\C^n) & := \left\{ M \in M_{n \times k}(\C) : M^\ast M = I \right\} \\
+    V_k(\mathbb{H}^n) & := \left\{ M \in M_{n \times k}(\C) : M^\ast M = I \right\}
+\end{align*}
+denote the \emph{Stiefel manifolds} of $k$-frames in $\R^n$,  $\C^n$, and $\mathbb{H}^n$, respectively. With the subspace topology from the Euclidean space of matrices, these are manifolds. Since orthogonal matrices preserve frames, we have that $O(n)$ acts transitively on $V_k(\R^n)$. The isotropy subgroup of a given frame is $O(n-k)$. Hence we have
+\begin{align*}
+    O(n)/O(n-k) &\cong V_k(\R^n) \\
+    U(n)/U(n-k) &\cong V_k(\C^n) \\
+    \Sp(n)/\Sp(n-k) &\cong V_k(\mathbb{H}^n).
+\end{align*}
+\end{example}
+
+An important space to define is the \emph{Grassmannian} $\Gr(k,n)$, which is the moduli space of $k$-dimensional subspaces of an $n$-dimensional vector space. Even before defining it, we note that it should receive a map from the Stiefel manifold, given by taking the \emph{span} of a given $k$-frame. Since the $O(k)$-action on a given frame doesn't affect its span, it makes sense we should mod out by this.
+
+\begin{definition}\label{def:Grassmannian}
+We define the \emph{Grassmannian} to be
+\begin{align*}
+    \Gr_\R(k,n) & := O(k)\backslash V_k(\R^n) \cong O(k)\backslash O(n)/O(n-k) \\
+    \Gr_\C(k,n) & := U(k) \backslash V_k(\C^n) \cong U(k) \backslash U(n)/U(n-k) \\
+    \Gr_{\mathbb{H}}(k,n) & := \Sp(k) \backslash V_k(\mathbb{H}^n) \cong \Sp(k)\backslash \Sp(n)/\Sp(n-k).
+\end{align*}
+Then, by definition, we have principal fiber bundles
+\begin{align*}
+    O(k) \hookto & V_k(\R^n) \to \Gr_\R(k,n) \\
+    U(k) \hookto & V_k(\C^n) \to \Gr_\C(k,n) \\
+    \Sp(k) \hookto & V_k(\mathbb{H}^n) \to \Gr_{\mathbb{H}}(k,n).
+\end{align*}
+\end{definition}
+
+\subsection{Dold's classification theorem}
+
+Recall by \Cref{thm:H1-bijection-with-fiber-bundles}, given a topological group $G$ and a space $X$, then isomorphism classes of principal $G$-bundles over $X$ are classified by the set $H^1(X,G_c)$.
+
+\begin{notation} Recall, given two spaces $X,Y$, that $[X,Y]$ denotes the set of homotopy classes of maps between them.
+\end{notation}
+
+\begin{definition}[{\cite[7.2]{doldPartitionsUnityTheory1963}}]
+\label{def:classifying-space}
+Let $G$ be a topological group. We say a space $B$ is \emph{classifying} for $G$ if there exists a natural isomorphism
+\begin{equation}\label{eqn:dold-classifying-nat-trans}
+\begin{aligned}
+    T \colon [-,B] \Rightarrow \check{H}^1(-,G_c)
+\end{aligned}
+\end{equation}
+of functors $\Top^\op \to \Set$.
+\end{definition}
+
+\begin{remark}[Yoneda and the homotopy category] We are tempted to make a Yoneda-flavored argument about classifying spaces for principal $G$-bundles, since \Cref{eqn:dold-classifying-nat-trans} looks a lot like a natural transformation from a representable functor to a non-representable one. However for any space $X$, we note that $[X,B]$ is not a hom-set in the category $\Top$ of topological spaces. We can fix this, however, by defining the \emph{homotopy category} of topological spaces $\Ho(\Top)$.
+\end{remark}
+
+\begin{proposition}\label{prop:classifying-bundle}
+Let $G$ be a topological group. There is a natural bijection
+\[
+\Nat([-,B], \check{H}^1(-,G_c)) \cong \check{H}^1(B,G_c).
+\]
+In particular if $B$ is \emph{classifying}, the choice of natural isomorphism corresponds to a preferred element in $\check{H}^1(B,G_c)$, whose associated principal $G$-bundle we denote by $EG$, and call it the \emph{universal principal $G$-bundle}. This has the property that any other principal $G$-bundle $E\to X$ is of the form $E\cong f^\ast EG$, where $f\colon X \to B$ is some (homotopy class of) map.
+\end{proposition}
+\begin{proof}[Proof sketch] Once the category theory is set up correctly, the remainder of this proposition is just the Yoneda lemma. Define $\Ho(\Top)$ to be the \emph{homotopy category} of spaces --- objects are the same as those in $\Top$, and hom-sets are homotopy classes of maps between two spaces:
+\begin{align*}
+    \Hom_{\Ho(\Top)}(X,Y) := [X,Y].
+\end{align*}
+Then $[-,B]$ is indeed a representable functor out of $\Ho(\Top)$. In order to apply Yoneda, however, we need to know that $\check{H}^1(-,G_c)$ descends to a functor out of $\Ho(\Top)$, that is, non-abelian \v{C}ech cohomology is homotopy invariant. This is left as an exercise.
+\end{proof}
+
+\begin{example}[Universal $C_2$-bundles]
+\label{exa:universal-c2-bundle}    
+Let $C_2$ be the cyclic group of order two. For any $n$, the sphere double covers real projective space:
+\begin{align*}
+    S^n \to \RP^n,
+\end{align*}
+and this is a principal $C_2$-bundle. None of these are universal, but if we let $n\to \infty$, we get a principal $C_2$-bundle:
+\begin{align*}
+    S^\infty \to \RP^\infty.
+\end{align*}
+We will very soon see that this is universal! What this means is that if $X$ is any space, and $E\to X$ is any principal $C_2$-bundle, then there exists some map $f \colon X \to \RP^\infty$ so that $E$ is the pullback of $S^\infty$, that is, we have a pullback diagram of spaces:
+\[
+\begin{tikzcd}
+    E\rar\dar\pb & S^\infty\dar \\
+    X\rar["f" below] & \RP^\infty.
+\end{tikzcd}
+\]
+\end{example}
+
+We now want to figure out how to argue whether a given space is \emph{classifying} for principal $G$-bundles. The \emph{classification theorem} of Dold gives us a lovely way to do this:
+
+\begin{definition}\label{def:contractible} We say that a space is \emph{contractible} if it has the homotopy type of a point. If the space is a CW complex, then this is equivalent to the statement that all its homotopy groups vanish.
+\end{definition}
+
+\begin{theorem}[{Classification theorem, \cite[7.5]{doldPartitionsUnityTheory1963}}]
+\label{thm:classification-thm-principal-G-bundles}
+Let $\eta \colon E \to B$ be a numerable (\Cref{def:numerable-open-cover}) principal $G$-bundle. Then it is classifying if and only if $E$ is contractible.
+\end{theorem}
+
+\begin{proof}[Sketch]
+First suppose $\eta \colon E \to B$ is contractible, and take some other principal $G$-bundle $\zeta \colon V \to X$. We want to find a map $f \colon X \to B$ for which $V\cong f^\ast E$.
+
+We define a new bundle
+\begin{align*}
+    ( \zeta,\eta ) \to X,
+\end{align*}
+where the fiber over $x$ is the set of all possible bundle maps
+\[ \begin{tikzcd}
+    V_x\rar\dar & E\dar\\
+    x\rar & B.
+\end{tikzcd} \]
+It is clear to see this bundle has fibers $(\zeta,\eta)_x \cong E$, since the $G$-action on the fibers implies that the bundle map is determined by the image of one point. Moreover, numerability of $\zeta$ implies numerability of $(\zeta,\eta)$.
+
+A section of this bundle would be the data we're looking for --- it would be a bundle map
+\[ \begin{tikzcd}
+    V\rar\dar & E\dar\\
+    X\rar & B,
+\end{tikzcd} \]
+and this will necessarily be a pullback, since every principal $G$-bundle map is an isomorphism. So it suffices to argue that $(\zeta,\eta)$ admits a global section. We can define a section locally on one of our covers over which $E$ is trivialize, then use contractability of $E$ to extend it to a global section (see \cite[2.6,2.7,2.8]{doldPartitionsUnityTheory1963}).
+
+For the other direction, suppose $\eta \colon E \to B$ is universal. If we can prove the existence of a contractible numerable principal bundle (\cite[\S8]{doldPartitionsUnityTheory1963}), call it $C \to X$, then it is also universal by the previous direction, so we have a composite
+\[ \begin{tikzcd}
+    E\rar\dar & C\rar\dar & E\dar \\
+    B\rar & X\rar & B.
+\end{tikzcd} \]
+The map on bottom is homotopic to the identity, so the composite map on top is a homeomorphism $E \to E$. However this factors through a contractible space, hence $E$ must be contractible as well.
+\end{proof}
+
+\begin{remark}
+We now know how to prove that $S^\infty \to \RP^\infty$ is the universal $C_2$-bundle as we claimed in \Cref{exa:universal-c2-bundle}. By Dold's classification theorem \Cref{thm:classification-thm-principal-G-bundles}, it suffices to argue that the infinite sphere $S^\infty$ is contractible, which is a basic exercise in topology (see for instance \cite[p.~19]{Hatcher}).
+\end{remark}
+
+\begin{proposition}
+Let $G$ be a topological group, and suppose that $B_1$ and $B_2$ are two classifying spaces for principal $G$-bundles. Then $B_1$ and $B_2$ are homotopy equivalent.
+\end{proposition}
+\begin{proof}
+Both $B_1$ and $B_2$ represent the functor
+\[
+    \check{H}^1(-,G) \colon \Ho(\Top)^\op \to \Set,
+\]
+therefore they must be isomorphic in the domain category $\Ho(\Top)$. One checks that $B_1$ and $B_2$ being isomorphic in $\Ho(\Top)$ is the same as them being homotopy equivalent as spaces.\footnote{An isomorphism class of object in $\Ho(\Top)$ is often referred to as a \emph{homotopy type}. This is potentially overloaded terminology, but at least among CW complexes there is no confusion using this terminology.}
+\end{proof}
+
+\begin{notation}
+Since the classifying space for principal $G$-bundles (assuming it exists, we haven't argued this yet) is well-defined up to homotopy equivalence, one usually calls it ``$BG$'' and the universal principal $G$-bundle over it is denoted $EG \to BG$. In casual conversation you'll often see topologists write something like
+\[
+\RP^\infty = BC_2,
+\]
+and this is intended to mean that $\RP^\infty$ is (the homotopy type of) the classifying space for $C_2$.
+\end{notation}
+
+
+
+\begin{theorem}[Existence of universal bundles]
+\label{thm:existence-universal-G-bundles}
+Let $G$ be a topological group. Then a universal $G$-bundle exists.
+\end{theorem}
+\begin{proof} Omitted, see \cite[\S12.2]{AGP} or \cite[\S16.5]{maybook}.
+\end{proof}
+
+\subsection{Universal bundles for the general linear group}
+
+\begin{notation} Denote by $V_k(\R^\infty)$ the \emph{infinite Stiefel manifold}, defined as the colimit
+\begin{align*}
+    V_k(\R^\infty) := \colim_{n\to\infty} V_k(\R^n)
+\end{align*}
+along the natural inclusions. Similarly we define
+\begin{align*}
+    \Gr_\R(k,\infty) := \colim_{n\to\infty} \Gr_\R(k,n).
+\end{align*}
+\end{notation}
+
+\begin{proposition} The induced map
+\begin{align*}
+    V_k(\R^\infty) \to \Gr_\R(k,\infty)
+\end{align*}
+is still a principal $O(k)$-bundle.
+\end{proposition}
+\begin{proof}[Proof sketch] We can commute the quotient by $O(k)$ with the colimit defining the infinite Stiefel manifold (todo: add more details).
+\end{proof}
+
+\begin{theorem}\label{thm:stiefel-manifold-universal}
+The space $V_k(\R^\infty)$ is contractible, and therefore 
+\begin{align*}
+    V_k(\R^\infty) \to \Gr_\R(k,\infty)
+\end{align*}
+is a universal principal $O(k)$-bundle. Similar statements for $U(k)$ and $\Sp(k)$.
+\end{theorem}
+\begin{proof}[Proof sketch] This will follow by Dold's classification theorem (\Cref{thm:classification-thm-principal-G-bundles}). We have to check that $\Gr(k,\infty)$ is paracompact so that the infinite Steiefel manifold gives a numerable cover. The proof the the infinite Stiefel manifold is contractible is essentially a generalization of the proof that $S^\infty$ is contractible.
+\end{proof}
+
+
+\section{Vector bundles revisited}
+
+\begin{exercise} There is a natural inclusion $O(k) \subseteq \GL_k(\R)$. Show that, if $X$ is paracompact, then the map
+\begin{align*}
+    \check{H}^1(X, O(k)) \to \check{H}^1(X,\GL_k(\R))
+\end{align*}
+is a bijection. That is, we can always reduce the structure group to the orthogonal group $O(k)$ if we like.
+\end{exercise}
+
+A similar thing is true for $U(k) \subseteq \GL_k(\C)$ and complex vector bundles. So we can redefine a vector bundle in the language of fiber bundles.
+
+\begin{definition}\label{def:vector-bundle}
+A \emph{real/complex/symplectic} vector bundle of rank $k$ is a fiber bundle with structure group $O(k)$/$U(k)$/$\Sp(k)$ and fiber $\R^k$/$\C^k$/$\mathbb{H}^k$.
+\end{definition}
+
+\begin{definition}\label{def:frame-bundle} If $E \to X$ is a real vector bundle, we denote by $\Fr(E)$ the \emph{frame bundle}, whose fibers $\Fr(E)_x$ consist of all the orthonormal frames in $E_x$. We claim that $\Fr(E)$ is a principal $O(k)$-bundle over $X$.
+\end{definition}
+
+\begin{exercise}\label{exer:frame-bundle-is-associated} 
+For a paracompact space $X$, under the sequence of natural bijections
+\begin{align*}
+    \Prin_{O(k)}(X) \leftrightarrow \check{H}^1(X,O(k)) \leftrightarrow \Vect_\R^k(X),
+\end{align*}
+we have that $\Fr(E)$ corresponds to the vector bundle $E \to X$.
+\end{exercise}
+This tells us that:
+\begin{itemize}
+    \item a vector bundle can be recovered by its frame bundle
+    \item every principal $O(k)$-bundle is the frame bundle of some vector space, uniquely determined up to isomorphism
+    \item if a space $B$ is classifying for $O(k)$-bundles then it is classifying for vector bundles!
+\end{itemize}
+
+We know which space is classifying for $O(k)$ -- it is the infinite Stiefel manifold $V_k(\R^\infty)$. So we just want to understand, under the bijection between principal $O(k)$-bundles and real rank $k$ vector bundles, what does $V_k(\R^\infty)$ correspond to?
+
+The answer is the so-called \emph{tautological bundle}. Let's see a small-dimensional example:
+
+\begin{notation} We denote by
+\begin{align*}
+    E_k(\R^n) := \left\{ (v,P) \in \R^n \times \Gr_\R(k,n) \mid v\in P \right\}.
+\end{align*}
+This is, by construction, a vector bundle over $\Gr_\R(k,n)$. We call this the \emph{tautological vector bundle}.
+\end{notation}
+
+\begin{proposition}
+The tautological bundle $E_k(\R^n)$ is pulled back from $E_{k}(\R^{n+1})$ along the inclusion
+\begin{align*}
+    \Gr_\R(k,n) \subseteq \Gr_\R(k,n+1),
+\end{align*}
+\end{proposition}
+
+\begin{proposition} There is a tautological bundle
+\begin{align*}
+    E_k(\R^\infty) \to \Gr_\R(k,\infty)
+\end{align*}
+which pulls back to the tautological bundle on $\Gr_\R(k,n)$ for any $n$.
+\end{proposition}
+
+
+\begin{remark} Similar statements are true for $\Gr_\C(k,n)$ and $\Gr_\C(k,\infty)$, except the tautological bundle is now a complex (in fact \emph{holomorphic}) vector bundle.
+\end{remark}
+
+\begin{example} Over $\CP^n = \Gr_\C(1,n+1)$, the tautological line bundle has transition functions
+\begin{align*}
+    g_{ij} = z_j/z_i
+\end{align*}
+over the standard open cover $U_i = \left\{ [z_0: \ldots : z_n] \mid z_i\ne 0 \right\}$.
+\end{example}
+
+\begin{remark} Along the isomorphism $\Gr_\C(1,n) \cong \mathbb{CP}^{n-1}$, we have that $E_1(\C^n)$ is $\mathcal{O}_{\mathbb{P}^{n-1}}(-1)$.
+\end{remark}
+
+\begin{theorem} If $X$ is paracompact, the maps
+\begin{align*}
+    \left[ X,\Gr_\R(k,\infty) \right] &\to \Vect_\R^k(X) \\
+    \left[ X, \Gr_\C(k,\infty) \right] &\to \Vect_\C^k(X).
+\end{align*}
+is a bijection, natural in $X$, defined by pulling back the tautological vector bundle.
+\end{theorem}
+\begin{proof}[Proof sketch] Combining Dold's classification theorem \Cref{thm:classification-thm-principal-G-bundles}, and universality of the Stiefel manifolds \Cref{thm:stiefel-manifold-universal}, the only thing remaining to check is that the tautological vector bundle is an associated bundle to the Stiefel manifolds, which is an immediate application of \Cref{exer:frame-bundle-is-associated}. A self-contained proof can alternatively be found in \cite[1.16]{hatcherVectorBundlesKtheory}.
+\end{proof}
+
+\begin{remark} If $X$ is compact (say, a finite-dimensional CW complex), then any map $X \to \Gr(k,\infty)$ lands in some $\Gr(k,N)$ for a finite $N$. In particular there is a more refined version of the classification theorem above for such spaces -- see for instance \cite[19.4]{Steenrod-fibre-bundles}. 
+\end{remark}
+
+\begin{remark} If $X$ is not paracompact, we still get a well-defined map
+\begin{align*}
+    \left[ X,\Gr_\R(k,\infty) \right] \to \Vect_\R^k(X),
+\end{align*}
+whose image consists of all the numerable vector bundles on $X$.
+\end{remark}
+% \begin{definition}\label{def:frame-bundle}
+% Let $\pi \colon V \to X$ be a rank $r$ complex vector bundle, defined by the data of a cover $\left\{ U_i \right\}$ and trivializations $\phi_i \colon U_i \times \C^r \xto{\sim} \pi^{-1}(U_i)$. For a fiber $V_x$ over a point $x\in X$, denote by $F(V_x)$ the set of frames of the vector space $V_x$. This receives a free transitive $\GL_r(\C)$-action, but has no topology a priori. Denote by $F(V) = \amalg_{x\in X}F(V_x)$, and endow it with the final topology coming from the inclusions $\phi_i$.
+% \end{definition}
+
+% \begin{exercise} Verify that $F(V)$ is indeed a principal $\GL_r(\C)$-bundle, and prove it is \emph{associated} to $V$.
+% \end{exercise}
+
+
+\subsection{Vector bundles with more structure}
+
+A real vector bundle over a paracompact space $X$ is equivalent to an element in $\check{H}^1(X,\GL_r(\R))$, hence it is defined by some $1$-cocycle $(g_{ij})$ of continuous maps
+\begin{align*}
+    g_{ij} \colon U_i \cap U_j \to \GL_r(\R).
+\end{align*}
+Note that each of the coordinates of the matrices $g_{ij}$ outputs are continuous in the input, so we can think about each of the coordinates as a continuous map $U_i \cap U_j \to \R$, that is, a section in $C^0(U_i\cap U_j, \R)$. We could therefore define a sheaf $\GL_r(C^0(-,\R))$ of $r \times r$ matrices of continuous sections which have determinant nonzero everywhere, and it is clear to see that this sheaf of groups is isomorphic to the one above.
+
+From this perspective, it becomes clear how to ask for our cocycles to have more structure. We can take $\GL_r$ of the sheaf of differentiable, smooth, holomorphic, etc. maps, and we get the following definition.
+
+\begin{definition}\label{def:differentiable-vector-bundle} 
+Let $X$ be a manifold which is smooth or differentiable, and let $\tau$ be some differentiability property of continuous real-valued functions of $X$ (i.e. differentiable functions, $C^p$-functions, smooth functions). Then we define a \emph{$\tau$-vector bundle} on $X$ is a vector bundle assembled from a 1-cocycle in $\check{H}^1(X, \GL_r(C^0_\tau(-,\R)))$. Equivalently, a $\tau$-vector bundle is a $1$-cocycle
+\begin{align*}
+    g_{ij} \colon U_i \cap U_j \to \GL_r(\R)
+\end{align*}
+so that each of the $g_{ij}$'s has property $\tau$.\footnote{Note: there is some math here, namely that a map to $\GL_r(\R)$ has a differentiability property if and only if all the coordinate projections to the individual entries of the matrix have that property.}
+\end{definition}
+
+
+\begin{example} If $M$ is a differentiable (resp. smooth) manifold, then the tangent bundle $TM$ is differentiable (resp. smooth).
+\end{example}
+
+In general there is no obstruction to giving a topological vector bundle a smooth structure.
+
+\begin{proposition} If $X$ is a smooth manifold, then every real (or complex) topological vector bundle on $X$ is isomorphic to a smooth vector bundle.
+\end{proposition}
+\begin{proof}[Proof sketch] An elegant resolution to this problem is to endow $\Gr_\R(r,\infty)$ with a smooth structure, and then argue that a vector bundle classified by a map $X \to \Gr_\R(r,\infty)$ is smooth if and only if the map is smooth. It then suffices to show that any continuous map can be homotoped into a smooth one, which is Whitney's approximation theorem (see for instance \cite[10.16]{leeIntroductionSmoothManifolds2012}).
+\end{proof}
+
+A similar definition makes sense over complex manifolds:
+
+\begin{definition}\label{def:holomorphic-vector-bundle} Let $X$ be a complex manifold, and $\xi \colon E \to X$ a complex topological vector bundle defined by transition maps $g_{ij}$ valued in $\GL_r(\C)$. We say $\xi$ is \emph{holomorphic} if the transition maps are holomorphic.
+\end{definition}
+
+It is \emph{not} true that every complex topological bundle on a complex manifold admits a holomorphic structure. We'll see some explicit examples later, but first let's see a sheafy perspective on where the obstruction arises.
+
+The sheaf on $X$ given by $\GL_r(\C)$ can be thought of $\GL_r$ of the sheaf $C^0(-,\C)$, that is, invertible $r \times r$ matrices of locally-defined continuous $\C$-valued functions. Inside of $C^0(U,\C)$ is the subsheaf $\mathcal{O}_X(U)$ of \emph{holomorphic} $\C$-valued functions. Hence there is a natural subsheaf inclusion
+\begin{align*}
+    \GL_r(\mathcal{O}_X) \to \GL_r(\C).
+\end{align*}
+This map, coming from ``forgetting the holomorphic structure'' induces a map
+\begin{align*}
+    H^1(X, \GL_r(\mathcal{O}_X)) \to H^1(X,\GL_r(\C)).
+\end{align*}
+The former object is holomorphic bundles on $X$, and the latter is topological bundles.
+
+\textbf{Idea}: Can we detect the failure of a complex topological bundle to admit a holomorphic structure by taking the cokernel of the inclusion $\GL_r(\mathcal{O}_X) \to \GL_r(\C)$ and looking at the long exact sequence on $H^1$?
+
+\textbf{Why this won't work}: Unfortunately, the inclusion $\GL_r(\mathcal{O}_X) \subseteq \GL_r(\C)$ is not a normal subgroup (conjugating holomorphic things by continuous things breaks holomorphic-ness), so there's no reason the quotient will be a sheaf of groups. Even if it was a sheaf of groups, we want to say something about $H^2$ so we'd need it to be a sheaf of \emph{abelian} groups.
+
+However if both $\GL_r(\mathcal{O}_X)$ and $\GL_r(\C)$ happened to be abelian, this wouldn't be a problem. And indeed there is a nice case where this works, i.e. when $r=1$. In this case, we get a natural map of sheaves $\mathcal{O}_X^\ast \to C^0(-,\C^\ast)$, taking a holomorphic nowhere zero section and forgetting that it was holomorphic. We can take its cokernel, and conclude confidently that the failure of a complex line bundle to admit a holomorphic structure is measured by this cokernel. A clever way to describe this failure is to compare the exponential sequences for holomorphic and continuous maps. We get a commutative diagram:
+\[ \begin{tikzcd}
+    0\rar & \underline{\Z}\rar\dar[equal] & \mathcal{O}_X\rar["\exp"]\dar & \mathcal{O}_X^\ast\dar\rar & 0\\
+    0\rar & \underline{\Z}\rar & {C^0(-,\C)}\rar["\exp"] & {C^0(-,\C^\ast)}\rar & 0\\
+\end{tikzcd} \]
+Looking at the long exact sequence on cohomology, we get
+\[ \begin{tikzcd}
+    {H^1(X,\Z)}\rar\dar[equal] & {H^1(X,\mathcal{O}_X)}\rar\dar & {H^1(X,\mathcal{O}_X^\ast)}\rar\dar & {H^2(X,\underline{\Z})}\rar\dar[equal] & {H^2(X,\mathcal{O})}\rar\dar & \cdots\\
+    {H^1(X,\Z)}\rar & 0\rar & {H^1(X,\C^\ast)}\rar["\sim" below] & {H^2(X,\Z)}\rar & 0\rar["\sim" below] & \cdots\\
+\end{tikzcd} \]
+Here the vanishing on bottom comes from $C^0(-,\C)$ being fine, as we've seen (\Cref{exa:cx-valued-cts-funcs-is-fine}). So what is the obstruction to lifting? We've just shown the following by a nice diagram chase:
+
+\begin{proposition} On a complex manifold $X$, a complex line bundle admits a holomorphic structure if and only if the image of its class in $H^2(X,\mathcal{O}_X)$ vanishes.
+\end{proposition}
+
+If $X$ is compact and K\"{a}hler we will see this is equivalent to being a Hodge class of type $(1,1)$, but this sheafy obstruction argument works for any complex manifold.
+
+\subsection{Operations with vector bundles}
+
+Various operations we can do with vector bundles are reflected by operations on Grassmannians that satisfy associativity up to homotopy (up to what's called \emph{higher coherence}). We can define operations on vector bundles either directly or by universal property combined with Yoneda. One advantage of the Yoneda perspective is we immediately obtain naturality of all the following constructions:
+
+\begin{proposition}[Operations with vector bundles] Given vector bundles $V_i \to X$, we can construct new vector bundles via:
+\begin{enumerate}
+    \item direct sum (called \emph{Whitney sum} in the older literature)
+    \item tensor product
+    \item hom bundles
+    \item duals
+    \item exterior powers
+    \item symmetric powers.
+\end{enumerate}
+Moreover if the $V_i$'s are differentiable or complex analytic so are the resulting bundles
+\end{proposition}
+\begin{proof} See \cite[3.6.1]{Hirzebruch} and the following pages for how these operations work in terms of cocycle data. Hirzebruch refers us to Bourbaki for a proof.
+\end{proof}
+
+As a special case of obtaining sheaves from sections of fiber bundles, we obtain sheaves from sections of vector bundles. These have some special notations:
+
+\begin{proposition}[{\cite[p.~46]{Hirzebruch}}]
+Let $V \to X$ be a vector bundle. We can define sheaves in the presence of more or less structure as follows:
+\begin{itemize}
+    \item $\mathfrak{C}(V)$, the sheaf of germs of local continuous sections of a vector bundle over a space $X$
+    \item $\mathfrak{A}(V)$, the sheaf of germs of local \emph{differentiable} sections of a differentiable vector bundle over a differentiable manifold.
+    \item $\Omega(V)$ the sheaf of germs of local \emph{holomorphic} sections of a complex analytic vector bundle over a complex manifold $X$.
+\end{itemize}
+If $X$ is paracompact, then $\mathfrak{C}(V)$ and $\mathfrak{A}(V)$ are fine. This follows by the existence of continuous (resp. differentiable) partitions of unity.
+\end{proposition}
+
+
+
+\section{Chern classes}
+
+\subsection{An axiomatic description}
+
+The general way to discuss Chern classes is to (a) lay out their axioms, (b) show the axioms uniquely describe them, and (c) construct them.
+
+\begin{definition}\label{def:chern-classes} Given a complex vector bundle $E \to X$, we define the Chern classes $c_k(E) \in H^{2k}(X,\Z)$ and the total Chern class $c(E) = \sum_{k\ge0} c_k(E) \in H^\ast(X,\Z)$ by the following axioms:
+\begin{enumerate}
+    \item $c_0(E) = 1$ for all vector bundles
+    \item if $f \colon Y \to X$ is any map, then $f^\ast c(E) = c(f^\ast E)$ in $H^\ast(Y,\Z)$
+    \item for any short exact sequence of vector bundles
+    \begin{align*}
+        E_1 \to E_2\to E_3
+    \end{align*}
+    on $X$, we have that $c(E_2) = c(E_1)c(E_3)$ in $H^\ast(X,\Z)$.
+    \item the tautological line bundle $E_1(\C^n)$ on $\CP^n$ has total Chern class
+    \begin{align*}
+        c(E_1(\C^n)) = 1 -h \in H^\ast(\CP^n;\Z)
+    \end{align*}
+    where $h \in H^2(\CP^n;\Z)$ is the hyperplane class.
+\end{enumerate}
+\end{definition}
+
+\begin{proposition}
+The Chern classes are uniquely determined by their axioms (that is, if we have elements $d_k(E) \in H^{2k}(X,\Z)$ for any bundle $E$ satisfying the axioms above, then $c_k(E) = d_k(E)$).
+\end{proposition}
+
+
+\subsection{Constructing characteristic classes}
+
+A \emph{characteristic class} is a way to assign, to every vector bundle over $X$ a cohomology class over $X$.\footnote{More generally, to every principal $G$-bundle a cohomology class.} We want this assignment to be natural in $X$, that is, natural under pullbacks. We have an elegant way to talk about these following the Pontryagin--Steenrod theorem, combined with the Yoneda embedding. 
+
+\begin{definition}\label{def:complex-characteristic-class} A \emph{complex characteristic class} for rank $r$ vector bundles is a natural transformation
+\begin{align*}
+    \Vect_\C^r(-) \Rightarrow H^k(-,\Z)
+\end{align*}
+of functors $\Top^\op \to \Set$ (or perhaps from $\Ho(\Top)^\op \to \Set$). Here $k$ can be whatever we want.
+\end{definition}
+
+When we restrict our attention to paracompact spaces, we have that $\Vect_\C^r(-)$ is \emph{representable}, when viewed as a functor out of $\Ho(\Top)$. So a characteristic class is a natural transformation of the form
+\begin{align*}
+    \left[ -,\Gr_\C(r,\infty) \right] \Rightarrow H^k(-,\Z).
+\end{align*}
+%
+But by the Yoneda lemma, the set of natural transformations of the above is in bijection with the cohomology class $H^k(\Gr_\C(r,\infty))$. So we get the following:
+
+\begin{slogan} A complex characteristic class for rank $r$ vector bundles is an integral cohomology class of the complex Grassmannian $\Gr_\C(r,\infty)$.
+\end{slogan}
+
+\begin{theorem}[Borel]
+We have an isomorphism
+\begin{align*}
+    H^\ast(\Gr_\C(r,\infty);\Z) \cong \Z[c_1, \ldots, c_r],
+\end{align*}
+where $c_i$ lives in degree $2i$.
+\end{theorem}
+
+We can apply this to answer the question of when characteristic classes exist:
+\begin{itemize}
+    \item when $k$ is odd, there is one and only characteristic class $\Vect_\C^r(-) \Rightarrow H^k(-,\Z)$, which is the zero map
+    \item for $k=2$, all characteristic classes are integer multiples of $c_1$
+    \item for $k=4$, all characteristic classes are $\Z$-linear combinations of $c_1^2$ and $c_2$
+\end{itemize}
+
+
+
+\textbf{Constructing Chern classes}: Given any complex vector bundle $E\to X$ of rank $r$ over a paracompact space $X$, it is pulled back from the tautological bundle via some map
+\begin{align*}
+    f \colon X \to \Gr_\C(r,\infty).
+\end{align*}
+We define $c_i(E)$ as the pullback of $c_i \in H^{2i}(\Gr_\C(r,\infty),\Z)$ under the map $f$.
+
+\textbf{Constructing the first Chern class via cocycles on a complex manifold}: If $X$ is paracompact, then by the exponential sequence, we can define $c_1$ to be the composite bijection
+\begin{align*}
+    c_1 \colon \Vect_\C^1(X) \xto{\sim} H^1(X,\C^\times) \xto{\sim} H^2(X,\Z).
+\end{align*}
+Suppose $X$ is a complex manifold, then there is a very nice explicit construction of $c_1$. Given a complex line bundle on $X$, we pick an open cover $\{U_i\}$ of $X$ trivializing the line bundle. After potentially shrinking the $U_i$'s if needed, we may assume they are simply connected and therefore admit well-defined logarithms. Given a cohomology class in $H^1(X,\C^\times)$, we can express it in terms of the transition functions $g_{ij}$. Pick a logarithm $e^{2\pi i f_{ij}} = g_{ij}$ for each. Then the triple overlap condition says that
+\begin{align*}
+    g_{ij} g_{jk} g_{ki} = 1.
+\end{align*}
+Taking a logarithm on both sides, we have a well-defined map
+\begin{align*}
+    f_{ij} + f_{ik} + f_{jk} \colon U_{ijk} &\to \Z.
+\end{align*}
+We see that this is a \v{C}ech 2-cocycle, and define its class in $\check{H}^2(\mathcal{U},\Z)$ to be $c_1$ of the line bundle.
+
+\subsection{Flag bundles}
+
+We had this data of a \emph{frame bundle}, which was the principal $U(k)$-bundle associated to complex vector bundle $E \to X$ of rank $k$. The fiber over a point $x \in X$ was an ordered sequence of vectors $(v_1, \ldots, v_k)$ which were unit vectors and pairwise orthogonal. We're going to define a similar construction, where we don't care about the precise vectors, but only their \emph{spans}. This is called the \emph{flag bundle}.
+
+\begin{definition}\label{def:complete-flag-manifold} Let $\Fl(\C^r)$ denote the topological space whose points are: \emph{complete flags}, that is, a sequence of linear subspaces
+\begin{align*}
+    \{0\} \subsetneq F_1 \subsetneq F_2 \subsetneq \cdots \subsetneq F_r = \C^r.
+\end{align*}
+We claim that there is a homeomorphism
+\begin{align*}
+    \Fl(\C^r)\cong U(r)/U(1)^{\times r},
+\end{align*}
+where $U(1)^{\times r} \subseteq U(r)$ is the subgroup of diagonal unitary matrices.
+\end{definition}
+
+\begin{remark} We have that the flag bundle is obtained from the frame bundle by taking spans. Explicitly, we take the frame bundle $\Fr(E)$, and mod out by the action of $U(1)^{\times r}$ in each fiber.\footnote{There's a sense in which they are associated, but $U(r)$ doesn't act faithfully on $\Fl(\C^r)$ so we have to modify our earlier definitions to make this make any sense. This is omitted.}
+\end{remark}
+
+\begin{example} If $L \to X$ is a line bundle, then $\Fl(L) \cong X$.
+\end{example}
+
+\begin{example} If $E \to X$ is rank two, then $\Fl(E) \to X$ has fibers over $x$ given by $\mathbb{P}(E_x)$, since the data of a flag is the same as the data of a line through the origin in $E_x$.
+\end{example}
+
+\begin{definition}\label{def:projectivization-vector-bundle}
+We can generalize this construction of the flag bundle of a rank two bundle as a projectivization. Given any vector bundle $E \to X$ of rank $r$, we denote by $\mathbb{P}(E)$ the \emph{projectivization} of the vector bundle, whose fiber over $x\in X$ is $\mathbb{P}(E_x)$. The projectivized bundle $\mathbb{P}(E) \to X$ is a fiber bundle with structure group $\PGL_r(\C)$ and fiber $\CP^{r-1}$.\footnote{We can't keep the structure group as $\GL_r(\C)$ because it won't act faithfully on the fiber, so we need to mod out by the scaling action by diagonal matrices with the same entry along the diagonal. This yields $\PGL_r(\C) = \GL_r(\C)/\C^\times$.}
+\end{definition}
+
+While the flag bundle and projectivization agree for rank two bundles, they don't for rank three bundles, since a line in $\C^3$ is not the same data as a complete flag. Let's let $E \to X$ be rank three, and consider the map
+\begin{align*}
+    \pi \colon \mathbb{P}(E) \to X.
+\end{align*}
+Just as projective space has a tautological line bundle over it, so does the projectivization of a vector bundle. We define
+\begin{align*}
+    \mathcal{S}_E = \left\{ \ell \in \mathbb{P}(E) \mid \ell \subseteq E_x,\ \pi(\ell) = x \right\}.
+\end{align*}
+%
+We have that $\mathcal{S}_E$ can be viewed as a subbundle of $\pi^{-1}(E)$ over $\mathbb{P}(E)$, so we get a short exact sequence of vector bundles
+\begin{align*}
+    \mathcal{S}_E \to \pi^{-1}(E) \to Q_E
+\end{align*}
+over $\mathbb{P}(E)$. This quotient bundle $Q_E$ has rank two, and we can now define
+\begin{align*}
+    \pi' \colon \mathbb{P}(Q_E) \to \mathbb{P}(E).
+\end{align*}
+% Pulling back $Q_E$ to $\mathbb{P}(Q_E)$, again there is a tautological line bundle in it, and the quotient is a line bundle.
+
+\begin{claim} In the explanation above, we have that $\mathbb{P}(Q_E) \cong \Fl(E)$.
+\end{claim}
+
+To justify this claim, let's work through the definition of a point in $\mathbb{P}(Q_E)$. Over $\mathbb{P}(E)$, the short exact sequence splits (every short exact sequence of topological or smooth bundles splits) as:
+\begin{align*}
+    \pi^{-1}(E) \cong \mathcal{S}_E \oplus Q_E.
+\end{align*}
+So a point $q\in \mathbb{P}(Q_E)$ has a projection to $\ell\in \mathbb{P}(E)$, which represents a line in $\mathcal{S}_E$. The point $q$, via the tautological bundle on $\mathbb{P}(Q_E)$, represents a line in $Q_E$, which is fiberwise identified with the orthogonal complement of $\mathcal{S}_E$ in $\pi^{-1}(E)$. So the data is an ordered tuple of two linearly independent vectors in $E_x$ for each $x\in X$.
+
+This is a rough sketch, but it details a general construction of the flag bundle --- projectivize, pull back, split, iterate.
+
+\subsection{The splitting principle}
+
+Before proving the splitting principle, we need the following:
+
+\begin{lemma} We have that $H^\ast(\mathbb{P}(E),\Z)$ is a free module over $H^\ast(X,\Z)$ generated by $x = c_1(\mathcal{S}^\ast)$, subject to the relation
+\begin{align*}
+    x^n + c_1(E)x^{n-1} + \ldots + c_n(E),
+\end{align*}
+where $n$ is the rank of $E$.
+\end{lemma}
+This is a consequence of the Leray-Hirsch theorem.
+
+\begin{theorem}[Splitting principle for projectivizations] Let $E \to X$ be a complex vector bundle. Then if $\pi \colon \Fl(E) \to X$ denotes the flag bundle, we have that:
+\begin{enumerate}
+    \item The induced map $\pi^\ast \colon H^\ast(X,\Z) \to H^\ast(\Fl(E),\Z)$ is injective
+    \item The pullback bundle $\pi^\ast E \to \Fl(E)$ decomposes as a sum of line bundles:
+    \begin{align*}
+        \pi^\ast(E) \cong L_1 \oplus \ldots \oplus L_r.
+    \end{align*}
+\end{enumerate}
+\end{theorem}
+\begin{proof} It suffices to prove this inductively. If $E$ has rank $1$, this is clear, since $\Fl(E) \cong X$. Suppose we know it up to rank $r-1$, and let $E \to X$ be any bundle of rank $r$. Then we have that
+\begin{align*}
+    \pi \colon \mathbb{P}(E) \to X,
+\end{align*}
+and pulling back we get that $\pi^{-1}(E) \cong \mathcal{S}_E \oplus Q_E$, where $Q_E$ has rank $n-1$. We can apply the lemma to $\pi^\ast$ to get injectivity, then we apply the inductive step to conclude.
+\end{proof}
+
+\begin{slogan} Any statement we want to prove about vector bundles, we can assume the vector bundle is split into a sum of line bundles.
+\end{slogan}
+
+\subsection{More about Chern classes}
+
+\begin{exercise} For any space $X$, the group structure on $H^1(X,\mathbb{C}^\ast)$ corresponds, under the isomorphism $H^1(X,\mathbb{C}^\ast) \cong \Vect_\C^1(X)$, to tensor products of line bundles. The unit is the trivial line bundle, and the inverse is the dual bundle.
+\end{exercise}
+
+Once we've proven this exercise, the following proposition is immediate (since we defined $c_1$ as a connecting homomorphism in the long exact sequence of sheaf cohomology coming from the exponential sequence, it is clear that it is a group homomorphism).
+
+\begin{proposition} The map
+\begin{align*}
+    c_1 \colon \Vect_\C^1(X) \to H^2(X,\Z)
+\end{align*}
+is a group homomorphism, so $c_1(L^\ast) = -c_1(L)$ for any line bundle $L$.
+\end{proposition}
+
+\begin{corollary} Let $E \to X$ be a bundle and $E^\ast$ the \emph{dual} vector bundle. Then $c_k(E^\ast) = (-1)^k c_k(E)$.
+\end{corollary}
+\begin{proof} Let $\pi \colon \Fl(E) \to X$ be the flag bundle map. By the splitting principle, $\pi^\ast \colon H^\ast(X,\Z) \to H^\ast(\Fl(E),\Z)$ is injective on cohomology, so it suffices to prove that $c_k(\pi^\ast E^\ast) = (-1)^k c_k(\pi^\ast E^\ast)$ in $H^\ast(\Fl(E),\Z)$. Also by the splitting principle, we have that
+\begin{align*}
+    \pi^\ast E \cong L_1 \oplus \ldots \oplus L_k.
+\end{align*}
+Since dualizing a bundle is a fiberwise construction, it is clearly natural under pullback (i.e. we can dualize then pull back, or pull back and then dualize. Moreover, dualization commutes with direct sums, so we get that
+\begin{align*}
+    \pi^\ast E^\ast \cong L_1^\ast \oplus \ldots \oplus L_k^\ast.
+\end{align*}
+We compute the Chern polynomial of $\pi^\ast E^\ast$ as
+\begin{align*}
+    c(\pi^\ast E^\ast) = \prod_i c(L_i^\ast) = \prod (1 - c_1(L_i)).
+\end{align*}
+Since $c(\pi^\ast E) = \prod (1+ c_1(L_i))$, the result is clear.
+\end{proof}
+
+\begin{proposition}
+Let $E \to X$ be a trivial complex vector bundle of rank $r$. Then its total Chern class is $c(E) =1$, that is, $c_k(E) = 0$ for $k\ge1$.
+\end{proposition}
+\begin{proof}
+The map $X \to \Gr_\C(r,\infty)$ classifying a trivial bundle is homotopic to a constant map, hence factors through a point. Therefore the induced map on cohomology factors through the integral cohomology of a point, which is just $\Z$ in degree zero.
+\end{proof}
+
+\begin{proposition}\label{prop:chern-numbers-cpn} 
+We have that
+\begin{align*}
+    c(T\CP^n) = (1+h)^{n+1}.
+\end{align*}
+\end{proposition}
+\begin{proof} Letting $\epsilon^1$ denote the trivial line bundle on projective space, and $E_1$ the tautological bundle, there is a short exact sequence
+\begin{align*}
+    0 \to \epsilon^1 \to (E_1^\ast)^{\oplus (n+1)} \to T\CP^n \to 0.
+\end{align*}
+Therefore we have that
+\begin{align*}
+    c(T\CP^n) = \prod_{i=1}^{n+1}c(E_1^\ast) = \prod_{i=1}^{n+1}(1+h).
+\end{align*}
+\end{proof}
+
+\subsection{Gysin integration}
+
+Let $X$ be a smooth $n$-dimensional manifold, let $E\to X$ be a smooth rank $r$ real vector bundle, and let $\pi \colon \Fl(E) \to X$ be the projection map from the total flag space. We recall that $\pi^\ast$ is injective on cohomology by the splitting principle. There is a map back the other way, called the \emph{Gysin map} or \emph{integration in fibers}:
+\begin{align*}
+    \pi_\ast \colon H^\ast(\Fl(E),\Z) \to H^{\ast - r(r-1)/2}(X,\Z).
+\end{align*}
+We won't define it formally in this class, but the most elegant definitions come from the world of de Rham cohomology. Since $\Fl(E) \to X$ is a principal $O(r)$-bundle, locally $\Fl(E)$ looks like a neighborhood in $X$ crossed with $O(r)$. A differential form on this neighborhood looks like a form on $O(r)$ crossed with a form on a neighborhood of $X$, so we can integrate out the part of the form coming from $O(r)$. This drops the dimension of the form by $\dim O(r) = r(r-1)/2$. For a formal construction, see \cite[\S6]{BottTu} for instance.
+
+While we stated this for smooth bundles over smooth manifolds, this holds in the topological context just as well (we just need slightly different machinery to define it). We state some properties of Gysin integration without proof:
+
+\begin{proposition}[Properties of Gysin maps]
+\label{prop:properties-Gysin-integration}
+Let $X$ be a paracompact space, let $E \to X$ be a vector bundle of rank $r$, and let $\pi \colon \Fl(E) \to X$ be the associated principal $O(r)$-bundle.
+\begin{enumerate}
+    \item \emph{Projection}: Given any cohomology class $\omega \in H^\ast(\Fl(E),\Z)$, and any cohomology class $\alpha\in H^\ast(X,\Z)$, we have that
+    \begin{align*}
+        \pi_\ast (\pi^\ast \alpha \cdot \omega) = \alpha \cdot \pi_\ast \omega.
+    \end{align*}
+    \item \emph{Interchange/base change} Let $f \colon Y \to X$ be any continuous map, and consider the pullback bundle:
+\[ \begin{tikzcd}
+    f^\ast \Fl(E)\rar["i" above]\dar["p" left]\pb & \Fl(E)\dar["\pi" right]\\
+    Y\rar["f" below] & X.
+\end{tikzcd} \]
+Then we have that
+\begin{align*}
+    f^\ast\pi_\ast = p_\ast i^\ast
+\end{align*}
+as maps
+\begin{align*}
+    H^\ast(\Fl(E),\Z) \to H^{\ast - r(r-1)/2}(Y,\Z).
+\end{align*}
+\end{enumerate}
+\end{proposition}
+
+
+
+
+\section{Pontryagin classes}
+
+As discussed, Chern classes are characteristic classes of complex vector bundles over spaces. We define some characteristic classes of real vector bundles, called \emph{Pontryagin classes}, by turning a real vector bundle into a complex vector bundle then taking its Chern classes.
+
+\begin{definition}\label{def:complexification} Let $V\in \Vect_\R$ be a real vector space. We define its \emph{complexification} to be the tensor product $V \otimes_\R \C \in \Vect_\C$. If $E \to X$ is a real vector bundle, we define $E \otimes_\R \C \to X$ to be the complexification of the real vector bundle, obtained by complexifying in every fiber. Note that complexification doubles the real dimension of any vector space, hence the real rank of any vector bundle.
+\end{definition}
+
+\begin{definition}\label{def:pontryagin-class} Let $E \to X$ be any real vector bundle. We define its \emph{Pontryagin classes} by
+\begin{align*}
+    p_k(E) := (-1)^k c_{2k}(E \otimes_\R \C) \in H^{4k}(X,\Z).
+\end{align*}
+We define the \emph{total Pontryagin class} to be
+\begin{align*}
+    p(E) = \sum_{k\ge0} p_k(E) \in H^{\ast}(X,\Z).
+\end{align*}
+\end{definition}
+
+\begin{remark} We can alternatively consider the inclusion $O(r) \subseteq U(r)$ of $r \times r$ orthogonal matrices as living inside of the group of $r \times r$ unitary matrices. This induces a map
+\begin{align*}
+    \psi \colon \check{H}^1(X,O(r)) \to \check{H}^1(X,U(r)),
+\end{align*}
+which is the same as complexification -- that is, it sends a real rank $r$ vector bundle to a complex rank $r$ vector bundle. We can define Pontryagin classes of a bundle $E$ as the Chern classes of $\psi(E)$ \cite[4.5]{Hirzebruch}. This has a subtlety in that this technically allows us to define odd Chern classes of the complexification, however all of these are 2-torsion.
+\end{remark}
+
+\begin{proposition} Let $E$ be a real vector bundle. Then $c_{2k+1}(E \otimes_\R \C)$ is 2-torsion.
+\end{proposition}
+\begin{proof}[Proof sketch]
+For any complex vector bundle $V$, we can define a conjugate bundle $\bar{V}$ by taking the complex conjugate of the complex structure. We can argue that
+\begin{align*}
+    c_k(V) = (-1)^k c_k(\bar{V}).
+\end{align*}
+We check that a complexified bundle $E \otimes_\R \C$ is isomorphic to its own complex conjugate \cite[15.1]{MilnorStasheff}. For even rank Chern classes this tells us no new information, but for odd rank Chern classes they must all be 2-torsion.
+\end{proof}
+
+\begin{remark} This leads to perhaps some competing notation about how we want to index the Pontryagin classes. We could just define $p_k(E)$ to be $c_k(E \otimes_\R\C)$, and if we did, many of the nice properties of Chern classes transfer immediately to nice properties of Pontryagin classes (for instance a Whitney sum formula would hold \emph{integrally} instead of modulo two). We adopt the classical and more commonly seen convention that $p_k(E) := (-1)^k c_{2k}(E \otimes_\R \C)$, in which case we have to reduce modulo two to transfer properties of Chern classes to properties of Pontryagin classes.  
+\end{remark}
+
+\begin{proposition}[Properties of Pontryagin classes] Let $E \to X$ be any real vector bundle. Then
+\begin{enumerate}
+    \item $p_0(E) = 1$
+    \item $p_i(E) = 0$ if $i>\text{rank}(E)/2$
+    \item For any continuous $f \colon Y \to X$ we have that $p_k(f^\ast E) = f^\ast p_k(E)$ for any $k$.
+    \item For two bundles $E_1,E_2 \to X$, we have that
+    \begin{align*}
+        p(E_1 \oplus E_2) \equiv p(E_1)\cdot p(E_2) \pmod{2}.
+    \end{align*}
+\end{enumerate}
+\end{proposition}
+
+\begin{terminology} When people discuss the ``Chern numbers of a manifold'' or the ``Pontryagin numbers of a manifold,'' they mean the tangent bundle of the manifold. So $c(M)$ always means $c(TM)$ and $p(M)$ always means $p(TM)$.
+\end{terminology}
+
+An important exercise is the following:
+
+\begin{exercise}\label{exer:complexified-complex-bundle} 
+Let $E \to X$ be a complex vector bundle. Then we can consider it as a real vector bundle (forgetting the complex structure) and complexify it. Show that there is a canonical isomorphism
+\begin{align*}
+    E \otimes_\R \C \cong E \oplus \bar{E},
+\end{align*}
+where $\bar{E}$ is the complexified vector bundle. (Hint: first do this for vector spaces, then extend fiberwise).
+\end{exercise}
+% MS 15.4
+
+
+An immediate corollary of this exercise is the following:
+\begin{corollary}\label{cor:pontryagin-chern-formula} 
+If $E \to X$ is a complex vector bundle, then its Pontryagin classes are related to its Chern classes via the relation:
+\begin{align*}
+    \sum_{i\ge0} (-1)^i p_i &= \left( \sum_{j\ge0} (-1)^j c_j \right)\left( \sum_{k\ge0} c_k \right).
+\end{align*}
+\end{corollary}
+\begin{proof} Via \Cref{exer:complexified-complex-bundle} we have an isomorphism $E \otimes_\R \C \cong E \oplus \bar{E}$. Using the Whitney sum formula we get
+\begin{align*}
+    c(E \otimes_\R \C) = c(E) c(\bar{E}).
+\end{align*}
+The formula follows from this, together with the observation that $c_j(\bar{E}) = (-1)^j c_j(E)$.
+\end{proof}
+
+\begin{theorem}[{\cite[15.6]{MilnorStasheff}, \cite[4.10.2]{Hirzebruch}}]
+\label{thm:pontryagin-numbers-cpn} 
+If $h \in H^2(\CP^n,\Z)$ denotes the hyperplane class, then
+\begin{align*}
+    p(T\CP^n) = (1+h^2)^{n+1}.
+\end{align*}
+\end{theorem}
+\begin{proof} By \Cref{prop:chern-numbers-cpn} we have that $c(T\CP^n) = (1+h)^{n+1}$. Using the formula from \Cref{cor:pontryagin-chern-formula}, we get that
+\begin{align*}
+    \sum_{i\ge0} (-1)^i p_i(T\CP^n) &= c(T \CP^n) c(\overline{T\CP^n}) \\
+    &= (1+h)^{n+1}(1-h)^{n+1} = (1-h^2)^{n+1}.
+\end{align*}
+From this the result follows.
+\end{proof}
+
+\begin{example} We have that
+\begin{align*}
+    p(T \mathbb{P}^5) = 1 + 6h^2 + 15h^4 \in H^\ast(\CP^5,\Z),
+\end{align*}
+for instance.
+\end{example}
+
+\begin{exercise} For any $n\ge0$, prove that $p(TS^n)=1$. That is, all Pontryagin numbers of a sphere are zero.
+\end{exercise}
+
+
+
+
+
+\section{Cobordism}
+
+An important topic in algebraic topology is \emph{cobordism}. Roughly speaking, two manifolds are \emph{cobordant} if they jointly bound a manifold of one higher dimension. More precisely:
+
+\begin{definition}\label{def:cobordism} Let $M$ and $N$ be compact differentiable manifolds of real dimension $n$, without boundary
+\begin{enumerate}
+    \item we say that $M$ and $n$ are \emph{cobordant} if there exists a compact differentiable $(n+1)$ manifold $W$ with boundary, together with a diffeomorphism $\del W \cong M \amalg N$
+    \item if $M$ and $N$ are oriented, we say that $M$ and $N$ are \emph{oriented cobordant} if there exists an oriented differentiable $(n+1)$ manifold $W$ and an oriented diffeomorphism $\del W \cong M \amalg -N$, where $-N$ denotes $N$ with the reversed orientation.
+\end{enumerate}
+\end{definition}
+
+\begin{exercise} Show that cobordism is an equivalence relation.
+\end{exercise}
+
+\begin{definition}\label{def:cobordism-ring} \,
+\begin{enumerate}
+    \item Denote by $\Omega^O_n$ the free abelian group on compact $n$-dimensional differentiable manifolds modulo the relation generated by cobordism. By convention the zero element is the empty manifold.
+    \item Denote by $\Omega^{\SO}_n$ the free abelian group on \emph{oriented} compact differentiable $n$-dimensional manifolds modulo the relation generated by oriented cobordism.
+\end{enumerate}
+\end{definition}
+
+\begin{proposition} Under the cartesian product of manifolds, we get graded rings
+\begin{align*}
+    \Omega^O_\ast &:= \oplus_{n\ge0} \Omega^O_n \\
+    \Omega^\SO_\ast &:= \oplus_{n\ge0} \Omega^\SO_n.
+\end{align*}
+These are called the \emph{cobordism ring} and the \emph{oriented cobordism ring}, respectively. We'll predominantly be dealing with the latter.
+\end{proposition}
+
+
+\begin{remark} There is also a notion of \emph{complex cobordism}, defined on stably complex manifolds. This gives rise to the \emph{complex cobordism ring} $\Omega^U_\ast$, which we'll talk about later.
+\end{remark}
+
+\begin{example} Any sphere $S^n$ represents the zero class in $\Omega^\SO_\ast$ since $S^n = \del B^{n+1}$.
+\end{example}
+
+\begin{proposition} We have that $\left[ \CP^{2k+1} \right]=0$ in $\Omega^{\SO}_{4k+2}$.
+\end{proposition}
+\begin{proof} We leverage a fibration
+\begin{align*}
+    \CP^1 \hookto \CP^{2k+1} \to \HP^k
+\end{align*}
+induced by the projection
+\begin{align*}
+    \C^{2k+2}-0 &\to \mathbb{H}^{k+1}-0 \\
+    (z_1, \ldots, z_{2k+2}) &\mapsto (z_1 + z_2j, \ldots, z_{2k+1}+z_{2k+2}j).
+\end{align*}
+The fiber has structure group $\SO(3)$ under the homeomorphism $\CP^1 \cong S^2$, hence we can think about it as the sphere bundle of an oriented rank three vector bundle. Extending to the disk bundle, we obtain a fiber sequence
+\begin{align*}
+    B^3 \hookto M \to \HP^k,
+\end{align*}
+where $\del M \cong \CP^{2k+1}$. Hence $\CP^{2k+1}$ bounds.
+\end{proof}
+
+\begin{theorem}[Thom]
+\label{thm:Q-algebra-generators-rational-omega-SO} 
+We have that the rational oriented cobordism ring is polynomial on the even complex projective spaces:
+\begin{align*}
+    \Omega_\ast^\SO \otimes\Q \cong \Q[\CP^2,\CP^4,\CP^6, \ldots].
+\end{align*}
+\end{theorem}
+\begin{proof} For a sketch, see \cite[Lecture~12]{Freed-bordism} or \cite[\S16]{MilnorStasheff}.
+\end{proof}
+
+\begin{theorem}[{\cite[2.24]{Freed-bordism}}] All torsion in $\Omega^{\SO}_\ast$ is 2-torsion, and is finite in each degree.
+\end{theorem}
+
+\begin{theorem}[{\cite[7.2.2]{Hirzebruch}, Thom}] If $i\not\equiv 0\pmod{4}$, then $\Omega^\SO_i$ is finite. We have that $\Omega^{4k}$ has free part $\Z^{\pi(k)}$ and a finite torsion part.
+\end{theorem}
+
+\begin{example} $\Omega^\SO_0\cong \Z$, as a compact oriented $0$-manifold is a finite set of signed points and the sum of the signs is a bordism invariant.
+\end{example}
+
+\begin{example} $\Omega^\SO_1\cong 0$, since every compact $1$-manifold is a disjoint union of circles, and all such manifolds bound. 
+\end{example}
+
+\begin{example} $\Omega^\SO_2\cong 0$, as every compact oriented $2$-manifold bounds. Can you find an example of one that doesn't bound if we dropped the word oriented?
+\end{example}
+
+\begin{example} $\Omega_3\cong 0$, this is a non-trivial result of Rokhlin.
+\end{example}
+
+\begin{example} $\Omega_4\cong \Z$, generated by $\CP^2$.
+\end{example}
+
+\begin{example} $\Omega_5 \cong \Z/2$, generated by $Y^5$, which is a smooth bidegree $(1,1)$ hypersurface in $\CP^2 \times \CP^4$.
+\end{example}
+
+\begin{remark} The odd degree generators were constructed by Dold. For any two integers $m,n\ge1$, consider the $C_2$-action on $S^m \times \CP^n$ given by the antipodal map on the left and the complex conjugation action on the right. Quotienting by this action we get a manifold we call $P(m,n)$ \cite{doldErzeugendeThomschenAlgebra1956}. This gives a fiber bundle over $\RP^m$ with fiber $\CP^n$ and structure group $C_2$. For suitable $m,n$, these can give generators of $\Omega^\SO_\ast$ in odd degrees (see \cite[Satz~3]{doldErzeugendeThomschenAlgebra1956}).
+\end{remark}
+
+\begin{example} $\Omega_6\cong 0$
+\end{example}
+
+\begin{example}\label{exa:omega-so-7-is-zero} 
+$\Omega_7\cong 0$.
+\end{example}
+
+\begin{example} $\Omega_8 \cong \Z \oplus \Z$, generated by $\CP^4$ and $\CP^2 \times \CP^2$
+\end{example}
+
+\subsection{Pontryagin numbers}
+
+\begin{proposition}[{\cite[14.2]{MilnorStasheff}}]
+\label{prop:pontryagin-classes-are-stable}
+Let $E \to X$ be any real vector bundle. Then we have that
+\begin{align*}
+     p(E \oplus \epsilon_\R^r) = p(E)
+\end{align*}
+where $\epsilon_\R^r$ is a trivial rank $r$ real vector bundle.
+\end{proposition}
+\begin{proof} Complexification commutes with Whitney sums, so by multiplicativity of total Chern classes we get
+\begin{align*}
+    c(E \otimes_\R \C \oplus \epsilon_\C^r) = c(E \otimes_\R)c(\epsilon_\C^r) = c(E \otimes_\R \C),
+\end{align*}
+so the total Pontryagin classes agree.
+\end{proof}
+
+If $M$ is some smooth compact oriented manifold, we can look at the Pontryagin classes of its tangent bundle, and we get classes $p_i(TM) \in H^{4i}(M,\Z)$. Since $M$ is oriented, the top-dimensional cohomology integrates to $\Z$, hence if $M$ has dimension $4n$, then $p_n(TM)$ can be considered as an actual integer.
+
+\begin{example} Consider $\CP^4$, which is real 8-dimensional. There are two natural ways to extract integers out of its Pontryagin classes, namely
+\begin{align*}
+    p_2(T\CP^4) = 10\in \Z \cong H^8(\CP^4,\Z) \\
+    p_1(T\CP^4)p_1(T\CP^4) = 25 \in \Z \cong H^8(\CP^4,\Z).
+\end{align*}
+Conversely, we could consider some other real compact oriented 8-manifold, like $M = \RP^3 \times \RP^5$, and we could run the analogous computation and we'd get zero. So in some cases these Pontryagin numbers can tell the difference between two compact oriented $4n$-manifolds.
+\end{example}
+
+\begin{definition}\label{def:Pontryagin-numbers} Let $M^{4n}$ be a compact oriented $4n$-manifold, and let $I = (i_1, \ldots, i_r) \vdash n$ be a partition of $n$. We define the $I$th \emph{Pontryagin number} of $M$ to be the integer
+\begin{align*}
+    p_I(M) = \int_M p_{i_1}(TM) \cdots p_{i_r}(TM) \in \Z.
+\end{align*}
+If $\dim M \not\equiv 0 \pmod{4}$, we just define all the Pontryagin numbers to be zero.
+\end{definition}
+
+Here's a fun proposition:
+
+\begin{proposition}[{\cite[pp.~184-185]{MilnorStasheff}}]
+Let $M^{4n}$ be a compact oriented manifold. If any Pontryagin number $p_I(M)$ is nonzero, then $M$ has no orientation-reversing diffeomorphisms.
+\end{proposition}
+\begin{proof} If we reverse the orientation on $M$, all the Pontryagin classes are unchanged, but the fundamental class on $M$ picks up a minus sign. So if $M$ admits an orientation-reversing diffeomorphism, then $p_I(M) = - p_I(M)$, so all Pontryagin classes are zero.
+\end{proof}
+
+We have a key property of Pontryagin classes coming from when a manifold is a boundary. 
+
+\begin{lemma}\label{lem:pontryagin-numbers-of-boundary-are-zero} 
+Let $W$ be an oriented $(d+1)$-dimensional manifold with boundary, and let $M = \del W$ be its $d$-dimensional compact oriented boundary. Then $p_I(M) = 0$ for all $I$.
+\end{lemma}
+\begin{proof} If $d \not\equiv 0\pmod{4}$, then all Pontryagin numbers are zero by definition and we're done, so let's assume $d = 4n$. Letting $j \colon M \hookto W$ be the inclusion of the boundary, we get a splitting of the restricted tangent bundle
+\begin{align*}
+    j^\ast TW \cong TM \oplus \epsilon_\R^1,
+\end{align*}
+where $\epsilon_\R^1$ is a trivial real line bundle. This comes from picking a Euclidean metric on $TW$, wherein we see a unique outward-pointing normal vector for the tangent bundle on $M$ (pointing from the boundary \emph{into} $W$), c.f.~\cite[4.9]{MilnorStasheff}.
+
+By stability (\Cref{prop:pontryagin-classes-are-stable}) and naturality of Pontraygin classes, we now see that
+\begin{align*}
+    p(TM) = p(TM \oplus \epsilon_\R^1) = p(j^\ast TW) = j^\ast p(TW),
+\end{align*}
+so the Pontryagin classes of the tangent bundle on $M$ are pulled back from the Pontraygin classes of the tangent bundle on $W$.
+
+Finally, we see that
+\begin{align*}
+    \int_M p_I(TM) = \int_{[M]} j^\ast p_I(TW).
+\end{align*}
+Let $\alpha \in H_{\dR}^{4k}(W,\Z)$ be a closed $4n$-form representing the cohomology class $p_I(TW)$. Then in the above we have that
+\begin{align*}
+    \int_M j^\ast \alpha = \int_{\del W} \alpha = \int_W d\alpha = 0
+\end{align*}
+by Stokes' theorem. Therefore $p_I(M) = \int_M p_I(TM)$ is zero for all $I$.
+\end{proof}
+
+This has fun applications, for instance:
+
+\begin{example} We have that $p_n(\CP^{2n}) = \binom{2n+1}{n}$, hence $\CP^{2n}$ is not a boundary of a smooth oriented $(4n+1)$-manifold.
+\end{example}
+
+\begin{example} All the Pontryagin numbers of $S^{4n}$ are zero.
+\end{example}
+
+
+\section{Genera}
+
+\begin{lemma}\label{lem:pI-additive-out-of-omegason} 
+If $M$ and $N$ are compact oriented manifolds such that $[M]=[N]$ in $\Omega^\SO_{4n}$, then all the Pontryagin numbers of $M$ and $N$ agree.
+\end{lemma}
+\begin{proof} By \Cref{lem:pontryagin-numbers-of-boundary-are-zero}, if $M$ is null-cobordant, then its Pontryagin numbers vanish. As mentioned before, we have that $p_I(M) = - p_I(-M)$, where $-M$ means $M$ with its orientation reversed. We have that $[M] = [N]$ if and only if $[M] - [N]$ is null-cobordant, meaning if $M \amalg -N$ bounds. If it does, then all the Pontryagin numbers of $M$ and $-N$ are zero, but the Pontryagin numbers of a disjoint union of manifolds are just a sum of the Pontryagin numbers of the individual manifolds. Similarly, reversing the orientation on a manifold flips the sign on its fundamental class, hence induces a factor of $(-1)$ to the Pontryagin numbers. All of this says that if $[M] = [N]$ then
+\begin{align*}
+    0 = p_I(M \amalg -N) = p_I(M) - p_I(N).
+\end{align*}
+\end{proof}
+
+Another way to state what we just proved is the following: if $I$ is a partition of $n$, then
+\begin{align*}
+    p_I \colon \Omega^\SO_{4n} \to \Z
+\end{align*}
+is an abelian group homomorphism.
+
+Suppose we picked a partition $I_n$ of $n$ for every $n$. Then we would get a map
+\begin{equation}\label{eqn:genus-from-partitions}
+\begin{aligned}
+    \bigoplus_{n\ge0} p_{I_n} \colon \Omega^\SO_\ast \to \Z,
+\end{aligned}
+\end{equation}
+which would be an abelian group homomorphism. A very natural question to ask is the following:
+
+\begin{question} Can we pick partitions $I_n$ for which the additive homomorphism in \Cref{eqn:genus-from-partitions} is multiplicative (i.e. a ring homomorphism)?
+\end{question}
+
+Suppose we could, then let $F = \oplus_{n\ge0} p_{I_n}$. For $n=1$, we only have one partition, so on $4$-manifolds, $F$ just inputs a $4$-manifold and outputs its first Pontryagin class. For $n=2$, there are two possibilities, namely $p_2$ and $p_{1,1}$.
+
+Let's see what $F(\CP^2 \times \CP^2)$ could be. If it were multiplicative, it would be equal to $F(\CP^2) \cdot F(\CP^2)$. Since $p_1(\CP^2) = 3$, we have that $F(\CP^2 \times \CP^2) = 9$. We can check that
+\begin{align*}
+    p_{2}(\CP^2 \times \CP^2) &= 9 \\
+    p_{1,1} (\CP^2 \times \CP^2) = 18,
+\end{align*}
+so we have to have that $F$ sends $8$-manifolds to $p_2$. Similarly we can compute
+\begin{align*}
+    p_3(\CP^2 \times \CP^2 \times \CP^2) &= 27 \\
+    p_{2,1}(\CP^2 \times \CP^2 \times \CP^2) &= 81 \\
+    p_{1,1,1}(\CP^2 \times \CP^2 \times\CP^2) &= 162.
+\end{align*}
+So we would want $F$ to send 12-manifolds to $p_3$. Pattern-matching, we might ask $F$ to send a $4n$-manifold to $p_n$. It's not at all obvious that this is multiplicative, but it will turn out to be, and we can prove it soon. However just by looking at where $(\CP^2)^{\times n}$ needs to go, we can check that the only way to make this work is sending $4n$-manifolds to $p_n$. We get an answer to the question above then, and the answer is yes but there is only one way to do it and it's kind of trivial.
+
+If we picked $F$ to send 4-manifolds to $p_1$, another way to get the correct formula for $\CP^2 \times \CP^2$ to have multiplicativity is to define $F$ to send an 8-manifold to $p_1^2 - p_2$. So if we pick a linear combination of Pontryagin numbers (or, the integration of a \emph{polynomial} in the Pontryagin classes), we could try to ask for multiplicativity that way. So we could ask a modified question:
+
+\begin{question} For some ring $R$, can we cook up a ring homomorphism
+\begin{align*}
+    \Omega_\ast^\SO \to R
+\end{align*}
+where, on each $n$, the map is an $R$-linear combination of the Pontryagin numbers for $4n$-manifolds?
+\end{question}
+
+Let's make this more precise. For each $n$, we only need the Pontryagin numbers $p_1, \ldots, p_n$ to define the value on $\Omega^\SO_n$. Denote by $K_n$ our $n$th polynomial in the Pontryagin classes, that is,
+\begin{align*}
+    K_n(p_1, \ldots, p_n) \colon \Omega^{\SO}_n \to R.
+\end{align*}
+We need these to satisfy two key properties:
+\begin{enumerate}
+    \item $K_n$ is homogeneous of degree $n$ if we think of each $p_i$ as being of degree $i$
+    \item the $K_n$'s are \emph{multiplicative}, that is, if $M^{4m}$ and $N^{4n}$ are two compact oriented manifolds, we want
+\begin{align*}
+    K_{m+n}(p_1(M \times N), \ldots, p_n(M \times N)) = \sum_{j=0}^{m+n} K_j(p_1(M), \ldots, p_j(M)) \cdot K_{m+n-j}(p_1(N), \ldots, p_{m+n-j}(N)).
+\end{align*}
+\end{enumerate}
+
+We can make the following definition:
+
+\begin{definition}\label{def:m-sequence} Let $R$ be a commutative ring, and consider the ring $R[p_1,p_2,\ldots]$ in infinitely many variables $p_i$, with $p_i$ of weight $4i$. We define an \emph{$m$-sequence} (multiplicative sequence) to be a sequence of elements $K_r \in R[p_1,p_2,\ldots ]$ for $r\ge 0$ satisfying the following properties:
+\begin{enumerate}
+    \item $K_0 = 1$
+    \item $K_r$ lies in the subring $R[p_1, \ldots, p_r]$
+    \item for any indeterminates $a_i,b_i,c_i$, if
+    \begin{align*}
+        \left( 1 + a_1 z + a_2 z^2 + \ldots  \right)\left( 1 + b_1 z + b_2z^2 + \ldots  \right) = 1 + c_1 z + c_2 z^2 + \ldots,
+    \end{align*}
+    then
+    \begin{align*}
+        \left( 1 + K_1(a_1)z + K_2(a_1,a_2)z^2 + \ldots \right)\left( 1 + K_1(b_1)z + K_2(b_1,b_2)z^2 + \ldots \right) = 1 + K_1(c_1)z + K_2(c_1,c_2)z^2 + \ldots
+    \end{align*}
+\end{enumerate}
+\end{definition}
+The point of the definition is the following observation:
+
+\begin{proposition} If an abelian group homomorphism
+\begin{align*}
+    \Omega^\SO_\ast \to R
+\end{align*}
+is given by a polynomial $K_r(p_1, \ldots, p_r)$ on $\Omega^{\SO}_r$, then the homomorphism is multiplicative if and only if the $K_r$'s are $m$-sequences.
+\end{proposition}
+\begin{proof} Use the latter property, together with $a_i = p_i(M)$, $b_i = p_i(N)$, and $c_i = p_i(M \times N)$.
+\end{proof}
+
+
+So we now have a way to answer this question about forming multiplicative maps out of $\Omega^\SO_\ast$ out of Pontryagin classes --- we just need to figure out which $m$-sequences exist. It will be very helpful to be able to divide by integers in order to make this all work nicely, so we want the target ring to have this property (i.e. we want it to be an algebra over $\Q$). A commutative ring homomorphism from any ring $A$ to a $\Q$-algebra $B$ is the same, by adjunction, as a $\Q$-algebra map $A \otimes \Q \to B$, which is the same as a ring homomorphism between them. So we can make the following definition:
+
+\begin{definition}\label{def:genus} Given an integral domain $R\in \CAlg_\Q$, we define a \emph{genus} to be a unital ring homomorphism
+\begin{align*}
+    \phi \colon \Omega^{\SO}_\ast \to R.
+\end{align*}
+(Note this is the same data as a ring homomorphism $\Omega^\SO_\ast \otimes \Q \to R$).
+\end{definition}
+
+We now know, roughly, that we can build a genus out of an $m$-sequence, and we will see shortly that the entire data of an $m$-sequence can be compressed into the data of a single power series over $R$. Magically, \emph{every} genus comes from an $m$-sequence in the Pontryagin classes!
+
+
+\begin{theorem}\label{thm:genera-char-series-bijection} 
+For any $R$ as in \Cref{def:genus}, there are bijections
+\begin{equation}\label{eqn:genera-even-power-series-bijection}
+\begin{aligned}
+    \left\{ \text{genera valued in }R \right\} \leftrightarrow \left\{ m\text{-sequences in }R \right\} \leftrightarrow 1+R[[x^2]]
+\end{aligned}
+\end{equation}
+between genera in $R$ and even power series over $R$ beginning with $1$.
+\end{theorem}
+
+We'll prove this over the course of a few steps. 
+
+\begin{lemma} There is a bijection between $m$-sequences and even power series with constant term $1$.
+\end{lemma}
+\begin{proof} If $Q(x) \in 1 + R[[x^2]]$ is an even power series with constant term 1, we can take some indeterminates $c_i$ all of weight 2, and we can define the power series
+\begin{align*}
+    Q(x_1) \cdots Q(x_n) \in R[[x_1, \ldots, x_n]]^{\Sigma_n}.
+\end{align*}
+This is symmetric in the $x_i$'s so we use the isomorphism
+\begin{align*}
+    R[[x_1, \ldots, x_n]]^{\Sigma_n} \cong R[[p_1,p_2, \ldots]]
+\end{align*}
+where the $p_i$'s are the elementary symmetric polynomials in the $x_i^2$'s. We can therefore write
+\begin{align*}
+    Q(x_1) \cdots Q(x_n) &= 1 + K_1(p_1) + K_2(p_1,p_2) + \ldots + K_n(p_1, \ldots, p_n) + K_{n+1}(p_1, \ldots, p_n,0),
+\end{align*}
+where in the above expression, $p_i$ has weight $4i$, as does $K_i$. We claim the $K_r$'s don't depend on $n$ so long as $n\ge r$ (this is a fundamental result in symmetric function theory, see for instance \cite[I.2]{macdonaldSymmetricFunctionsHall1995}). We call $\left\{ K_r \right\}$ the \emph{multiplicative sequence} or $m$\emph{-sequence} associated to the genus. We observe that $Q(x)$ can be recovered uniquely from the $K_r$'s by
+\begin{equation}\label{eqn:Qx-from-Krs}
+\begin{aligned}
+    Q(x) := 1 + K_1(1)x^2 + \sum_{i\ge 2} K_i(1,0, \ldots, 0) x^{2i}.
+\end{aligned}
+\end{equation}
+(in Hirzebruch this latter sum is written $K(1+x)$). This establishes the bijection between even power series and $m$-sequences.
+\end{proof}
+
+We can now construct a genus from an even power series:
+
+\begin{construction} Let $R \in \CAlg_\Q$ be an integral domain. Given an even power series $Q \in 1 + R[[x^2]]$, we define
+\begin{align*}
+    \phi_Q \colon \Omega^\SO_\ast \to R
+\end{align*}
+by the formula
+\begin{align*}
+    \phi_Q([M]) = \int_M  K_n(p_1, \ldots, p_n),
+\end{align*}
+where $K_n$ is the $m$-sequence attached to $Q$ in the bijection above.
+\end{construction}
+
+
+\begin{proposition}\label{prop:phiQ-well-defined} The assignment
+\begin{equation}\label{eqn:Q-to-phiQ}
+\begin{aligned}
+    1+R[[x^2]] &\to\left\{ \text{genera valued in }R \right\}  \\
+    Q &\mapsto \phi_Q
+\end{aligned}
+\end{equation}
+is well-defined \cite[p.~14]{MMF}.
+\end{proposition}
+\begin{proof} We must check the resulting $\phi_Q$ is indeed a bordism invariant, but this follows directly from \Cref{lem:pI-additive-out-of-omegason}, since Pontryagin numbers of cobordant manifolds are equal. Therefore $\phi_Q$ is well-defined as a function.
+
+Additivity comes from additivity of fundamental classes in disjoint unions, from which it is clear that $\phi_Q$ as defined is an abelian group homomorphism. Finally we check it is a unital ring homomorphism, i.e. that it is multiplicative, but this is an immediate consequence of multiplicativity of the $K_n$'s.
+\end{proof}
+
+We now define a power series out of a genus.
+
+\begin{construction}\label{constr:power-series-from-genus}
+Given a genus $\phi$, we define a formal power series over $R$ by
+\begin{align*}
+    g'(y) &= \sum_{n=0}^\infty \phi([\CP^n]) y^n = \sum_{n=0}^\infty \phi([\CP^{2n}]) y^{2n}.
+\end{align*}
+Integrating (with constant of integration equal to zero), we get a power series $g(y)$, and we let $f(x) = g^{-1}(x)$ denote its compositional inverse.\footnote{Such an inverse exists since $g(y)$ is of the form $y + a_2 y^2 + a_3 y^3 +\ldots $.} We then define
+\begin{align*}
+    Q(x) := \frac{x}{f(x)}.
+\end{align*}
+\end{construction}
+
+\begin{proposition} The $Q$ constructed out of $\phi$ above is well-defined, that is, it is even and starts with constant term $1$.
+\end{proposition}
+\begin{proof} To see it is even we have to check that $f$ is odd, which is equivalent to $g$ being odd, which is equivalent to $g'$ being even, which it indeed is. To check that the constant term of $Q$ is $1$, we have to check that $f(x) = x + O(x^2) $. It is true that $f(x) = ux + O(x^2)$ since $f$ admits a compositional inverse, and we know that $g(y) = y + O(y^2)$, hence $u=1$.
+\end{proof}
+
+\begin{proposition} The construction of $\phi$ from $Q$ is injective.
+\end{proposition}
+\begin{proof} Since a genus is unital mapping out of a $\Q$-algebra, it is determined on what it does on generators of the $\Q$-algebra. In particular by \Cref{thm:Q-algebra-generators-rational-omega-SO}, it is determined by where it sends $[\CP^n]$ for each $n$. However in the construction above, it is clear that if $\phi$ and $\phi'$ agree on each $[\CP^n]$ then their resulting normalized even power series will be the same.
+\end{proof}
+
+The last thing in order to prove \Cref{thm:genera-char-series-bijection} is the following:
+
+\begin{proposition} The composite
+\begin{align*}
+    \left\{ R\text{-genera} \right\} \to 1 + R[[x^2]] \to \left\{ R\text{-genera} \right\}
+\end{align*}
+is the identity.
+\end{proposition}
+\begin{proof} Begin with $\phi$, let $Q$ be the associated power series, and let $\phi_Q$ be the resulting genus. We need to check $\phi = \phi_Q$, and as above it suffices to check they agree on complex projective spaces (of even complex dimension $2n$). Let $n\ge1$ and fix $x\in H^2(\CP^{2n};\Z)$ to be the hyperplane class. Then we have that the total Pontryagin class of complex projective space is
+\begin{align*}
+    p(\CP^{2n}) = (1+x^2)^{2n+1}.
+\end{align*}
+We have that $\phi([\CP^{2n}])$ is $\int_{\CP^{2n}} K_{4n}(p_1, \ldots, p_n)$. By multiplicativity of the $m$-series $K_\ast$, we get that
+\begin{align*}
+    K_{4n}(p_1, \ldots, p_n)([\CP^{2n}]) = K_1(x^2)^{2n+1},
+\end{align*}
+where we recall $x^2 = p_1(\CP^{2n})$. As $Q(x) = K_1(p_1)$ by definition, we get the following important observation: $\phi([\CP^{2n}])$ is the coefficient of $z^{2n}$ in $Q(z)^{2n+1}$, where $Q$ is built from $\phi$.
+
+We want to check that this agrees with $\phi_Q([\CP^{2n}])$, that is, that this is the coefficient on $y^{2n}$ in $g'(y)$. As above let $f = g^{-1}$ so that $Q(x) = x/f(x)$.
+
+By the Cauchy residue theorem,\footnote{Or we might call this the formal residue theorem or something, since we are not in $\C$ but in any characteristic zero ring.} we have that
+\begin{align*}
+    \phi([\CP^{2n}]) &= \res_0(\frac{Q(x)^{2n+1}}{x^{2n+1}})dx = \res_0 \left( \frac{1}{f(x)^{2n+1}} \right)dx.
+\end{align*}
+If we let $y=f(x)$ and $g(y)=x$, then $dx = g'(y)dy$, so we get that
+\begin{align*}
+    \res_0 \left( \frac{1}{f(x)^{2n+1}} \right)dx = \res_0 \left( \frac{1}{y^{2n+1}} \right)g'(y)dy,
+\end{align*}
+which is the coefficient on $y^{2n}$ in $g'(y)$, i.e. $\phi_Q([\CP^{2n}])$.\footnote{There's a tiny subtlety here when we change coordinates from $x$ to $y$, in that we have to check that if we were integrating a small circle around the origin in the $y$-plane, after applying $f$ it didn't become a more complicated path, e.g. a path that wraps \emph{twice} around the origin in the $x$-plane. We don't encounter this issue when we do $u$-subs in single variable calculus, but it becomes something we have to stress about when doing contour integrals. In our particular case this is a non-issue since $f(x) = x + O(x^2)$ has winding number $1$.}
+\end{proof}
+
+\begin{terminology} In \Cref{thm:genera-char-series-bijection}, we call $Q(x)$ the \emph{characteristic series} associated to a genus.
+\end{terminology}
+
+\begin{example} We had this basic $m$-sequence, where the $n$th term $K_n(p_1, \ldots, p_n) = p_n$ was just the $n$th Pontryagin class. Earlier we had mentioned this might give an easy example of a genus. Observing that $K_n(1,0, \ldots, 0) = 0$ for all $n>1$, by \Cref{eqn:Qx-from-Krs} the even power series associated to this $m$-series is very simple, it is $Q(x) = 1 + x^2$. We now want to solve for the associated genus. We have that
+\begin{align*}
+    Q(x) = 1 + x^2 = \frac{x}{f(x)},
+\end{align*}
+and so $f(x) = \frac{x}{1+x^2}$.\footnote{Since $\frac{1}{1+x^2} = \sum_{j=0}^\infty (-1)^j x^{2j}$, we get that $f(x) = \sum_{j=0}^\infty (-1)^j x^{2j+1}$.} We ultimately want the compositional inverse $g$ for this, so if we set
+\begin{align*}
+    y = \frac{x}{1+x^2},
+\end{align*}
+then $(1+x^2)y = x$, i.e. $yx^2 - x + y = 0$. By the quadratic formula, we solve for $x$ as
+\begin{align*}
+    x = \frac{1 \pm \sqrt{1 - 4y^2}}{2y}
+\end{align*}
+This gives two solutions in the Laurent ring, but we want the one which is actually a power series. Using the Taylor series for $\sqrt{1-t}$ we can compute that $\sqrt{1 - 4y^2} = 1 - 2y^2 -2y^4 + \ldots$, from which we see
+\begin{align*}
+    \frac{1 + \sqrt{1-4y^2}}{2y} &= \frac{1}{y} - y - y^3 - \cdots \\
+    \frac{1 - \sqrt{1-4y^2}}{2y} &= y + y^3 + 2y^5 + \ldots
+\end{align*}
+so the latter one is the one to pick. This tells us that
+\begin{align*}
+    g(y) = \frac{1 - \sqrt{1-4y^2}}{2y},
+\end{align*}
+and the derivative of this will give us the values of our genus on even-dimensional complex projective spaces.
+
+It doesn't look fun to derive $g(y)$, so instead let's recall something from combinatorics, namely if $C_n$ denotes the $n$th Catalan number, then the generating series $c(y) = \sum_{n\ge0} C_n y^n$ is given by
+\begin{align*}
+    c(y) = \frac{1 - \sqrt{1-4y}}{2y}.
+\end{align*}
+So we have that
+\begin{align*}
+    g(y) = y c(y^2) = \sum_{n\ge0} C_n y^{2n+1}.
+\end{align*}
+Deriving, we get that
+\begin{align*}
+    g'(y) = \sum_{n\ge0} (2n+1) C_n y^{2n},
+\end{align*}
+so the genus $\phi$ determined by our $m$-series must satisfy
+\begin{align*}
+    \phi([\CP^{2n}]) = (2n+1)C_n.
+\end{align*}
+The Catalan numbers are, of course, given by $C_n = \frac{1}{2n+1} \binom{2n+1}{n}$, so we recover that
+\begin{align*}
+    \phi([\CP^{2n}]) = \binom{2n+1}{n} = \int_{\CP^{2n}}p_n(T\CP^{2n})
+\end{align*}
+as expected!
+\end{example}
+
+\subsection{The $L$-genus}
+
+Above we saw a very basic example of a genus, namely the one determined by $Q(x) = 1+x^2$, which has a simple $m$-sequence and a simple characteristic series. We could go in the reverse direction, namely we could try to build a genus where the values of $\phi([\CP^{2n}])$ are simple and easy to compute. When we do this we are led to the following definition, which is a fundamental object in index theory:
+
+\begin{definition}\label{def:L-genus} We define the \emph{$L$-genus}
+\begin{align*}
+    \phi_L \colon \Omega^{\SO}_\ast \otimes \Q &\to \Q
+\end{align*}
+to be the $\Q$-valued genus defined by the even characteristic series
+\begin{align*}
+    Q(x) = \frac{x}{\tanh(x)}.
+\end{align*}
+This is also equal to
+\begin{align*}
+    Q(x) =1 + \sum_{k=1}^\infty (-1)^{k-1} \frac{2^{2k}}{(2k)!}B_k x^{2k},
+\end{align*}
+where the $B_k$ are the \emph{Bernoulli numbers}.
+\end{definition}
+
+The following result tells us, roughly, that this is the simplest possible genus we could construct.
+
+\begin{proposition}\label{prop:L-genus-CP2n-to-1} 
+The $L$-genus $\phi_L$ is uniquely determined by the property that $\phi_L([\CP^{2n}]) = 1$ for all $n$.
+\end{proposition}
+\begin{proof} Uniqueness is immediate from the proof of \Cref{thm:genera-char-series-bijection}; all genera are uniquely determined by where they send complex projective spaces of even dimension. So now fix some $n$. We get that $Q(x) = x/\tanh(x)$, so $f(x) = \tanh(x)$. As $f^{-1}(y) = g(y)$ with $y=f(x)$, we have by the inverse function theorem that
+\begin{align*}
+    g'(y) = (f^{-1})'(y) = \frac{1}{f'(f^{-1}(y))} = \frac{1}{1-\tanh(x)^2} = \frac{1}{1-y^2}.
+\end{align*}
+Therefore
+\begin{align*}
+    g'(y) &= 1 + y^2 + y^4 + \ldots  = \sum_{n\ge0} \phi_L([\CP^{2n}]) y^{2n}.
+\end{align*}
+\end{proof}
+\begin{proof}[Alternate proof] We can just directly compute $\phi_L([\CP^{2n}])$ by applying the Cauchy residue theorem to $\phi_L$. This is how the proof goes in \cite[1.5.1]{Hirzebruch}.
+\end{proof}
+
+\begin{remark} This gives us an indication as to how we might have discovered the $L$-genus. If we wanted to cook up a genus taking values $1$ on each complex projective space, we can start with $g'(y)$ as above, and integrate to get
+\begin{align*}
+    g(y) = y + \frac{y^3}{3} + \frac{y^5}{5} + \ldots 
+\end{align*}
+If we were exceptionally skilled at calculus, we might recognize this as the Taylor series for $\text{arctanh}(y)$, the inverse of hyperbolic tangent.
+\end{remark}
+
+\textbf{Fun fact}: Arc trigonometric functions are so called because the radian measurement of an angle is, by definition, the distance of the ``arc'' you traverse when walking along the unit circle around that angle. So while trig functions can be thought to input distances of arcs, the inverse trig functions can be thought to \emph{output} distances of arcs, hence the names \emph{arcsine}, \emph{arccosine}, \emph{arctangent}, etc. In hyperbolic geometry there is no such relationship between angle and distance along a circle, which leads us to question the utility of the prefix ``arc'' when discussing inverse hyperbolic trig functions. To end the debate definitively, the ISO (International Organization for Standardization) deemed in 2009 that we should instead drop the $c$ and be using the terms \emph{arsinh} and \emph{arcosh} and \emph{artanh} for inverse hyperbolic trig functions. At least that's what Wikipedia told me. When I went to the ISO website, the relevant sections were hidden behind a paywall, so we will be using \emph{arctanh} out of spite.
+
+\begin{exercise}\label{exer:m-series-for-L-genus} 
+Verify that the multiplicative series attached to the $L$-genus satisfies
+\begin{align*}
+    L_1 &= \frac{1}{3}p_1 \\
+    L_2 &= \frac{1}{45}(7p_2-p_1^2) \\
+    L_3 &= \frac{1}{3^3\cdot5\cdot 7} (62p_3 - 13p_1p_2 + 2p_1^3) \\
+    L_4 &= \frac{1}{3^4 5^2 7} (381 p_4 - 71 p_1 p_3 - 19 p_2^2 + 22p_1^2 p_2 -3 p_1^4) \\
+    % L_5 &= \cdots
+\end{align*}
+\end{exercise}
+
+\begin{exercise} Show that
+\begin{align*}
+    \phi_L \left( [\HP^k] \right) = \begin{cases} 0 & k\text{ odd} \\ 1 & k\text{ even.} \end{cases}
+\end{align*}
+\end{exercise}
+
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1887,7 +3681,7 @@ If you are unfamiliar with colimits I really recommend reading Chapter 3 of \cit
 \end{example}
 
 
-\begin{example}\label{exa:CovX-filtered} For a space $X$, the category $\Cov(X)$ of open covers under refinement (defined in \Cref{def:covV}) is cofiltered. This is precisely the assertion that two covers admit a common refinement, and therefore by induction finitely many covers admit a common refinement.
+\begin{example}\label{exa:CovX-filtered} For a space $X$, the category $\Cov(X)$ of open covers under refinement (defined in \Cref{def:covX}) is cofiltered. This is precisely the assertion that two covers admit a common refinement, and therefore by induction finitely many covers admit a common refinement.
 \end{example}
 
 The important thing about filtered categories is that colimits computed over them are very well behaved.
@@ -2086,7 +3880,7 @@ We say a \emph{property} $\mathbf{P}$ is any boolean-valued assignment on object
 \end{itemize}
 \end{notation}
 
-\begin{terminology} A \emph{local basis} of a space $X$ at a point $x$ is any final subcategory of $\Open_x(X)$.
+\begin{terminology} A \emph{local basis} (or \emph{neighborhood basis}) of a space $X$ at a point $x$ is any final subcategory of $\Open_x(X)$.
 \end{terminology}
 
 A core idea in the theory of open sets is the following comparison between local bases of opens satisfying a condition and covers built out of opens satisfying that same condition.
@@ -2255,6 +4049,13 @@ Once we have all this in mind, the proof above can be rewritten in cosimplicial 
 \end{itemize}
 The story for simplicial abelian groups can be found in \cite[VIII.6]{Maclane-homology} or \cite[III.2]{GoerssJardine}, and the cosimplicial story is dual.
 \end{remark}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\include{appendices/example-appendix}
+\include{appendices/david}
+
+
 
 
 

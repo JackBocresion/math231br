@@ -12,16 +12,16 @@
 \end{hwexercise}
 
 
-\begin{hwexercise} Prove the fundamental theorem of calculus we used in the de Rham theorem: if $f(x_1, \ldots, x_n)$ is a differentiable function on the unit ball $B \subseteq \R^n$, then
+\begin{hwexercise} Prove the fundamental theorem of calculus we used in the de Rham theorem: if $f(x_1, \ldots, x_n)$ is a differentiable function on the unit ball $B \subseteq \R^n$ so that $f(0,0, \ldots, 0) = 0$, then
 \begin{align*}
-    f(x_1, \ldots, x_n) = \sum_{i=1}^n \int_0^1 \frac{df}{dx_i}(tx_1,tx_2, \ldots, tx_n) dt.
+    f(x_1, \ldots, x_n) = \sum_{i=1}^n x_i\int_0^1 \frac{df}{dx_i}(tx_1,tx_2, \ldots, tx_n) dt.
 \end{align*}
 \end{hwexercise}
 
 \begin{hwexercise}
 Let $X = \R^2\minus\{(0,0)\}$, and let $H^\ast_\dR(X)$ be the cohomology of the sequence
 \begin{align*}
-    \R \to \Omega^1_\dR(X) \to \Omega^2_\dR(X) \to 0.
+    \underline{\R} \to \Omega^0_\dR(X) \to \Omega^1_\dR(X) \to \Omega^2_\dR(X) \to 0.
 \end{align*}
 Prove that $H^1_\dR(X)$ is a 1-dimensional real vector space spanned by
 \begin{align*}

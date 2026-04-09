@@ -6,28 +6,31 @@ Everyone taking this class for credit will be responsible for producing an appen
 - To call dibs on anything, just submit a [pr](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) and edit this page to put your name next to it.
 - Below I'll include a brief overview of each project, as well as a very rough indication of how difficult I expect it to be or any background that may be needed.
 
-## Elliptic genera and the lemniscate
+## Leray spectral sequence (Dibs: David Ettel)
+Give an overview of the Leray spectral sequence for sheaves of abelian groups on paracompact spaces. Prove that if $E \to X$ is a vector bundle and $\mathbb{P}(E)$ is its projectivization, that $H^\ast(\mathbb{P}(E),\mathbb{Z})$ is free over $H^\ast(X,\mathbb{Z})$.
+
+## Elliptic genera and the lemniscate (Dibs: Grayson Kemplin)
 Define elliptic genera, and use them to explain how to compute the arc length of the [lemniscate](https://en.wikipedia.org/wiki/Lemniscate). Reference: Chapter 2 of Hirzebruch's *Manifolds and modular forms*
 
-## Stein manifolds and the Oka-Grauert principle
+## Stein manifolds and the Oka-Grauert principle (Dibs: Ari Krishna)
 Define Stein manifolds, and explain why every complex topological vector bundle on a complex Stein manifold admits a holomorphic structure
 
-## Cartan-Serre finiteness
+## Cartan-Serre finiteness (Dibs: Adam Schauer)
 Sketch the proof of the finiteness theorem for sheaf cohomology of coherent modules over the structure sheaf, following Chapter VI of Grauert's book *Theory of Stein spaces*
 
-## Inoue surfaces
+## Inoue surfaces (Dibs: Zoe Batterman)
 Provide an overview of the construction and basic properties of *Inoue surfaces*, which are examples of complex surfaces with no divisors.
 
-## Sheaf cohomology and singular cohomology
+## Sheaf cohomology and singular cohomology (Dibs: Matteo Salloum)
 Give a recount of the comparison theorem between singular cohomology and sheaf cohomology with coefficients in a constant sheaf. Explain (following Sella) why we only need to assume $X$ is semi-locally contractible in the assumptions of the theorem.
 
 ## $\Omega_3=0$ (Dibs: Luke Lelli)
 Prove that $\Omega_3^\text{SO}=0$ following Chapter 2 of Saveliev's *Lectures on the topology of 3-manifolds*. 
 
-## The $\widehat{A}$-genus (Dibs: Zoe Batterman)
+## The $\widehat{A}$-genus (Dibs: Frank Gubars)
 Discuss the $\widehat{A}$-genus and its connection to spin bordism. 
 
-## The Hodge-de Rham spectral sequence
+## The Hodge-de Rham spectral sequence (Dibs: Brian Siew)
 Explain the spectral sequence $H^p(X,\Omega^q) \Rightarrow H^{p+q}(X,\mathbb{C})$ valid for complex manifolds, following Deligne, Fröhlicher, and others. Explain why it degenerates for compact Kähler manifolds, and give examples of the failure of degeneration in other settings.
 
 ## Calabi-Eckmann manifolds (Dibs: Carl Scandelius)
@@ -36,5 +39,11 @@ Give an intro to Calabi-Eckmann manifolds, following their original paper. Prove
 ## The Lefschetz hyperplane theorem via Morse theory (dibs: Sophie Zhu)
 Give an overview of Andreotti and Frankel proof of the Lefschetz hyperplane theorem via Morse theory. Use it to compute the (co)homology of various complex algebraic varieties.
 
-## Thom's computation of $\pi_\ast \text{MSO}$
+## Thom's computation of $\pi_\ast \text{MSO}$ (dibs: Joaquim Bocresion)
 Prove Theorem 7.2.2 in Hirzebruch, that $\Omega_k^{\text{SO}}$ is finite for $k\not\equiv0\pmod{4}$ and that $\Omega_{4n}^{\text{SO}} = \mathbb{Z}^{\\#\text{partitions of }n} \oplus \text{finite gp}$, following Thom's 1954 paper. This involves some heavier homotopy theory than other projects.
+
+## Bott periodicity (Dibs: Shokhruz Kakharov)
+Give a classical proof of Bott periodicity via Morse theory following Milnor's book. Applications to the $J$-homomorphism.
+
+## Stacks on spaces (Dibs: Vincent Costa and Josh Rooney)
+Discuss a "sheaf of categories" (aka stack) on a paracompact space. Promote nonabelian Cech cohomology to a stack, and view the 1-cocycle condition as a gluing condition for groupoids.
