@@ -4036,7 +4036,7 @@ Similarly to how we showed Pontryagin numbers were oriented cobordism invariants
 \end{align*}
 \end{notation}
 
-\begin{theorem}{[Milnor-Novikov, \cite[Theorem~1'']{milnorSURVEYCOBORDISMTHEORY1962}}] A closed stably almost complex manifold is the boundary of a stably complex manifold if and only if all its Chern numbers are zero.
+\begin{theorem}[{Milnor-Novikov, \cite[Theorem~1'']{milnorSURVEYCOBORDISMTHEORY1962}}] A closed stably almost complex manifold is the boundary of a stably complex manifold if and only if all its Chern numbers are zero.
 \end{theorem}
 
 This is our primary step to studying complex genera.
@@ -4065,40 +4065,40 @@ A natural question to ask, then, is whether there is an analogous genus to the $
 
 \begin{definition}\label{def:Todd-genus} We define the \emph{Todd genus}
 \begin{align*}
-    \td \colon \Omega^U_\ast \to \Q
+    \Td \colon \Omega^U_\ast \to \Q
 \end{align*}
-to be the unique genus satisfying $\td([\CP^n]) = 1$ for all $n\ge1$.
+to be the unique genus satisfying $\Td([\CP^n]) = 1$ for all $n\ge1$.
 \end{definition}
 
-\begin{notation} We will use $\td(M)$ for the Todd genus of an almost complex manifold, while Hirzebruch uses $T(M)$. By type-checking, we could get away with using $TM$ for both the Todd class and the tangent bundle, but we'll prefer the former notation for clarity.
+\begin{notation} We will use $\td(M) \in H^\ast(M,\Z)$ to denote the total Todd class, and we will denote by $\Td(M) = \int_M \Td(TM)$ the associated Todd genus.
 \end{notation}
 
 \begin{theorem}[{\cite[10.3.1]{Hirzebruch}}]
 The Todd genus is given by the characteristic series
 \begin{align*}
-    Q_\td(x) = \frac{x}{1-e^{-x}}.
+    Q_\Td(x) = \frac{x}{1-e^{-x}}.
 \end{align*}
 \end{theorem}
-\begin{proof} We just have to check the value of $\phi_\td([\CP^n])$. By the Cauchy residue theorem, this will be the coefficient on $x^n$ in the expression $(Q(x))^{n+1}$. We start to compute this as
+\begin{proof} We just have to check the value of $\phi_\Td([\CP^n])$. By the Cauchy residue theorem, this will be the coefficient on $x^n$ in the expression $(Q(x))^{n+1}$. We start to compute this as
 \begin{align*}
-    \phi_\td([\CP^n]) &= \res_0 \left( \frac{Q(x)^{n+1}}{x^{n+1}} dx \right) \\
+    \phi_\Td([\CP^n]) &= \res_0 \left( \frac{Q(x)^{n+1}}{x^{n+1}} dx \right) \\
     &= \res_0 \left( \frac{1}{(1- e^{-x})^{n+1}} dx \right). \\
     &= \res_0 \left( \frac{e^{x(n+1)}}{(e^x - 1)^{n+1}}dx \right).
 \end{align*}
 We now want to do a $u$-substitution. Let $z=e^x$, so $dz = e^xdx$, and note that the location of the residue changes after this $u$-sub (even though its winding number doesn't). So we get
 \begin{align*}
-    \phi_{\td}([\CP^n]) = \res_1 \left( \frac{z^n dz}{(z-1)^{n+1}} \right) = 1.
+    \phi_{\Td}([\CP^n]) = \res_1 \left( \frac{z^n dz}{(z-1)^{n+1}} \right) = 1.
 \end{align*}
 \end{proof}
 
 \subsection{Computing the Todd genus}
-To compute the Todd genus of a manifold, we need to know its corresponding $m$-sequence. Let $M^n$ be a stably almost complex $n$-manifold, and let $\xi_1, \ldots, \xi_n$ denote its Chern roots, so that $c_i$ is the $i$th elementary polynomial in them. We can then expand $\prod_{i=1}^n Q(\xi_i)$ and group terms of similar degrees to compute the $m$-sequence. We'll refer to the $m$-sequence as $\td_i(M)$, so that $\td(M) = \td_0(M) + \td_1(M) + \cdots$, and we have that $\td(M^n) = \int_M \td(M) = \int_M \td_n(M)$. It'll be helpful to write down the first few terms of the characteristic series for the Todd genus:
+To compute the Todd genus of a manifold, we need to know its corresponding $m$-sequence. Let $M^n$ be a stably almost complex $n$-manifold, and let $\xi_1, \ldots, \xi_n$ denote its Chern roots, so that $c_i$ is the $i$th elementary polynomial in them. We can then expand $\prod_{i=1}^n Q(\xi_i)$ and group terms of similar degrees to compute the $m$-sequence. We'll refer to the $i$th part of the $m$-sequence as $\td_i(M)$, so that $\td(M) = \td_0(M) + \td_1(M) + \cdots$, and we have that $\Td(M^n) = \int_M \td(M) = \int_M \td_n(M)$. It'll be helpful to write down the first few terms of the characteristic series for the Todd genus:
 \begin{align*}
     \frac{x}{1-e^{-x}} &= 1 + \frac{x}{2} + \frac{x^2}{12} - \frac{x^4}{720} + O(x^6).
 \end{align*}
 First, it is immediate that $\td_0(M) = 1$ for all manifolds $M$, since $\frac{x}{1-e^{-x}}$ has constant term $1$. If $M$ is complex 1-dimensional, then $\td_1 = c_1/2$. The first interesting computation is $\td_2$:
 \begin{align*}
-    Q_\td(\xi_1)Q_\td(\xi_2) &= \left( 1 + \frac{\xi_1}{2} + \frac{\xi_1^2}{12} + \ldots  \right)\left( 1 + \frac{\xi_2}{2} + \frac{\xi_2^2}{12} + \ldots  \right)\\
+    Q_\Td(\xi_1)Q_\Td(\xi_2) &= \left( 1 + \frac{\xi_1}{2} + \frac{\xi_1^2}{12} + \ldots  \right)\left( 1 + \frac{\xi_2}{2} + \frac{\xi_2^2}{12} + \ldots  \right)\\
     &= 1 + \frac{c_1}{2} + \frac{\xi_1^2 + \xi_2^2}{12} + \frac{\xi_1 \xi_2}{4} + \ldots
 \end{align*}
 just looking at the degree 2 terms here we get
@@ -4122,18 +4122,18 @@ integral todd flagBundle({2,4})
 
 o2 = 1
 \end{verbatim}
-This tells us that $\td(\Gr_\C(2,4)) = 1$. In fact the Todd classes of all Grassmannians are $1$.
+This tells us that $\Td(\Gr_\C(2,4)) = 1$. In fact the Todd classes of all Grassmannians are $1$.
 \end{example}
 
-\begin{example} Let $C$ be an elliptic curve, then $\td(C) = 0$.
+\begin{example} Let $C$ be an elliptic curve, then $\Td(C) = 0$.
 \end{example}
 \begin{proof} As an abelian variety, its tangent space is trivial, hence $c_1(TC) = 0$, and therefore
 \begin{align*}
-    \td(C) = \int_C \frac{c_1(C)}{2} = 0.
+    \Td(C) = \int_C \frac{c_1(C)}{2} = 0.
 \end{align*}
 \end{proof}
 
-\begin{example} Any K3 surface $X$ has $\td(X) = 2$. As an example, we can consider a quartic hypersurface in $\mathbb{P}^3$ which is a model for a K3 surface, and we compute:
+\begin{example} Any K3 surface $X$ has $\Td(X) = 2$. As an example, we can consider a quartic hypersurface in $\mathbb{P}^3$ which is a model for a K3 surface, and we compute:
 \begin{verbatim}
 loadPackage "Schubert2";
 P3 = abstractProjectiveSpace 3;
@@ -4144,11 +4144,91 @@ o4 = 2
 \end{verbatim}
 \end{example}
 
+\subsection{Properties of the Todd genus}
+
+\begin{definition}\label{def:td-of-vector-bundle} Let $X$ be a topological space, and let $E \to X$ be a complex vector bundle. Then we define the \emph{Todd class} $\td(E) \in H^\ast(X,\Z)$ to be the class determined by the $m$-sequence associated to the Todd genus, evaluated at the Chern classes of $E$. That is:
+\begin{align*}
+    \td(E) = 1 + \frac{c_1(E)}{2} + \frac{c_1(E)^2 + c_2(E)}{12} + \frac{c_1(E)c_2(E)}{24} + \ldots \in H^\ast(X,\Z).
+\end{align*}
+\end{definition}
+
+\begin{example} Over a smooth manifold $M$ with (stably almost) complex structure, we have that $\td(M) = \td(TM)$.
+\end{example}
+
+\begin{notation} When $M$ is an oriented $n$-manifold, we define $\Td(E) = \int_M \td(E) \in \Q$.
+\end{notation}
+
+\begin{proposition}\label{prop:multiplicativity-of-todd-class}
+For any two complex vector bundles $E_1,E_2 \to x$, we have an equality $\td(E_1 \oplus E_2) = \td(E_1) \td(E_2)$ in $H^\ast(X,\Z)$.
+\end{proposition}
+\begin{proof} This is an immediate consequence of the Todd genus arising via an $m$-sequence.
+\end{proof}
+
+\begin{proposition}\label{prop:pullback-todd-class} 
+For any complex vector bundle $E \to X$ and any map $f \colon Y \to X$, we have that $f^\ast \td(E) = \td(f^\ast E)$.
+\end{proposition}
+\begin{proof} Immediate by naturality of Chern classes.
+\end{proof}
+
+With this new notation in mind, we can prove the following:
+
+
+\begin{proposition}\label{prop:todd-genus-projective-bundle} Let $X$ be a compact (stably almost) complex manifold, and without loss of generality assume it is connected. Let $E \to X$ be a complex vector bundle of rank $d+1$, and let $\mathbb{P}(E) \to X$ denote its projectivization. Then they have equal Todd genera:
+\begin{align*}
+    \Td(\mathbb{P}(E)) = \Td(X).
+\end{align*}
+\end{proposition}
+\begin{proof} Let $\pi \colon \mathbb{P}(E) \to X$ denote the projection. We have a short exact sequence of vector bundles
+\begin{align*}
+    0 \to T\pi \to T \mathbb{P}(E) \to \pi^\ast TX \to 0,
+\end{align*}
+where $T\pi$ is the \emph{vertical tangent bundle}. By multiplicativity of Todd classes (\Cref{prop:multiplicativity-of-todd-class}) we can express the Todd genus of $T \mathbb{P}(E)$ in terms of the Todd classes of the other two bundles in the sequence:
+\begin{align*}
+    \Td(\mathbb{P}(E)) &= \int_{\mathbb{P}(E)} \td(T \mathbb{P}(E)) = \int_{\mathbb{P}(E)} \td(T\pi) \td(\pi^\ast TX).
+\end{align*}
+Using naturality \Cref{prop:pullback-todd-class}, we can rewrite this as
+\begin{align*}
+    &= \int_{\mathbb{P}(E)} \td(T\pi) \pi^\ast \td(TX).
+\end{align*}
+Integration is, simply, the Gysin pushforward down to a point. Since the map from $\mathbb{P}(E) \to \ast$ can be factored through $X$, we have that the above is equal to
+\begin{align*}
+    &=\int_X \pi_\ast \left( \td(T\pi) \pi^\ast \td(TX) \right),
+\end{align*}
+which by the projection formula for Gysin integration (\Cref{prop:properties-Gysin-integration}) is then equal to
+\begin{align*}
+    &= \int_X  \td(TX) \cdot \pi_\ast \td(T\pi).
+\end{align*}
+Just by looking at dimensions, we have that $\pi_\ast \td(T\pi) \in H^0(X,\Z) \cong \Z$, so it is just some scalar. Putting everything together we have computed that
+\begin{align*}
+    \Td(\mathbb{P}(E)) = (\pi_\ast \td(T\pi))\cdot \Td(X).
+\end{align*}
+So we want to verify this scalar is equal to $1$. To compute this, we introduce some notation: pick any basepoint $\ast \xto{j} X$, and consider the pullback square
+\[ \begin{tikzcd}
+    \CP^{d}\rar[hook,"i" above]\dar["p"]\pb & \mathbb{P}(E)\dar["\pi" right]\\
+    \ast\rar["j" below] & X.
+\end{tikzcd} \]
+Since $j^\ast \colon H^0(X) \to H^0(\ast)$ is an isomorphism, it suffices to compute $j^\ast \pi_\ast \td(T\pi)$. However by base change for Gysin maps (\Cref{prop:properties-Gysin-integration}), we get that
+\begin{align*}
+    j^\ast \pi_\ast \td(T\pi) = p_\ast i^\ast \td(T\pi) = p_\ast \td(i^\ast T\pi).
+\end{align*}
+Observe that $i^\ast T\pi$ is the restriction of the vertical tangent to a point in the fiber. This is exactly the tangent space \emph{of} the fiber. So altogether we get
+\begin{align*}
+    j^\ast \pi_\ast \td(T\pi) = p_\ast \td(T\CP^d) = \int_{\CP^d}\td(\CP^d) = 1.
+\end{align*}
+Therefore $\pi_\ast \td(T\pi) = 1 \in H^0(X,\Z)$ and we are done.
+\end{proof}
+
+\begin{corollary} For $X$ any complex manifold of dimension $d$, we let $X^\Delta$ denote the total flag space of its tangent bundle. Then $\Td(X) = \Td(X^\Delta)$. 
+\end{corollary}
+\begin{proof}[Proof sketch] Use that the flag space is built as an iterated projective bundle, together with the fact that the Todd genus comes from an $m$-sequence, and induct with base case \Cref{prop:todd-genus-projective-bundle}.
+\end{proof}
+
 
 
 \subsection{Looking ahead to HRR}
 
 Just as the $L$-genus agrees with the index of a manifold, we will see the Todd genus agrees with a different invariant of an algebraic manifold, namely its so-called \emph{arithmetic genus}, which is defined in terms of sheaf cohomology. This is essentially the content of \emph{Hirzebruch-Riemann-Roch}.
+
 
 
 
