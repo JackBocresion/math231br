@@ -1,15 +1,3 @@
-\documentclass{article}
-\input{commands.tex}
-\usepackage{graphicx} % Required for inserting images
-
-\title{Stacks Appendix}
-\author{Vincent Costa and Josh Rooney}
-\date{April 2026}
-
-\begin{document}
-
-\maketitle
-
 In this appendix, we will introduce stacks on spaces, which we want to think of as sheaves valued in a (2,1)-category instead of 1-category. Stacks are of great interest to us because they provide a gateway to thinking about higher categories, through studying an object similar to sheaves, which we discussed a lot in this course. Also, many of the objects we studied in this course can be used to define stacks, as we will see with the stack of principal bundles, allowing us to revisit some of these topics and apply our knowledge. Before giving a concrete definition for stacks on spaces, let's recall the definition of a sheaf of sets on some topological space $X$.
 \begin{definition}
 A functor $F: \Open(X)^{\op} \to \Set$ is a \textit{presheaf} of sets on $X$. We say that $F$ is a \textit{sheaf} if for every open subset $U \subseteq X$ and every open cover $\mathcal{U} = \{U_i\}$ of $U$, the unique map
@@ -557,8 +545,3 @@ Recall that when we were studying sheaves, we had the notion of a presheaf. Ever
 \begin{example}[Constant Stack]
     Suppose \( F : \Open(X)^\op \to \Grpd \) is constant. Then, the constant stack is the associated stack of \( F \).
 \end{example}
-
-\bibliography{zbib.bib}
-\bibliographystyle{amsalpha}
-
-\end{document}
