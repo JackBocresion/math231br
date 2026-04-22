@@ -1,4 +1,4 @@
-
+\section{Thom's computation of $\MSO_\ast$ (Joaquim Bocresion)}
 \subsection{Overview}
 Thom's seminal 1954 paper included several novel notions in topology at its time of publication. Among them included the first definition of transversality in the literature, his question of realization of homology classes by submanifolds, and the following theorem and subject of this exposition:
 \begin{theorem}[\cite{Hirzebruch} Theorem 7.2.2; cf. \cite{thom} Theorem 4.15]
@@ -127,7 +127,7 @@ There exists an isomorphism of groups
 
 \subsection{Constructing maps}
 The goal of this section is to construct maps out of $M(SO(k))$ into spaces chosen such that such maps induce isomorphisms on homotopy groups. We can do this with varying degrees of abstraction. Probably the most powerful, though least insightful and intuitive way, is to use Brown Representability: 
-\begin{theorem}[Brown Representability; cf. \cite[Theorem 4E.1]{Hatcher}]
+\begin{theorem}[{Brown Representability; cf. \cite[Theorem 4E.1]{Hatcher}}]
     Let $G$ be an abelian group with $n\geq 1$. For any CW complex $X$we have
     \[[X,K(G,n)]_*\cong \widetilde H^n(X;G),\]
     where the natural map is $[f]\mapsto f^*\iota$ for $\iota\in \widetilde H^n(K(G,n);G)=\End(G)$ the distinguished class corresponding to the identity map $G\to G$. Note that $[-,-]_*$ denotes the homotopy classes of maps of based spaces.
@@ -226,3 +226,4 @@ Lastly, since $M(SO(k))$ and $Y$ are simply connected for $k\geq 2$, we can fix 
     0\text{ else }
 \end{cases}\pmod{\mathscr C}.\]
 From this, note that $\pi_{k+n}(Y)=0$ if $4\nmid n$, meaning that $\pi_{n+k}(M(SO(k)))=\pi_n^s(MSO)\in \mathscr C$, i.e. $\pi_n^s(MSO)=\Omega_n^{SO}$ is finite. Otherwise, if $4\mid n$, we we have $\pi_{n+k}(M(SO(k)))=\pi_n^s(MSO)\equiv \Z^{c(m)}=\Z^{\pi(m)} \pmod{\mathscr C}$, i.e. $\pi_n^s(MSO)=\Omega_n^{SO}$ has free part $\Z^{\pi(m)}$ for $\pi$ the partition function; and torsion part some finite group $G$.
+\end{proof}
