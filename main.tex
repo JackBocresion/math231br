@@ -4218,7 +4218,8 @@ Observe that $i^\ast T\pi$ is the restriction of the vertical tangent to a point
 Therefore $\pi_\ast \td(T\pi) = 1 \in H^0(X,\Q)$ and we are done.
 \end{proof}
 
-\begin{corollary} For $X$ any complex manifold of dimension $d$, we let $X^\Delta$ denote the total flag space of its tangent bundle. Then $\Td(X) = \Td(X^\Delta)$. 
+\begin{corollary}\label{cor:Td-X-XDelta}
+For $X$ any complex manifold of dimension $d$, we let $X^\Delta$ denote the total flag space of its tangent bundle. Then $\Td(X) = \Td(X^\Delta)$. 
 \end{corollary}
 \begin{proof}[Proof sketch] Use that the flag space is built as an iterated projective bundle, together with the fact that the Todd genus comes from an $m$-sequence, and induct with base case \Cref{prop:todd-genus-projective-bundle}.
 \end{proof}
@@ -4420,6 +4421,7 @@ is a short exact sequence of coherent sheaves on $X$, show that
 
 
 \begin{theorem}[{\cite[20.2.1]{Hirzebruch}}]
+\label{thm:chi-X-XDelta}
 Let $X$ be a complex (algebraic?) manifold, and let $X^\Delta$ be the total flag space. Then
 \begin{align*}
     \chi(X,\mathcal{O}_X) = \chi(X^\Delta, \mathcal{O}_{X^\Delta}).
