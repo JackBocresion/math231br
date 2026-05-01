@@ -6,7 +6,7 @@ A foundational problem in algebraic topology and complex geometry is relating th
 
 \medskip
 
-\noindent In 1955, A. Fr\"olicher defined a spectral sequence that relates the two. A spectral sequence is an device that iteratively computes successive approximations of cohomology. Fr\"olicher's sequence takes the Dolbeault cohomology as its initial input (the ``first page'') and converges to the de Rham cohomology. \cite{Frolicher1955}. The purpose of this appendix is to construct this spectral sequence rigorously, prove that it degenerates at the first page for compact K\"ahler manifolds (following Deligne and others), and demonstrate its failure to degenerate in the non-K\"ahler setting via the Iwasawa manifold.
+\noindent In 1955, A. Fr\"olicher defined a spectral sequence that relates the two. A spectral sequence is an device that iteratively computes successive approximations of cohomology. Fr\"olicher's sequence takes the Dolbeault cohomology as its initial input (the ``first page'') and converges to the de Rham cohomology \cite{Frolicher1955}. The purpose of this appendix is to construct this spectral sequence rigorously, prove that it degenerates at the first page for compact K\"ahler manifolds (following Deligne and others), and demonstrate its failure to degenerate in the non-K\"ahler setting via the Iwasawa manifold.
 
 \medskip
 
@@ -18,23 +18,23 @@ A foundational problem in algebraic topology and complex geometry is relating th
 \subsubsection{Complex manifolds and the Dolbeault cohomology}
 We begin by providing a quick review of the theory of complex manifolds and recalling some basic constructions.
 \begin{definition}
-    Following \textbf{Definition 2.1.1} in \cite{Huybrechts2005}, a \emph{holomorphic atlas} on a differentiable manifold is an atlas of the form $\left\{\left(U_i, \varphi_i\right)\right\}$, where $\varphi_i:U_i\to \varphi_i\left(U_i\right)\subseteq \C^n$ is a homeomorphism, and the transition functions given by $\varphi_{ij}:=\varphi_i\circ \varphi_j^{-1} : \varphi_j\left(U_i\cap U_j\right)\to \varphi_i\left(U_i\cap U_j\right)$ are holomorphic. We then call a pair $\left\{\left(U_i, \varphi_i\right)\right\}$ a \emph{holomorphic chart}, and call two holomorphic atlases $\left\{\left(U_i, \varphi_i\right)\right\}$, $\left\{\left(U_j', \varphi_j'\right)\right\}$ \emph{equivalent} if all maps $\varphi_i\circ \varphi_j'^{-1}: \varphi_j'\left(U_i\cap U_j'\right)\to \varphi_i\left(U_i\cap U_j'\right)$ are holomorphic. 
+    Following \cite[Definition 2.1.1]{Huybrechts2005}, a \emph{holomorphic atlas} on a differentiable manifold is an atlas of the form $\left\{\left(U_i, \varphi_i\right)\right\}$, where $\varphi_i:U_i\to \varphi_i\left(U_i\right)\subseteq \C^n$ is a homeomorphism, and the transition functions given by $\varphi_{ij}:=\varphi_i\circ \varphi_j^{-1} : \varphi_j\left(U_i\cap U_j\right)\to \varphi_i\left(U_i\cap U_j\right)$ are holomorphic. We then call a pair $\left\{\left(U_i, \varphi_i\right)\right\}$ a \emph{holomorphic chart}, and call two holomorphic atlases $\left\{\left(U_i, \varphi_i\right)\right\}$, $\left\{\left(U_j', \varphi_j'\right)\right\}$ \emph{equivalent} if all maps $\varphi_i\circ \varphi_j'^{-1}: \varphi_j'\left(U_i\cap U_j'\right)\to \varphi_i\left(U_i\cap U_j'\right)$ are holomorphic. 
 \end{definition}
 
 \begin{definition}
-Following \textbf{Definition 2.1.2} in \cite{Huybrechts2005}, a \emph{complex manifold} $X$ of dimension $n$ is a real differentiable manifold of dimension $2n$ endowed with an equivalence class of holomorphic atlases.
+Following \cite[Definition 2.1.2]{Huybrechts2005}, a \emph{complex manifold} $X$ of dimension $n$ is a real differentiable manifold of dimension $2n$ endowed with an equivalence class of holomorphic atlases.
 \end{definition}
 
-\noindent We recall from \textbf{Proposition 2.6.2} of \cite{Huybrechts2005} that a complex manifold $X$ must admit an \emph{almost complex structure}, that is, some vector bundle endomorphism $I:TX\to TX$ with $I^2 = -\id$, where $TX$ is the real tangent bundle of the underlying real manifold. Complexifying the tangent bundle via $TX_\C = TX \otimes_\R \C$, we can extend $I$ to $TX_\C$ via complex linearity, and since $I^2=-1$, the eigenvalues of $I$ on the complexified tangent bundle are exactly $\pm i$. This yields a direct sum decomposition of the complexified tangent bundle
+\noindent We recall from \cite[Proposition 2.6.2]{Huybrechts2005} that a complex manifold $X$ must admit an \emph{almost complex structure}, that is, some vector bundle endomorphism $I:TX\to TX$ with $I^2 = -\id$, where $TX$ is the real tangent bundle of the underlying real manifold. Complexifying the tangent bundle via $TX_\C = TX \otimes_\R \C$, we can extend $I$ to $TX_\C$ via complex linearity, and since $I^2=-1$, the eigenvalues of $I$ on the complexified tangent bundle are exactly $\pm i$. This yields a direct sum decomposition of the complexified tangent bundle
 $$
 TX_\C = T^{1,0}X \oplus T^{0,1}X
 $$
-following \textbf{Proposition 2.6.4(i)} of \cite{Huybrechts2005}, where $T^{1,0}X$ is the eigenspace associated with $i$, and $T^{0,1}X$ is the eigenspace associated with $-i$. Passing to the dual, we get:
+following \cite[Proposition 2.6.4(i)]{Huybrechts2005}, where $T^{1,0}X$ is the eigenspace associated with $i$, and $T^{0,1}X$ is the eigenspace associated with $-i$. Passing to the dual, we get:
 $$
 T^*X_\C =\Omega^{1,0}_X \oplus \Omega^{0,1}_X
 $$
 
-\noindent Following the notation in \textbf{Section 2.3} of \cite{VoisinI2002}, above $\Omega^{1,0}_X$ is the bundle of $(1,0)$-covectors, and $\Omega^{0,1}_X$ is the bundle of $(0,1)$-covectors. If we take holomorphic local coordinates $z_1, \ldots, z_n$, then the bundle $\Omega^{1,0}_X$ is locally spanned by $\left\{dz_j = dx_j + i dy_j\right\}_{1\leq j\leq n}$, and $\Omega^{0,1}_X$ is locally spanned by $\left\{d\bar{z}_j = dx_j - i dy_j\right\}_{1\leq j\leq n}$. Now, we take the $k^\text{th}$ exterior power on both sides, and recalling from \textbf{Proposition XIX.1.4} of \cite{Lang2002} how the exterior power distributes over the direct sum, this gives:
+\noindent Following the notation in \cite[Section 2.3]{VoisinI2002}, above $\Omega^{1,0}_X$ is the bundle of $(1,0)$-covectors, and $\Omega^{0,1}_X$ is the bundle of $(0,1)$-covectors. If we take holomorphic local coordinates $z_1, \ldots, z_n$, then the bundle $\Omega^{1,0}_X$ is locally spanned by $\left\{dz_j = dx_j + i dy_j\right\}_{1\leq j\leq n}$, and $\Omega^{0,1}_X$ is locally spanned by $\left\{d\bar{z}_j = dx_j - i dy_j\right\}_{1\leq j\leq n}$. Now, we take the $k^\text{th}$ exterior power on both sides, and recalling from \cite[Proposition XIX.1.4]{Lang2002} how the exterior power distributes over the direct sum, this gives:
 $$
 \bigwedge^kT^*X_\C = \bigwedge^k\left(\Omega^{1,0}_X \oplus \Omega^{0,1}_X\right) = \bigoplus_{p+q=k}\left( \bigwedge^p\Omega^{1,0}_X \otimes \bigwedge^q \Omega^{0,1}_X\right)
 $$
@@ -44,7 +44,7 @@ $$
 \bigwedge^k_\C X = \bigoplus_{p+q=k} \Omega_X^{p,q}
 $$
 
-\noindent We further denote by $\mathcal{A}^k_{X,\C}$ and $\mathcal{A}^{p,q}_X$ the \emph{sheaves of sections} of these respective bundles, and the global sections of $\mathcal{A}^{p,q}_X$, i.e. elements of $\mathcal{A}^{p,q}(X)$ are the \emph{forms of type} $(p,q)$. Then following \textbf{Corollary 2.6.8} in \cite{Huybrechts2005}, we also have the decomposition:
+\noindent We further denote by $\mathcal{A}^k_{X,\C}$ and $\mathcal{A}^{p,q}_X$ the \emph{sheaves of sections} of these respective bundles, and the global sections of $\mathcal{A}^{p,q}_X$, i.e. elements of $\mathcal{A}^{p,q}(X)$ are the \emph{forms of type} $(p,q)$. Then following \cite[Corollary 2.6.8]{Huybrechts2005}, we also have the decomposition:
 $$
 \mathcal{A}^k_{X,\C} = \bigoplus_{p+q=k} \mathcal{A}^{p,q}_X
 $$
@@ -75,7 +75,7 @@ $$
 d\alpha =\sum_{I,J,k}\frac{\partial \alpha_{I,J}}{\partial z_k}dz_k\wedge dz_I \wedge d\bar z_J + \sum_{I,J,k} \frac{\partial\alpha_{I,J}}{\partial \bar z_k}d\bar z_k \wedge dz_I \wedge d\bar z_J
 $$
 
-\noindent Notice that the first sum is of type $(p+1,q)$ and the second sum is of type $(p,q+1)$. So, there are no other types of forms present, and we have $d\alpha = \partial \alpha + \bar\partial \alpha$. Importantly, we summarize the following relations involving $\partial$ and $\bar \partial$, which are given by \textbf{Lemma 2.29} of \cite{VoisinI2002}.
+\noindent Notice that the first sum is of type $(p+1,q)$ and the second sum is of type $(p,q+1)$. So, there are no other types of forms present, and we have $d\alpha = \partial \alpha + \bar\partial \alpha$. Importantly, we summarize the following relations involving $\partial$ and $\bar \partial$, which are given by \cite[Lemma 2.29]{VoisinI2002}.
 \begin{lemma}
     $\bar\partial^2 =0$, $\partial\bar\partial + \bar\partial \partial =0$, $\partial^2=0$.
 \end{lemma}
@@ -97,7 +97,7 @@ $$
 	\arrow["{\bar\partial}", from=1-5, to=1-7]
 	\arrow[from=1-7, to=1-9]
 \end{tikzcd}\]
-whence we seize the opportunity to define a new form of cohomology, following \textbf{Definition 2.6.20} in \cite{Huybrechts2005}.
+whence we seize the opportunity to define a new form of cohomology, following \cite[Definition 2.6.20]{Huybrechts2005}.
 
 \begin{definition}
     For a complex manifold $X$, the $(p,q)$-\emph{Dolbeault cohomology} is the vector space:
@@ -108,7 +108,7 @@ whence we seize the opportunity to define a new form of cohomology, following \t
 
 
 \subsubsection{Spectral sequences}
-Before we discuss the Fr\"olicher spectral sequence, we review the mechanism of spectral sequences of filtered complexes. We refer extensively to \textbf{Chapter 8.3.1} and \textbf{8.3.2} of \cite{VoisinI2002}, but we will first build intuition for what these objects actually mean.
+Before we discuss the Fr\"olicher spectral sequence, we review the mechanism of spectral sequences of filtered complexes. We refer extensively to \cite[Chapters 8.3.1 and 8.3.2]{VoisinI2002}, but we will first build intuition for what these objects actually mean.
 
 \medskip
 
@@ -154,8 +154,8 @@ E_1^{p-1, q-1} \arrow[r, "d_1"] & E_1^{p, q-1} \arrow[r, "d_1"] & E_1^{p+1, q-1}
 
 \item \textbf{The $E_2$ page and beyond:} Again, we take cohomology: $E_2^{p,q} = \ker d_1 / \im d_1$. The arrows now moves two steps to the right and one step down: $d_2: E_2^{p,q} \to E_2^{p+2, q-1}$. In general, the $r^\text{th}$ page differential (for a cohomological spectral sequence) goes $r$ steps to the right and $r-1$ steps down: $d_r: E_r^{p,q} \to E_r^{p+r, q-r+1}$.
 \[\begin{tikzcd}
-E_2^{p-2, q+1} \arrow[drr, "d_2"] & E_2^{p-1, q+1} & E_2^{p, q+1} & E_2^{p+1, q+1} \\
-E_2^{p-2, q} & E_2^{p-1, q} \arrow[drr, "d_2" near start] & E_2^{p, q} & E_2^{p+1, q} \\
+E_2^{p-2, q+1} \arrow[drr, "d_2"] & E_2^{p-1, q+1}\arrow[drr, "d_2"] & E_2^{p, q+1} & E_2^{p+1, q+1} \\
+E_2^{p-2, q}\arrow[drr, "d_2"] & E_2^{p-1, q} \arrow[drr, "d_2" near start] & E_2^{p, q} & E_2^{p+1, q} \\
 E_2^{p-2, q-1} & E_2^{p-1, q-1} & E_2^{p, q-1} & E_2^{p+1, q-1}
 \end{tikzcd}\]
 \end{itemize}
@@ -164,7 +164,7 @@ E_2^{p-2, q-1} & E_2^{p-1, q-1} & E_2^{p, q-1} & E_2^{p+1, q-1}
 
 \medskip
 
-\noindent For the purpose of the next crucial theorem, we assume our filtration is bounded, i.e. for each degree $n$, there exists some $a$ such that $F^a K^n=0$. When the filtration is bounded, the differential arrows eventually point into spaces that are zero. When all incoming and outgoing arrows to a space $E_r^{p,q}$ are zero, taking cohomology does nothing, and the space stabilizes. We denote this stable limit page $E_\infty^{p,q}$. Following \textbf{Definition 8.26} of \cite{VoisinI2002}, we make the following definition:
+\noindent For the purpose of the next crucial theorem, we assume our filtration is bounded, i.e. for each degree $n$, there exists some $a$ such that $F^a K^n=0$. When the filtration is bounded, the differential arrows eventually point into spaces that are zero. When all incoming and outgoing arrows to a space $E_r^{p,q}$ are zero, taking cohomology does nothing, and the space stabilizes. We denote this stable limit page $E_\infty^{p,q}$. Following \cite[Definition 8.26]{VoisinI2002}, we make the following definition:
 
 \begin{definition}
     We say that the spectral sequence associated to the filtered cochain complex $\left(K^\bullet, d, F^\bullet\right)$ \emph{degenerates} at $E_r$ if, for all $k\geq r$, we have $d_k=0$. We then have $E_r^{p,q} = E_\infty^{p,q} = \mathrm{Gr}_p^F H^{p+q}\left(K^\bullet\right)$.
@@ -182,51 +182,54 @@ E_2^{p-2, q-1} & E_2^{p-1, q-1} & E_2^{p, q-1} & E_2^{p+1, q-1}
 \end{theorem}
 
 \begin{proof}
-    We begin by constructing these complexes. Define:
+    We begin by constructing these complexes explicitly. To do this, we must identify the elements that survive to the $r$-th page. We define the space of \emph{approximate cocycles} at stage $r$:
     $$
     Z^{p,q}_r:=\left\{x\in F^p K^{p+q}\mid dx\in F^{p+r}K^{p+q+1}\right\}
     $$
+    Conceptually, $Z_r^{p,q}$ consists of elements living in the $p$-th level of the filtration whose exterior derivative is not necessarily zero, but is pushed down at least $r$ levels deeper into the filtration. Thus, they act like cocycles ``up to level $r$''.
+
+    \medskip
     
-    Now, observe that:
+    \noindent To form a cohomology group, we must quotient out by \emph{approximate coboundaries}, which we will denote $B_r^{p,q}$. An element should be considered a boundary at stage $r$ if it comes from the differential of an element one step higher in the filtration from the previous stage, or if it is merely leftover from the previous stage. By shifting indices in our definition of $Z$, observe that:
     \begin{align*}
     Z^{p+1,q-1}_{r-1}&:= \left\{x\in F^{p+1} K^{p+q}\mid dx\in F^{p+r}K^{p+q+1}\right\} \\
     Z_{r-1}^{p-r+1,q+r-2} &:= \left\{x\in F^{p-r+1} K^{p+q-1}\mid dx\in F^{p}K^{p+q}\right\} 
     \end{align*}
     
-    \noindent Since $F$ is a decreasing filtration, the inclusion $Z_{r-1}^{p+1,q-1} \subseteq Z_r^{p,q}$ is obvious. Then, say $y\in Z_{r-1}^{p-r+1,q+r-2}$. This implies that $y\in F^{p-r+1} K^{p+q-1}$ and $dy\in F^{p} K^{p+q}$. We have $d^2y =0\in F^{p+r}K^{p+q+1}$ trivially, so $dy \in Z_r^{p,q}$, giving us the inclusion $dZ_{r-1}^{p-r+1,q+r-2}\subseteq Z_r^{p,q}$. We then define:
+    \noindent Since $F$ is a decreasing filtration, the inclusion $Z_{r-1}^{p+1,q-1} \subseteq Z_r^{p,q}$ is obvious. Then, suppose $y\in Z_{r-1}^{p-r+1,q+r-2}$. This implies that $y\in F^{p-r+1} K^{p+q-1}$ and $dy\in F^{p} K^{p+q}$. Because $d^2 = 0$, we have $d^2y =0\in F^{p+r}K^{p+q+1}$ trivially, meaning the element $dy$ perfectly satisfies the condition to be in $Z_r^{p,q}$. This gives us the inclusion $dZ_{r-1}^{p-r+1,q+r-2}\subseteq Z_r^{p,q}$. We can now formally define our space of approximate coboundaries:
     $$
     B_r^{p,q} := Z_{r-1}^{p+1,q-1} + dZ_{r-1}^{p-r+1,q+r-2} \subseteq Z_r^{p,q}
     $$
     
-    \noindent This notation is suggestive of cocycles and coboundaries, and we define our complex $E_r^{p,q}:= Z_r^{p,q}/B_r^{p,q}$ in the usual fashion. We check that the differential $d$ sends $Z_r^{p,q}$ to $Z_r^{p+r,q-r+1}$ and $B_r^{p,q}$ to $B_r^{p+r,q-r+1}$. 
+    \noindent This notation is highly suggestive of standard cohomology, and we define the objects of our spectral sequence in the usual fashion: $E_r^{p,q}:= Z_r^{p,q}/B_r^{p,q}$. 
 
     \medskip
     
-    \noindent For $x\in Z^{p,q}_r$, we have $x\in F^p K^{p+q}$ and $dx \in F^{p+r}K^{p+q+1}$. Then $d^2x = 0\in F^{p+2r}K^{p+q+2}$ trivially, so $dx\in Z_r^{p+r, q-r+1}$ as desired. 
+    \noindent We must ensure that the original differential $d$ naturally descends to a well-defined map $d_r$ between these quotients. First, we check that $d$ maps the numerator of $E_r^{p,q}$ into the target numerator $E_r^{p+r,q-r+1}$. For $x\in Z^{p,q}_r$, we have $x\in F^p K^{p+q}$ and $dx \in F^{p+r}K^{p+q+1}$. Applying $d$ again gives $d^2x = 0\in F^{p+2r}K^{p+q+2}$ trivially, which means $dx$ satisfies the exact condition to live in $Z_r^{p+r, q-r+1}$. 
 
     \medskip
     
-    \noindent For $x\in Z_{r-1}^{p+1,q-1}$, $dx\in dZ_{r-1}^{p+1,q-1}$. But we have $B_r^{p+r,q-r+1}:= Z_{r-1}^{p+r+1, q-r} + dZ_{r-1}^{p+1,q-1}$. On the other hand, if $x\in dZ_{r-1}^{p-r+1,q+r-2}$, then $dx=0$ immediately. Taken together we have $d\left(B_r^{p,q}\right) \subseteq B_r^{p+r,q-r+1}$ as desired. 
+    \noindent Second, we check that $d$ maps the denominator (the boundaries $B_r^{p,q}$) into the target denominator $B_r^{p+r,q-r+1}$. For $x\in Z_{r-1}^{p+1,q-1}$, $dx\in dZ_{r-1}^{p+1,q-1}$. But looking at the target denominator, we have $B_r^{p+r,q-r+1}:= Z_{r-1}^{p+r+1, q-r} + dZ_{r-1}^{p+1,q-1}$. Therefore, $dx$ safely lands inside this space. On the other hand, if $x$ comes from the second half of the boundary space, $x\in dZ_{r-1}^{p-r+1,q+r-2}$, then applying $d$ yields $dx=0$ immediately. Taken together, $d\left(B_r^{p,q}\right) \subseteq B_r^{p+r,q-r+1}$ as desired. 
 
     \medskip
 
-    \noindent Since $d$ sends $Z_r^{p,q}$ to $Z_r^{p+r,q-r+1}$ and $B_r^{p,q}$ to $B_r^{p+r,q-r+1}$, it descends to a map $d_r:E_r^{p,q}\to E_r^{p+r,q-r+1}$ on the quotient, and inherits $d_r^2=0$ from $d^2=0$. Now that our complexes $\left(E_r^{p,q},d_r\right)$ are constructed, we merely need to verify the conditions provided.
+    \noindent Since $d$ properly sends $Z_r^{p,q}$ to $Z_r^{p+r,q-r+1}$ and $B_r^{p,q}$ to $B_r^{p+r,q-r+1}$, it descends to a map of quotients $d_r:E_r^{p,q}\to E_r^{p+r,q-r+1}$. It naturally inherits the property $d_r^2=0$ from the underlying $d^2=0$. Now that our complexes $\left(E_r^{p,q},d_r\right)$ are constructed, we merely need to verify the three specific conditions of the theorem.
 
     \begin{enumerate}[i.]
-        \item We have $Z_0^{p,q} = F^pK^{p+q}$, $B_0^{p,q} = Z^{p+1,q-1}_{-1} + dZ^{p+1,q-2}_{-1}$. Then since $Z^{p+1,q-1}_{-1} = F^{p+1}K^{p+q}$ and $Z^{p+1,q-2}_{-1} = F^{p+2}K^{p+q-1} \implies dZ^{p+1,q-2}_{-1}\subseteq F^{p+2}K^{p+q} \subseteq F^{p+1}K^{p+q}$, we have $B_0^{p,q} =  F^{p+1}K^{p+q}$. Thus, $E_0^{p,q} = F^pK^{p+q}/F^{p+1}K^{p+q}=: \mathrm{Gr}_p^F K^{p+q}$ as desired. Then, since the differential $Z_0^{p,q}\to Z_0^{p,q+1}$ is $d$, $d_0$ is simply the induced differential $\bar{d}:\mathrm{Gr}_p^FK^{p+q}\to \mathrm{Gr}_p^F K^{p+q+1}$.  
-
-        \item Observe that if $z\in Z_{r+1}^{p,q}$, then $z\in F^p K^{p+q}$ and $dz\in F^{p+r+1}K^{p+q+1}$. Then, $d^2z = 0\in F^{p+2r}K^{p+q+2}$ trivially, so $dz\in Z_{r-1}^{p+r+1,q-r} \subseteq B_r^{p+r, q-r+1}$. Since obviously $Z_{r+1}^{p,q}\subseteq Z_r^{p,q}$, $z\in Z_r^{p,q}$ also, hence we let $\bar z$ denote the class of $z$ in $E_r^{p,q}$, and we have $d_r\bar z = 0$, i.e. $\bar z\in \ker \left(d_r:E_r^{p,q} \to E_r^{p+r,q-r+1}\right)$. 
-
-        \medskip
+        \item We evaluate our definitions at $r=0$. We have $Z_0^{p,q} = F^pK^{p+q}$, and the boundary space is $B_0^{p,q} = Z^{p+1,q-1}_{-1} + dZ^{p+1,q-2}_{-1}$. Because a shift of $-1$ simply represents the original unfiltered space, $Z^{p+1,q-1}_{-1} = F^{p+1}K^{p+q}$ and $Z^{p+1,q-2}_{-1} = F^{p+2}K^{p+q-1}$. This implies $dZ^{p+1,q-2}_{-1}\subseteq F^{p+2}K^{p+q} \subseteq F^{p+1}K^{p+q}$. The second sum is subsumed by the first, leaving us with $B_0^{p,q} =  F^{p+1}K^{p+q}$. 
         
-        Then, if $z \in B_{r+1}^{p,q}$, we can write $z=z_1+dz_2$ for $z_1 \in Z_r^{p+1,q-1}$ and $z_2\in Z_r^{p-r,q+r-1}$. Since $Z_r^{p+1,q-1}\subseteq Z_{r-1}^{p+1,q-1}\subseteq B_r^{p,q}$, we have $\bar{z} = \overline{z_1+dz_2} = \overline{dz_2}$. But since $z_2\in Z_r^{p-r,q+r-1}$, $dz_2 \in Z_r^{p,q}$, so this descends to the quotient and we have $d_r\left(\overline{z_2}\right) = \overline{dz_2} =\bar z$. In other words, $\bar z \in \im\left(d_r:E_r^{p-r,q+r-1} \to E_r^{p,q}\right)$. Thus, taking the class of an element in $E_r^{p,q}$ produces a map:
+        Taking the quotient yields $E_0^{p,q} = F^pK^{p+q}/F^{p+1}K^{p+q}=: \mathrm{Gr}_p^F K^{p+q}$ as desired. Since the differential $Z_0^{p,q}\to Z_0^{p,q+1}$ is literally just $d$, the map $d_0$ is simply the induced differential $\bar{d}:\mathrm{Gr}_p^FK^{p+q}\to \mathrm{Gr}_p^F K^{p+q+1}$.  
+
+        \item We wish to show that $E_{r+1}$ is precisely the cohomology of $E_r$. Observe that if $z\in Z_{r+1}^{p,q}$, then $z\in F^p K^{p+q}$ and $dz\in F^{p+r+1}K^{p+q+1}$. Because $d^2z = 0\in F^{p+2r}K^{p+q+2}$, we see $dz\in Z_{r-1}^{p+r+1,q-r} \subseteq B_r^{p+r,q-r+1}$. Since obviously $Z_{r+1}^{p,q}\subseteq Z_r^{p,q}$, the element $z$ also lives in $Z_r^{p,q}$. Let $\bar z$ denote the class of $z$ in $E_r^{p,q}$. Because $dz$ lands in the boundary space $B_r$, it descends to $0$ in the quotient, meaning $d_r\bar z = 0$. Thus $\bar z\in \ker \left(d_r:E_r^{p,q} \to E_r^{p+r,q-r+1}\right)$. 
+
+        Now, suppose $z \in B_{r+1}^{p,q}$. By definition, we can write $z=z_1+dz_2$ for $z_1 \in Z_r^{p+1,q-1}$ and $z_2\in Z_r^{p-r,q+r-1}$. Since $Z_r^{p+1,q-1}\subseteq Z_{r-1}^{p+1,q-1}\subseteq B_r^{p,q}$, the $z_1$ term vanishes in the quotient $E_r$, giving us $\bar{z} = \overline{z_1+dz_2} = \overline{dz_2}$. But since $z_2\in Z_r^{p-r,q+r-1}$, the exterior derivative $dz_2$ is exactly what $d_r$ produces. Thus $d_r\left(\overline{z_2}\right) = \overline{dz_2} =\bar z$. In other words, $\bar z$ is in the image of $d_r$. Taking the class of an element in $E_r^{p,q}$ therefore rigorously produces a well-defined map:
         $$
-        Z_{r+1}^{p,q}/B_{r+1}^{p,q} \to \ker \left(d_r:E_r^{p,q} \to E_r^{p+r,q-r+1}\right) / \im\left(d_r:E_r^{p-r,q+r-1} \to E_r^{p,q}\right)
+        Z_{r+1}^{p,q}/B_{r+1}^{p,q} \to \frac{\ker \left(d_r:E_r^{p,q} \to E_r^{p+r,q-r+1}\right)}{\image\left(d_r:E_r^{p-r,q+r-1} \to E_r^{p,q}\right)}
         $$
         
-        It remains to show that this map is a bijection. We show surjectivity first. Let $\bar z \in \ker d_r$, and pick some representative $z\in Z_r^{p,q}$, then $d_r(\bar z) = 0 \implies$ the class of $dz$ in $E_r^{p+r,q-r+1}$ is zero, i.e. $dz \in B_r^{p+r,q-r+1} = dZ_{r-1}^{p+1,q-1} +Z_{r-1}^{p+r+1,q-r}$. So there exists $w\in Z_{r-1}^{p+1,q-1}$ such that $d(z-w) \in Z_{r-1}^{p+r+1,q-r}\subseteq F^{p+r+1}K^{p+q+1}$. On the other hand, $z\in F^pK^{p+q}$ and $w\in F^{p+1}K^{p+q} \subseteq F^pK^{p+q}$, so $z-w\in F^pK^{p+q}$, and this gives us $z-w\in Z_{r+1}^{p,q}$. Then, since $w\in Z_{r-1}^{p+1,q-1}\subseteq B_r^{p,q}$, we have $\bar w=0$, and $\overline{z-w} = \bar z$. Hence, there exists $z-w$ sent by the map above to $\bar z$, and it is thus surjective. For brevity, we omit the proof for injectivity. 
+        To prove this is a bijection, we start with surjectivity. Let $\bar z \in \ker d_r$, and pick some representative $z\in Z_r^{p,q}$. The assumption $d_r(\bar z) = 0$ means the class of $dz$ in $E_r^{p+r,q-r+1}$ is zero, i.e., it is a boundary: $dz \in B_r^{p+r,q-r+1} = dZ_{r-1}^{p+1,q-1} +Z_{r-1}^{p+r+1,q-r}$. So there exists $w\in Z_{r-1}^{p+1,q-1}$ such that $d(z-w) \in Z_{r-1}^{p+r+1,q-r}\subseteq F^{p+r+1}K^{p+q+1}$. On the other hand, $z\in F^pK^{p+q}$ and $w\in F^{p+1}K^{p+q} \subseteq F^pK^{p+q}$, so their difference $z-w\in F^pK^{p+q}$. These two facts combined imply $z-w\in Z_{r+1}^{p,q}$. Because $w\in Z_{r-1}^{p+1,q-1}\subseteq B_r^{p,q}$, its class in the quotient is $\bar w=0$, making $\overline{z-w} = \bar z$. Hence, we have found an element $z-w$ in $Z_{r+1}^{p,q}$ that maps to $\bar z$, confirming surjectivity. (For brevity, we omit the straightforward but tedious proof for injectivity.)
 
-        \item Fix some $n$. Then for $\ell\geq n$ sufficiently large, by assumption of a bounded filtration, we have $F^\ell K^n = F^\ell K^{n-1} = F^\ell K^{n+1} =0$. For $p+q=n$, we then have:
+        \item Fix some total degree $n = p+q$. Because our filtration is bounded, there exists some integer $\ell \ge n$ large enough such that the filtration completely trivializes around degree $n$: $F^\ell K^n = F^\ell K^{n-1} = F^\ell K^{n+1} =0$. At this stage, the condition for being an ``approximate'' cocycle becomes exactly the condition for being a genuine cocycle of the entire complex. We have:
         $$
         Z_{\ell+1}^{p,q} =\left\{x\in F^p K^n \mid dx\in F^{p+\ell+1} K^{n+1} = 0\right\}= \ker \left(d:F^pK^n\to F^pK^{n+1}\right)
         $$
@@ -234,16 +237,21 @@ E_2^{p-2, q-1} & E_2^{p-1, q-1} & E_2^{p, q-1} & E_2^{p+1, q-1}
         $$
         Z_{\ell}^{p+1,q-1} = \left\{x\in F^{p+1}K^n\mid dx\in F^{p+1+\ell} K^{n+1}=0\right\} = \ker \left(d:F^{p+1}K^n\to F^{p+1}K^{n+1}\right)
         $$
-        Then, since $\ell \geq n=p+q \implies p-\ell \leq -q \leq 0$, so $Z_\ell^{p-\ell,q+\ell-1} = \left\{x\in F^{p-\ell}K^{n-1} =K^{n-1}\mid dx\in F^p K^{n}\right\}$. Now, we apply $d$ and this gives us exactly $dZ_\ell^{p-\ell,q+\ell-1}=F^pK^n\cap \im (d)$. Thus, we have
+        Next, we analyze the $dZ$ term in the boundary space. Since $\ell \geq n=p+q$, we must have $p-\ell \leq -q \leq 0$. Therefore, $Z_\ell^{p-\ell,q+\ell-1} = \left\{x\in F^{p-\ell}K^{n-1} =K^{n-1}\mid dx\in F^p K^{n}\right\}$. Applying the differential $d$ gives us exactly $dZ_\ell^{p-\ell,q+\ell-1}=F^pK^n\cap \image (d)$. 
+        
+        We are now ready to assemble the final quotient space:
         \begin{align*}
         E_{\ell+1}^{p,q} &:= Z_{\ell+1}^{p,q} /B_{\ell+1}^{p,q} \\
         &= Z_{\ell+1}^{p,q} /\left(Z_{\ell}^{p+1,q-1} + dZ_{\ell}^{p-\ell,q+\ell-1}\right) \\
-        &= \ker \left(d:F^pK^n\to F^pK^{n+1}\right) / \left(\ker \left(d:F^{p+1}K^n\to F^{p+1}K^{n+1}\right) +F^pK^n\cap \im (d)\right) \\
-        &= \im \left(H^n\left(F^pK^\bullet\right)\to H^n\left(K^\bullet\right)\right)/\im \left(H^n\left(F^{p+1}K^\bullet\right)\to H^n\left(K^\bullet\right)\right) \\
+        &= \frac{\ker \left(d:F^pK^n\to F^pK^{n+1}\right)}{ \ker \left(d:F^{p+1}K^n\to F^{p+1}K^{n+1}\right) +F^pK^n\cap \image (d)} 
+        \end{align*}
+        Notice that this quotient exactly isolates the cohomology of $K^\bullet$ restricted to the $p$-th filtration level, modulo the $(p+1)$-th filtration level:
+        \begin{align*}
+        E_{\ell+1}^{p,q} &= \frac{\image \left(H^n\left(F^pK^\bullet\right)\to H^n\left(K^\bullet\right)\right)}{\image \left(H^n\left(F^{p+1}K^\bullet\right)\to H^n\left(K^\bullet\right)\right)} \\
         &= F^pH^n\left(K^\bullet\right) / F^{p+1}H^n\left(K^\bullet\right) \\
         &= \mathrm{Gr}_p^FH^{p+q}\left(K^\bullet\right)
         \end{align*}
-        as desired.
+        Since increasing $r$ past $\ell+1$ continues to yield zero bounding spaces, the page stabilizes to $E_\infty^{p,q} = \mathrm{Gr}_p^FH^{p+q}\left(K^\bullet\right)$ as desired.
     \end{enumerate}
 \end{proof}
 
@@ -257,7 +265,7 @@ $$
 
 \medskip
 
-\noindent Since the naive filtration is trivially bounded, we can start to apply \textbf{Theorem 2.7} and construct our spectral sequence $\left(E_r^{p,q}, d_r\right)$. We begin by computing the $E_0$ page. By definition:
+\noindent The naive filtration is obviously bounded, since given $k$ we can take $p>k$, and since no $r$ satisfies $r>k$ and $r+s=k$, the direct sum is empty and $F^p\mathcal{A}^k(X) = 0$. As such, we can start to apply \textbf{Theorem 2.7} and construct our spectral sequence $\left(E_r^{p,q}, d_r\right)$. We begin by computing the $E_0$ page. By definition:
 $$
 E_0^{p,q} = F^p\mathcal{A}^{p+q}(X) / F^{p+1}\mathcal{A}^{p+q}(X) \cong  \mathcal{A}^{p,q}(X)
 $$
@@ -277,7 +285,7 @@ $$
 E_1^{p,q} \cong H_{\bar\partial}^{p,q}(X)
 $$
 
-\noindent At this point, we invoke \textbf{Corollary 2.6.21} of \cite{Huybrechts2005}, which tells us that the Dolbeault cohomology of $X$ computes the cohomology of the sheaf of holomorphic $p$-forms on $X$, $\Omega_X^p$, giving us an isomorphism $H_{\bar\partial}^{p,q}(X)\cong H^q\left(X,\Omega_X^p\right)$, and a clean way to express the data of the $E_1$ page:
+\noindent At this point, we invoke \cite[Corollary 2.6.21]{Huybrechts2005}, which tells us that the Dolbeault cohomology of $X$ computes the cohomology of the sheaf of holomorphic $p$-forms on $X$, $\Omega_X^p$, giving us an isomorphism $H_{\bar\partial}^{p,q}(X)\cong H^q\left(X,\Omega_X^p\right)$, and a clean way to express the data of the $E_1$ page:
 $$
 E_1^{p,q} \cong H^q\left(X,\Omega_X^p\right)
 $$
@@ -287,19 +295,19 @@ Finally, from \textbf{Theorem 2.7(iii)}, we have one of the key results of this 
 \end{theorem}
 
 \subsection{The Hodge decomposition and degeneration for compact K\"ahler manifolds}
-Recall from \textbf{Definition 2.8} that a spectral sequence degenerates at the $E_r$ page if all arrows from that page onward are trivial, i.e. $d_k=0$ for all $k\geq r$. This immediately causes all subsequent pages to be identical. We show that, for a particular class of complex manifold, the Fr\"olicher spectral sequence defined in the previous section degenerates immediately. We begin with a definition from \textbf{Chapter 3} of \cite{VoisinI2002}:
+Recall from \textbf{Definition 2.8} that a spectral sequence degenerates at the $E_r$ page if all arrows from that page onward are trivial, i.e. $d_k=0$ for all $k\geq r$. This immediately causes all subsequent pages to be identical. We show that, for a particular class of complex manifold, the Fr\"olicher spectral sequence defined in the previous section degenerates immediately. We begin with a definition from \cite[Chapter 3]{VoisinI2002}:
 
 \begin{definition}
     A \emph{K\"ahler manifold} is a complex manifold equipped with a Hermitian metric $h$, whose associated K\"ahler form $\omega = -\Im(h)$ satisfies $d\omega =0$ (closed). 
 \end{definition}
 
-\noindent If our manifold $X$ is K\"ahler, and we let $d:\mathcal{A}^{k-1}(X) \to \mathcal{A}^k(X)$ be the exterior derivative as per usual, we define the adjoint operator $d^*: -*\circ d\circ *:\mathcal{A}^k(X) \to \mathcal{A}^{k-1}(X)$, where $*$ denotes the \emph{Hodge star operator} (see \textbf{Section 1.2} of \cite{Huybrechts2005}). Analogously, we can define $\partial^*:\mathcal{A}^{p,q}(X) \to \mathcal{A}^{p-1,q}(X)$ and $\bar\partial^*:\mathcal{A}^{p,q}(X) \to \mathcal{A}^{p,q-1}(X)$.
+\noindent If our manifold $X$ is K\"ahler, and we let $d:\mathcal{A}^{k-1}(X) \to \mathcal{A}^k(X)$ be the exterior derivative as per usual, we define the adjoint operator $d^*: -*\circ d\circ *:\mathcal{A}^k(X) \to \mathcal{A}^{k-1}(X)$, where $*$ denotes the \emph{Hodge star operator} (see \cite[Section 1.2]{Huybrechts2005}). Analogously, we can define $\partial^*:\mathcal{A}^{p,q}(X) \to \mathcal{A}^{p-1,q}(X)$ and $\bar\partial^*:\mathcal{A}^{p,q}(X) \to \mathcal{A}^{p,q-1}(X)$.
 
 \begin{definition}
     (Laplacian) We define the operators $\Delta_d = d^*d + dd^*$, $\Delta_\partial = \partial^*\partial+\partial\partial^*$, and $\Delta_{\bar \partial} = \bar\partial^*\bar\partial + \bar\partial \bar\partial^*$. Observe immediately that the latter two preserve bidegree, i.e. are bihomogeneous.
 \end{definition}
 
-\noindent These are connected by the so-called K\"ahler identities (\textbf{Proposition 3.1.12} in \cite{Huybrechts2005}); we state without proof one of the important ones since the proof is rather lengthy and analysis-heavy.
+\noindent These are connected by the so-called K\"ahler identities \cite[Proposition 3.1.12]{Huybrechts2005}; we state without proof one of the important ones since the proof is rather lengthy and analysis-heavy.
 
 \begin{lemma}
 If $X$ is K\"ahler, then $\Delta_d = 2\Delta_\partial = 2\Delta_{\bar \partial}$.
@@ -320,7 +328,7 @@ If $X$ is K\"ahler, then $\Delta_d = 2\Delta_\partial = 2\Delta_{\bar \partial}$
     $$
 \end{corollary}
 
-\noindent From here, \textbf{Theorems 5.23} and \textbf{5.24} of \cite{VoisinI2002} provide isomorphisms $\mathcal{H}^k_d(X) \to H^k_\mathrm{dR}(X,\C)$ and $\mathcal{H}^{p,q}_{\bar\partial}(X) \to H^{p,q}_\mathrm{\bar\partial}(X)$ in the case where $X$ is compact. In other words, every de Rham cohomology class contains a unique $d$-harmonic representative, and every Dolbeault cohomology class contains a unique $\bar\partial$-harmonic representative. With this, we obtain the celebrated:
+\noindent From here, \cite[Theorems 5.23, 5.24]{VoisinI2002} provide isomorphisms $\mathcal{H}^k_d(X) \to H^k_\mathrm{dR}(X,\C)$ and $\mathcal{H}^{p,q}_{\bar\partial}(X) \to H^{p,q}_\mathrm{\bar\partial}(X)$ in the case where $X$ is compact. In other words, every de Rham cohomology class contains a unique $d$-harmonic representative, and every Dolbeault cohomology class contains a unique $\bar\partial$-harmonic representative. With this, we obtain the celebrated:
 \begin{theorem}
     (Hodge decomposition) If $X$ is a compact K\"ahler manifold, then:
     $$
@@ -349,7 +357,7 @@ If $X$ is K\"ahler, then $\Delta_d = 2\Delta_\partial = 2\Delta_{\bar \partial}$
         \sum_{p+q=k} h^{p,q} = b_k = \sum_{p+q=k} \dim E_\infty^{p,q} \leq \sum_{p+q=k} h^{p,q}
         $$
         
-        \noindent Since the left and right sides are equal, we must have strict equality for every $p$ and $q$, i.e. $\dim E_{r+1}^{p,q} = \dim E_r^{p,q}$ for all $r\geq 1$. As noted in the proof to \textbf{Theorem 8.28} of \cite{VoisinI2002}, the dimension preservation guarantees $d_r = 0$ for all $r\geq 1$. As such, the spectral sequence degenerates at the $E_1$ page.
+        \noindent Since the left and right sides are equal, we must have strict equality for every $p$ and $q$, i.e. $\dim E_{r+1}^{p,q} = \dim E_r^{p,q}$ for all $r\geq 1$. As noted in the proof to \cite[Theorem 8.28]{VoisinI2002}, the dimension preservation guarantees $d_r = 0$ for all $r\geq 1$. As such, the spectral sequence degenerates at the $E_1$ page.
 \end{proof}
 
 \noindent Why is \textbf{Theorem 4.7} so powerful? The fact that a spectral sequence degenerates at the very first page means that $E_1^{p,q} = E_\infty^{p,q}$. By definition, this yields:
