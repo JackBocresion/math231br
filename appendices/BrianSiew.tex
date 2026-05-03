@@ -224,7 +224,7 @@ E_2^{p-2, q-1} & E_2^{p-1, q-1} & E_2^{p, q-1} & E_2^{p+1, q-1}
 
         Now, suppose $z \in B_{r+1}^{p,q}$. By definition, we can write $z=z_1+dz_2$ for $z_1 \in Z_r^{p+1,q-1}$ and $z_2\in Z_r^{p-r,q+r-1}$. Since $Z_r^{p+1,q-1}\subseteq Z_{r-1}^{p+1,q-1}\subseteq B_r^{p,q}$, the $z_1$ term vanishes in the quotient $E_r$, giving us $\bar{z} = \overline{z_1+dz_2} = \overline{dz_2}$. But since $z_2\in Z_r^{p-r,q+r-1}$, the exterior derivative $dz_2$ is exactly what $d_r$ produces. Thus $d_r\left(\overline{z_2}\right) = \overline{dz_2} =\bar z$. In other words, $\bar z$ is in the image of $d_r$. Taking the class of an element in $E_r^{p,q}$ therefore rigorously produces a well-defined map:
         $$
-        Z_{r+1}^{p,q}/B_{r+1}^{p,q} \to \frac{\ker \left(d_r:E_r^{p,q} \to E_r^{p+r,q-r+1}\right)}{\image\left(d_r:E_r^{p-r,q+r-1} \to E_r^{p,q}\right)}
+        Z_{r+1}^{p,q}/B_{r+1}^{p,q} \to \frac{\ker \left(d_r:E_r^{p,q} \to E_r^{p+r,q-r+1}\right)}{\im\left(d_r:E_r^{p-r,q+r-1} \to E_r^{p,q}\right)}
         $$
         
         To prove this is a bijection, we start with surjectivity. Let $\bar z \in \ker d_r$, and pick some representative $z\in Z_r^{p,q}$. The assumption $d_r(\bar z) = 0$ means the class of $dz$ in $E_r^{p+r,q-r+1}$ is zero, i.e., it is a boundary: $dz \in B_r^{p+r,q-r+1} = dZ_{r-1}^{p+1,q-1} +Z_{r-1}^{p+r+1,q-r}$. So there exists $w\in Z_{r-1}^{p+1,q-1}$ such that $d(z-w) \in Z_{r-1}^{p+r+1,q-r}\subseteq F^{p+r+1}K^{p+q+1}$. On the other hand, $z\in F^pK^{p+q}$ and $w\in F^{p+1}K^{p+q} \subseteq F^pK^{p+q}$, so their difference $z-w\in F^pK^{p+q}$. These two facts combined imply $z-w\in Z_{r+1}^{p,q}$. Because $w\in Z_{r-1}^{p+1,q-1}\subseteq B_r^{p,q}$, its class in the quotient is $\bar w=0$, making $\overline{z-w} = \bar z$. Hence, we have found an element $z-w$ in $Z_{r+1}^{p,q}$ that maps to $\bar z$, confirming surjectivity. (For brevity, we omit the straightforward but tedious proof for injectivity.)
@@ -237,17 +237,17 @@ E_2^{p-2, q-1} & E_2^{p-1, q-1} & E_2^{p, q-1} & E_2^{p+1, q-1}
         $$
         Z_{\ell}^{p+1,q-1} = \left\{x\in F^{p+1}K^n\mid dx\in F^{p+1+\ell} K^{n+1}=0\right\} = \ker \left(d:F^{p+1}K^n\to F^{p+1}K^{n+1}\right)
         $$
-        Next, we analyze the $dZ$ term in the boundary space. Since $\ell \geq n=p+q$, we must have $p-\ell \leq -q \leq 0$. Therefore, $Z_\ell^{p-\ell,q+\ell-1} = \left\{x\in F^{p-\ell}K^{n-1} =K^{n-1}\mid dx\in F^p K^{n}\right\}$. Applying the differential $d$ gives us exactly $dZ_\ell^{p-\ell,q+\ell-1}=F^pK^n\cap \image (d)$. 
+        Next, we analyze the $dZ$ term in the boundary space. Since $\ell \geq n=p+q$, we must have $p-\ell \leq -q \leq 0$. Therefore, $Z_\ell^{p-\ell,q+\ell-1} = \left\{x\in F^{p-\ell}K^{n-1} =K^{n-1}\mid dx\in F^p K^{n}\right\}$. Applying the differential $d$ gives us exactly $dZ_\ell^{p-\ell,q+\ell-1}=F^pK^n\cap \im (d)$. 
         
         We are now ready to assemble the final quotient space:
         \begin{align*}
         E_{\ell+1}^{p,q} &:= Z_{\ell+1}^{p,q} /B_{\ell+1}^{p,q} \\
         &= Z_{\ell+1}^{p,q} /\left(Z_{\ell}^{p+1,q-1} + dZ_{\ell}^{p-\ell,q+\ell-1}\right) \\
-        &= \frac{\ker \left(d:F^pK^n\to F^pK^{n+1}\right)}{ \ker \left(d:F^{p+1}K^n\to F^{p+1}K^{n+1}\right) +F^pK^n\cap \image (d)} 
+        &= \frac{\ker \left(d:F^pK^n\to F^pK^{n+1}\right)}{ \ker \left(d:F^{p+1}K^n\to F^{p+1}K^{n+1}\right) +F^pK^n\cap \im (d)} 
         \end{align*}
         Notice that this quotient exactly isolates the cohomology of $K^\bullet$ restricted to the $p$-th filtration level, modulo the $(p+1)$-th filtration level:
         \begin{align*}
-        E_{\ell+1}^{p,q} &= \frac{\image \left(H^n\left(F^pK^\bullet\right)\to H^n\left(K^\bullet\right)\right)}{\image \left(H^n\left(F^{p+1}K^\bullet\right)\to H^n\left(K^\bullet\right)\right)} \\
+        E_{\ell+1}^{p,q} &= \frac{\im \left(H^n\left(F^pK^\bullet\right)\to H^n\left(K^\bullet\right)\right)}{\im \left(H^n\left(F^{p+1}K^\bullet\right)\to H^n\left(K^\bullet\right)\right)} \\
         &= F^pH^n\left(K^\bullet\right) / F^{p+1}H^n\left(K^\bullet\right) \\
         &= \mathrm{Gr}_p^FH^{p+q}\left(K^\bullet\right)
         \end{align*}
